@@ -3,6 +3,11 @@
 
     <string name="app_name">Fuel Logger</string>
     <string name="action_settings">Settings</string>
+<<<<<<< HEAD
     <string name="hello_world">Hello git!</string>
+=======
+    <string name="hello_world">Hello world!</string>
+    <string name="action_help">Help</string>
+>>>>>>> 68d41df8f29e41df8b8efb40ff31203dc4b0d14a
 
 </resources>
