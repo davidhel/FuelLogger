@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtVehicleModel"
         android:layout_below="@+id/txtVehicleModel"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="31dp"
         android:text="@string/tankSize" />
 
     <EditText
@@ -66,6 +66,40 @@
         android:layout_alignLeft="@+id/editVehicleModel"
         android:ems="10"
         android:text="@string/exampleTankSize" />
+
+    <TextView
+        android:id="@+id/txtVoulumeMeasure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtTankSize"
+        android:layout_alignRight="@+id/editTankSize"
+        android:text="@string/volumeMeasure" />
+
+    <TextView
+        android:id="@+id/txtOdometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtTankSize"
+        android:layout_below="@+id/txtTankSize"
+        android:layout_marginTop="31dp"
+        android:text="@string/odometer" />
+
+    <EditText
+        android:id="@+id/editOdometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtOdometer"
+        android:layout_alignLeft="@+id/editTankSize"
+        android:ems="10"
+        android:text="@string/exampleOdometer" />
+
+    <TextView
+        android:id="@+id/txtDistanceMeasure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtOdometer"
+        android:layout_alignRight="@+id/editOdometer"
+        android:text="@string/distanceMeasure" />
 
     <CheckBox
         android:id="@+id/chcPrimary"
