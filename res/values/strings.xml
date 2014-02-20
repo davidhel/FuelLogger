@@ -6,4 +6,14 @@
     <string name="hello_world">Hello git!</string>
     
     <string name="submit">Submit</string>
+    <string name="name">Name:</string>
+    <string name="primary">This is my primary vehicle</string>
+    <string name="brand">Bilmerke:</string>
+     <string name="model">Bilmodell:</string>
+     <string name="exampleBrand">Toyota</string>
+     <string name="exampleModel">Corolla</string>
+     <string name="tankSize">Tank volum:</string>
+     <string name="exampleTankSize">50</string>
+     <string name="ifNotRegistered">Vennligst reigistrer deg</string>
+     <string name="register">Registrer</string>
 </resources>
