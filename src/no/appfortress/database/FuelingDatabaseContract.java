@@ -24,7 +24,7 @@ public class FuelingDatabaseContract {
 	 *
 	 *	En klasse som holder verdiene til tabellen
 	 */
-	public static abstract class FeedEntry implements BaseColumns{
+	public static abstract class FuelingFeedEntry implements BaseColumns{
 		// Navn på tabellen
 		public static final String TABLE_NAME = "fueling";
 		// IDen på påfyllingen

@@ -57,6 +57,7 @@ public final class R {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int brand=0x7f050006;
+        public static final int databaseName=0x7f050012;
         public static final int distanceMeasure=0x7f050011;
         public static final int exampleBrand=0x7f050008;
         public static final int exampleModel=0x7f050009;

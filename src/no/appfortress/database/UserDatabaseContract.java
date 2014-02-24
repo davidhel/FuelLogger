@@ -27,13 +27,13 @@ public class UserDatabaseContract {
 	 *
 	 *	En klasse som holder verdiene til tabellen
 	 */
-	public static abstract class FeedEntry implements BaseColumns{
+	public static abstract class UserFeedEntry implements BaseColumns{
 		// Navn på tabellen
 		public static final String TABLE_NAME = "user";
 		// Id til brukeren, AUTO INCREMENT
 		public static final String COLUMN_USER_ID = "user_id";
 		// Navnet til Brukeren
-		public static final String COLUMNT_NAME = "name";
+		public static final String COLUMN_NAME = "name";
 		
 		// TODO Trengs det flere kolonner for brukeren?
 	}
