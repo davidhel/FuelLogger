@@ -1,5 +1,9 @@
 package no.appfortress.database;
 
+import no.appfortress.fuellogger.R;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 /**
  * 
@@ -16,6 +20,14 @@ import android.provider.BaseColumns;
  */
 public class UserDatabaseContract {
 	
+	private static final String SQL_CREATE_ENTRIES = 
+			"CREATE TABLE " + UserFeedEntry.TABLE_NAME + " ("
+			+ UserFeedEntry._ID + " INTEGER PRIMARY KEY, "
+			+ UserFeedEntry.COLUMN_NAME + " VARCHAR(255) NOT NULL)";
+	
+	private static final String SQL_DELETE_ENTRIES =
+			"DROP TABLE IF EXISTS " +  UserFeedEntry.TABLE_NAME;
+	
 	/**
  	 * Konstruktør som vil sørge for at hvis noen finner på å instansiere
  	 * klassen, så vil den ikke gjøre noen ting.
@@ -30,12 +42,28 @@ public class UserDatabaseContract {
 	public static abstract class UserFeedEntry implements BaseColumns{
 		// Navn på tabellen
 		public static final String TABLE_NAME = "user";
-		// Id til brukeren, AUTO INCREMENT
-		public static final String COLUMN_USER_ID = "user_id";
 		// Navnet til Brukeren
 		public static final String COLUMN_NAME = "name";
 		
 		// TODO Trengs det flere kolonner for brukeren?
+	}
+	
+	public class UserDbHelper extends SQLiteOpenHelper{
+		
+		public UserDbHelper(Context c){
+			super(c, c.getResources().getString(R.string.databaseName), null, c.getResources().getInteger(R.integer.databaseVersion));
+		}
+
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			db.execSQL(SQL_CREATE_ENTRIES);
+		}
+
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+			db.execSQL(SQL_DELETE_ENTRIES);
+			onCreate(db);
+		}
 	}
 	
 }

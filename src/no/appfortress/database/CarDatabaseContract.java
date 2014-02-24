@@ -31,7 +31,7 @@ public class CarDatabaseContract {
 			+ CarFeedEntry.COLUMN_YEAR + " INTEGER, "
 			+ CarFeedEntry.COLUMN_OWNER_FK_USER + " INTEGER NOT NULL, "
 			+ "FOREIGN KEY(" + CarFeedEntry.COLUMN_OWNER_FK_USER + ") REFERENCES " 
-			+ UserFeedEntry.TABLE_NAME + "(" + UserFeedEntry.COLUMN_USER_ID +") );";
+			+ UserFeedEntry.TABLE_NAME + "(" + UserFeedEntry._ID +") )";
 	
 	private static String SQL_DELETE_ENTRIES = 
 			"DROP TABLE IF EXISTS " + CarFeedEntry.TABLE_NAME;
@@ -76,7 +76,7 @@ public class CarDatabaseContract {
 		public static final int DATABASE_VERSION = 1;
 		
 		public CarDbHelper(Context c){
-			super(c, c.getString(R.string.databaseName), null, DATABASE_VERSION);
+			super(c, c.getResources().getString(R.string.databaseName), null, c.getResources().getInteger(R.integer.databaseVersion));
 		}
 
 		@Override
