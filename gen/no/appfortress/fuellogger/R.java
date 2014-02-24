@@ -26,24 +26,25 @@ public final class R {
         public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f090011;
+        public static final int action_settings=0x7f090012;
+        public static final int bDatabaseTest=0x7f090002;
         public static final int btnRegister=0x7f090001;
-        public static final int btnSubmit=0x7f09000e;
-        public static final int chcPrimary=0x7f09000d;
-        public static final int editOdometer=0x7f09000b;
-        public static final int editTankSize=0x7f090008;
-        public static final int editVehicleBrand=0x7f090004;
-        public static final int editVehicleModel=0x7f090006;
-        public static final int imgCar=0x7f090002;
-        public static final int txtCarData=0x7f090010;
-        public static final int txtDistanceMeasure=0x7f09000c;
-        public static final int txtOdometer=0x7f09000a;
+        public static final int btnSubmit=0x7f09000f;
+        public static final int chcPrimary=0x7f09000e;
+        public static final int editOdometer=0x7f09000c;
+        public static final int editTankSize=0x7f090009;
+        public static final int editVehicleBrand=0x7f090005;
+        public static final int editVehicleModel=0x7f090007;
+        public static final int imgCar=0x7f090003;
+        public static final int txtCarData=0x7f090011;
+        public static final int txtDistanceMeasure=0x7f09000d;
+        public static final int txtOdometer=0x7f09000b;
         public static final int txtRegistered=0x7f090000;
-        public static final int txtTankSize=0x7f090007;
-        public static final int txtVehicleBrand=0x7f090003;
-        public static final int txtVehicleModel=0x7f090005;
-        public static final int txtVehicleName=0x7f09000f;
-        public static final int txtVoulumeMeasure=0x7f090009;
+        public static final int txtTankSize=0x7f090008;
+        public static final int txtVehicleBrand=0x7f090004;
+        public static final int txtVehicleModel=0x7f090006;
+        public static final int txtVehicleName=0x7f090010;
+        public static final int txtVoulumeMeasure=0x7f09000a;
     }
     public static final class integer {
         public static final int databaseVersion=0x7f050000;
@@ -51,7 +52,8 @@ public final class R {
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int activity_register=0x7f030001;
-        public static final int myvehicles_activity=0x7f030002;
+        public static final int database_layout=0x7f030002;
+        public static final int myvehicles_activity=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f080000;
