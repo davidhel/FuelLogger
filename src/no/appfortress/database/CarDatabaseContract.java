@@ -20,7 +20,7 @@ import android.provider.BaseColumns;
  *         flere biler, og det vil derfor være mulig å lage flere biler per
  *         bruker.
  */
-public class CarDatabaseContract {
+public final class CarDatabaseContract {
 
 	private static String SQL_CREATE_ENTRIES = "CREATE TABLE "
 			+ CarFeedEntry.TABLE_NAME + " (" 
