@@ -1,7 +1,6 @@
 package no.appfortress.database;
 
 import no.appfortress.database.CarDatabaseContract.CarFeedEntry;
-import no.appfortress.database.UserDatabaseContract.UserFeedEntry;
 import no.appfortress.fuellogger.R;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
