@@ -5,19 +5,18 @@ import no.appfortress.fuellogger.R;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class CarDBHelper extends SQLiteOpenHelper{
 	
 	private static String SQL_CREATE_ENTRIES = "CREATE TABLE "
 			+ CarFeedEntry.TABLE_NAME + " (" 
 			+ CarFeedEntry._ID + " INTEGER PRIMARY KEY, "
-			+ CarFeedEntry.COLUMN_REGNR + " VARCHAR(255), "
 			+ CarFeedEntry.COLUMN_CAR_BRAND + " VARCHAR(255), "
 			+ CarFeedEntry.COLUMN_CAR_MODEL + " VARCHAR(255), "
-			+ CarFeedEntry.COLUMN_YEAR + " INTEGER, "
-			+ CarFeedEntry.COLUMN_OWNER_FK_USER + " INTEGER NOT NULL, "
-			+ "FOREIGN KEY(" + CarFeedEntry.COLUMN_OWNER_FK_USER + ") REFERENCES " 
-			+ UserFeedEntry.TABLE_NAME + "(" + UserFeedEntry._ID +") )";
+			+ CarFeedEntry.COLUMN_YEAR + " INTEGER, " 
+			+ CarFeedEntry.COLUMN_ODOMETER + " INTEGER, "
+			+ CarFeedEntry.COLUMNT_FUELTANK + " INTEGER )";
 	
 	private static String SQL_DELETE_ENTRIES = 
 			"DROP TABLE IF EXISTS " + CarFeedEntry.TABLE_NAME;
