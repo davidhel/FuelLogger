@@ -26,7 +26,7 @@ public class FuelingDBHelper extends SQLiteOpenHelper{
 			"DROP TABLE IF EXISTS " + FuelingFeedEntry.TABLE_NAME; 
 	
 	public FuelingDBHelper(Context c){
-		super(c, c.getResources().getString(R.string.databaseName), null, c.getResources().getInteger(R.integer.databaseVersion));
+		super(c, MySQLiteDatabase.databaseName, null, MySQLiteDatabase.databaseVersion);
 	}
 
 	@Override

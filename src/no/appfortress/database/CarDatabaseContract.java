@@ -42,7 +42,9 @@ public final class CarDatabaseContract {
 		// What is the odometer of the car
 		public static final String COLUMN_ODOMETER = "odometer";
 		// How big cars fuel tank is
-		public static final String COLUMNT_FUELTANK = "fueltank";
+		public static final String COLUMN_FUELTANK = "fueltank";
+		// How much fuel are in the tank
+		public static final String COLUMN_FUEL = "fuel";
 	}
 	
 }

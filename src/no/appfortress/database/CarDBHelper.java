@@ -6,8 +6,13 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-public class CarDBHelper extends SQLiteOpenHelper{
+/**
+ * 
+ * @author Morgan
+ *
+ *
+ */
+public class CarDBHelper extends SQLiteOpenHelper {
 	
 	private static String SQL_CREATE_ENTRIES = "CREATE TABLE "
 			+ CarFeedEntry.TABLE_NAME + " (" 
@@ -16,13 +21,14 @@ public class CarDBHelper extends SQLiteOpenHelper{
 			+ CarFeedEntry.COLUMN_CAR_MODEL + " VARCHAR(255), "
 			+ CarFeedEntry.COLUMN_YEAR + " INTEGER, " 
 			+ CarFeedEntry.COLUMN_ODOMETER + " INTEGER, "
-			+ CarFeedEntry.COLUMNT_FUELTANK + " INTEGER )";
+			+ CarFeedEntry.COLUMN_FUELTANK + " FLOAT, " 
+			+ CarFeedEntry.COLUMN_FUEL + " FLOAT )";
 	
 	private static String SQL_DELETE_ENTRIES = 
 			"DROP TABLE IF EXISTS " + CarFeedEntry.TABLE_NAME;
 	
 	public CarDBHelper(Context c){
-		super(c, c.getResources().getString(R.string.databaseName), null, c.getResources().getInteger(R.integer.databaseVersion));
+		super(c, MySQLiteDatabase.databaseName, null, MySQLiteDatabase.databaseVersion);
 	}
 
 	@Override
