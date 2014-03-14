@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class RegisterActivity extends Activity{
+public class RegisterVehicleActivity extends Activity{
 	
 	public static String EXTRA_MESSAGE  = "no.appfortress.fuellogger.RegisterActivity";
 	public static String EXTRA_MESSAGE2;
