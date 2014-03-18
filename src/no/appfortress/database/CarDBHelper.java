@@ -1,11 +1,9 @@
 package no.appfortress.database;
 
 import no.appfortress.database.CarDatabaseContract.CarFeedEntry;
-import no.appfortress.fuellogger.R;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 /**
  * 
  * @author Morgan

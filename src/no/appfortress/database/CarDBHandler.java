@@ -1,14 +1,15 @@
 package no.appfortress.database;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import no.appfortress.database.CarDatabaseContract.CarFeedEntry;
+import no.appfortress.fuellogger.Car;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
-
 /**
  * 
  * @author Morgan
@@ -79,34 +80,42 @@ public class CarDBHandler {
 		return rtnValue;
 	}
 
-	public Cursor getAllCars() {
-		Cursor c = null;
+	public List<Car> getAllCars() {
+		List<Car> carList = new ArrayList<Car>();
 		try {
-			Log.d("tyr tydosf", "1");
 			db = dbHelper.getReadableDatabase();
-			Log.d("tyr tydosf", "2");
 			String query = "SELECT * FROM " + CarFeedEntry.TABLE_NAME;
-			Log.d("tyr tydosf", query);
-			c = db.rawQuery(query, null);
-			Log.d("Select query", "4");
-			Log.d("first boolean movetofirst",
-					Boolean.toString(c.moveToFirst()));
-			Log.d("first boolean isafterlaft",
-					Boolean.toString(c.isAfterLast()));
-			Log.d("how many rows", Integer.toString(c.getCount()));
+			Cursor cursor = db.rawQuery(query, null);
+			cursor.moveToFirst();
+			long id, odometer;
+			String brand, model;
+			float fuelTank, fuel;
+			int year;
+			while(!cursor.isAfterLast()){
+				id = cursor.getLong(cursor.getColumnIndex(CarFeedEntry._ID));
+				brand = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_BRAND));
+				model = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_MODEL));
+				year = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_YEAR));
+				odometer = cursor.getLong(cursor.getColumnIndex(CarFeedEntry.COLUMN_ODOMETER));
+				fuelTank = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUELTANK));
+				fuel = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUEL));
+				Car car = new Car(id, brand, model, year, odometer, fuelTank);
+				car.setFuel(fuel);
+				carList.add(car);
+				cursor.moveToNext();
+			}
 		} catch (SQLiteException ex) {
 			Log.e("Error in: getAllCars method in CarDBHandler class",
 					"Could not open database for reading.");
 		}
-		return c;
+		return carList;
 	}
 
-	public void deleteRow(int rowID) {
+	public void deleteRow(long rowID) {
 		try {
 			db = dbHelper.getWritableDatabase();
 			String query = "DELETE FROM " + CarFeedEntry.TABLE_NAME + " WHERE "
-					+ CarFeedEntry._ID + "=" + Integer.toString(rowID);
-			Log.d("Row id" , Integer.toString(rowID));
+					+ CarFeedEntry._ID + "=" + Long.toString(rowID);
 			db.execSQL(query);
 		} catch (SQLiteException ex) {
 			Log.e("Error in: deleteRow in CarDBHandler class", "Could not open database for reading");
