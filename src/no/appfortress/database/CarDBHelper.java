@@ -20,7 +20,7 @@ public class CarDBHelper extends SQLiteOpenHelper {
 			+ CarFeedEntry.COLUMN_CAR_BRAND + " VARCHAR(255), "
 			+ CarFeedEntry.COLUMN_CAR_MODEL + " VARCHAR(255), "
 			+ CarFeedEntry.COLUMN_YEAR + " INTEGER, " 
-			+ CarFeedEntry.COLUMN_ODOMETER + " INTEGER, "
+			+ CarFeedEntry.COLUMN_ODOMETER + " INTEGER NOT NULL, "
 			+ CarFeedEntry.COLUMN_FUELTANK + " FLOAT, " 
 			+ CarFeedEntry.COLUMN_FUEL + " FLOAT )";
 	

@@ -32,9 +32,31 @@ public class CarDBHandler {
 		dbHelper.close();
 	}
 
+	/**
+	 * 
+	 * @param carBrand 	The brand of the car to insert
+	 * @param carModel	The model of the car to insert
+	 * @param year	Which year the car was made
+	 * @param odometer	How long the car has driven 
+	 * @param fueltank	How big the fueltank is
+	 * @return a boolean value, if the insertion fails, it returns false, if not, return true
+	 * 
+	 * Inserts a car into the database.
+	 */
 	public boolean insertCar(String carBrand, String carModel, int year,
 			int odometer, float fueltank) {
 		boolean rtnValue = true;
+		
+		String dbCarBrand = (carBrand != null) ? "'"+carBrand+"'" : "NULL";
+		String dbCarModel = (carModel != null) ? "'"+carModel+"'" : "NULL";
+		String dbYear = (year != 0) ? Integer.toString(year) : "NULL";
+		String dbOdometer;
+		if(odometer != 0){
+			dbOdometer = Integer.toString(odometer);
+		}else{
+			return false;
+		}
+		String dbFueltank = (fueltank != 0) ? Float.toString(fueltank) : "NULL";
 		try {
 			db = dbHelper.getWritableDatabase();
 			String query = "INSERT INTO " + CarFeedEntry.TABLE_NAME + " ("
@@ -42,11 +64,10 @@ public class CarDBHandler {
 					+ CarFeedEntry.COLUMN_CAR_MODEL + ", "
 					+ CarFeedEntry.COLUMN_YEAR + ", "
 					+ CarFeedEntry.COLUMN_ODOMETER + ", "
-					+ CarFeedEntry.COLUMN_FUELTANK + ") VALUES ('" + carBrand
-					+ "','" + carModel + "'," + Integer.toString(year) + ","
-					+ Integer.toString(odometer) + ","
-					+ Float.toString(fueltank) + ")";
-			Log.d("SQL Insert", query);
+					+ CarFeedEntry.COLUMN_FUELTANK + ") VALUES (" + dbCarBrand
+					+ "," + dbCarModel + "," + dbYear + ","
+					+ dbOdometer + ","
+					+ dbFueltank + ")";
 			db.execSQL(query);
 		} catch (SQLiteException ex) {
 			Log.e("Error in: insertCar method in CarDBHandler class",
@@ -85,6 +106,7 @@ public class CarDBHandler {
 			db = dbHelper.getWritableDatabase();
 			String query = "DELETE FROM " + CarFeedEntry.TABLE_NAME + " WHERE "
 					+ CarFeedEntry._ID + "=" + Integer.toString(rowID);
+			Log.d("Row id" , Integer.toString(rowID));
 			db.execSQL(query);
 		} catch (SQLiteException ex) {
 			Log.e("Error in: deleteRow in CarDBHandler class", "Could not open database for reading");
