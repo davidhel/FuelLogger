@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void btnRegister(View view){
-		Intent intent = new Intent(this, RegisterActivity.class);
+		Intent intent = new Intent(this, RegisterVehicleActivity.class);
 		startActivity(intent);
 	}
 

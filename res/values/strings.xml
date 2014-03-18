@@ -19,6 +19,10 @@
     <string name="odometer">Odometer:</string>
     <string name="exampleOdometer">135234</string>
     <string name="distanceMeasure">km</string>
+<<<<<<< HEAD
     <string name="databaseName">FuelLoggerDatabase.db</string>
+=======
+    <string name="Odometer">Odometer</string>
+>>>>>>> upstream/master
 
 </resources>

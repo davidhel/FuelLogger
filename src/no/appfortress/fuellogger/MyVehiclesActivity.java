@@ -11,7 +11,7 @@ public class MyVehiclesActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.myvehicles_activity);
+		setContentView(R.layout.activity_myvehicles);
 		
 		TextView txtCarData = (TextView) findViewById(R.id.txtCarData);
 		
@@ -20,10 +20,10 @@ public class MyVehiclesActivity extends Activity{
 		//Receive intent message with Bundle() from RegisterActivity.class
 		Intent intent = getIntent();
 		Bundle extras = intent.getExtras();
-		String carBrand = extras.getString(RegisterActivity.EXTRA_MESSAGE);
-		String carModel = extras.getString(RegisterActivity.EXTRA_MESSAGE2);
-		String tankSize = extras.getString(RegisterActivity.EXTRA_MESSAGE3);
-		String odometer = extras.getString(RegisterActivity.EXTRA_MESSAGE4);
+		String carBrand = extras.getString(RegisterVehicleActivity.EXTRA_MESSAGE);
+		String carModel = extras.getString(RegisterVehicleActivity.EXTRA_MESSAGE2);
+		String tankSize = extras.getString(RegisterVehicleActivity.EXTRA_MESSAGE3);
+		String odometer = extras.getString(RegisterVehicleActivity.EXTRA_MESSAGE4);
 		
 		txtCarData.setText("Merke: "+carBrand+" Modell: "+carModel);
 	}
