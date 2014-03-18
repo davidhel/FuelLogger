@@ -27,4 +27,14 @@
         android:onClick="btnRegister"
         android:text="@string/register"/>
 
+    <Button
+        android:id="@+id/btnAddFueling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtRegistered"
+        android:layout_below="@+id/txtRegistered"
+        android:layout_marginTop="51dp"
+        android:onClick="btnAddFueling"
+        android:text="Add fill up" />
+
 </RelativeLayout>

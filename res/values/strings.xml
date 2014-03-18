@@ -20,5 +20,12 @@
     <string name="exampleOdometer">135234</string>
     <string name="distanceMeasure">km</string>
     <string name="Odometer">Odometer</string>
+    <string name="whatisodo"><u>What is odometer?</u></string>
+    <string name="litre">Litre:</string>
+    <string name="examplelitre">42</string>
+    <string name="partial">This is a partial fill up</string>
+    <string name="examplecost">546</string>
+    <string name="cost">Cost:</string>
+    <string name="pick_date">Pick date:</string>
 
 </resources>
