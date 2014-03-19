@@ -17,87 +17,90 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static int activity_horizontal_margin=0x7f040000;
+        public static int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int caricon03=0x7f020000;
-        public static final int ic_car=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
-        public static final int shape_line=0x7f020003;
+        public static int caricon03=0x7f020000;
+        public static int ic_car=0x7f020001;
+        public static int ic_launcher=0x7f020002;
+        public static int shape_line=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f09001c;
-        public static final int bDatabaseTest=0x7f09000c;
-        public static final int btnAddFueling=0x7f09000b;
-        public static final int btnRegister=0x7f09000a;
-        public static final int btnSubmit=0x7f09001a;
-        public static final int chcPrimary=0x7f090019;
-        public static final int chkPartial=0x7f090006;
-        public static final int editOdo=0x7f090002;
-        public static final int editOdometer=0x7f090017;
-        public static final int editTankSize=0x7f090014;
-        public static final int editText1=0x7f090008;
-        public static final int editVehicleBrand=0x7f090010;
-        public static final int editVehicleModel=0x7f090012;
-        public static final int etLitre=0x7f090005;
-        public static final int imgCar=0x7f09000e;
-        public static final int imgFuel=0x7f090000;
-        public static final int textView1=0x7f090007;
-        public static final int txtCarData=0x7f09000d;
-        public static final int txtDistanceMeasure=0x7f090018;
-        public static final int txtLitre=0x7f090004;
-        public static final int txtOdo=0x7f090001;
-        public static final int txtOdometer=0x7f090016;
-        public static final int txtRegistered=0x7f090009;
-        public static final int txtTankSize=0x7f090013;
-        public static final int txtVehicleBrand=0x7f09000f;
-        public static final int txtVehicleModel=0x7f090011;
-        public static final int txtVehicleName=0x7f09001b;
-        public static final int txtVoulumeMeasure=0x7f090015;
-        public static final int txtWhatIsOdo=0x7f090003;
+        public static int action_settings=0x7f09001e;
+        public static int bDatabaseTest=0x7f09000e;
+        public static int btnAddFueling=0x7f09000d;
+        public static int btnRegister=0x7f09000c;
+        public static int btnSubmit=0x7f09001c;
+        public static int chcPrimary=0x7f09001b;
+        public static int chkPartial=0x7f090006;
+        public static int editOdo=0x7f090002;
+        public static int editOdometer=0x7f090019;
+        public static int editTankSize=0x7f090016;
+        public static int editText1=0x7f090008;
+        public static int editVehicleBrand=0x7f090012;
+        public static int editVehicleModel=0x7f090014;
+        public static int etLitre=0x7f090005;
+        public static int imgCar=0x7f090010;
+        public static int imgFuel=0x7f090000;
+        public static int textView1=0x7f090007;
+        public static int tvLatitude=0x7f090009;
+        public static int tvLongitude=0x7f09000a;
+        public static int txtCarData=0x7f09000f;
+        public static int txtDistanceMeasure=0x7f09001a;
+        public static int txtLitre=0x7f090004;
+        public static int txtOdo=0x7f090001;
+        public static int txtOdometer=0x7f090018;
+        public static int txtRegistered=0x7f09000b;
+        public static int txtTankSize=0x7f090015;
+        public static int txtVehicleBrand=0x7f090011;
+        public static int txtVehicleModel=0x7f090013;
+        public static int txtVehicleName=0x7f09001d;
+        public static int txtVoulumeMeasure=0x7f090017;
+        public static int txtWhatIsOdo=0x7f090003;
     }
     public static final class integer {
-        public static final int databaseVersion=0x7f050000;
+        public static int databaseVersion=0x7f050000;
     }
     public static final class layout {
-        public static final int activity_fueling=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_myvehicles=0x7f030002;
-        public static final int activity_register=0x7f030003;
-        public static final int database_layout=0x7f030004;
+        public static int activity_fueling=0x7f030000;
+        public static int activity_gps=0x7f030001;
+        public static int activity_main=0x7f030002;
+        public static int activity_myvehicles=0x7f030003;
+        public static int activity_register=0x7f030004;
+        public static int database_layout=0x7f030005;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
+        public static int main=0x7f080000;
     }
     public static final class string {
-        public static final int Odometer=0x7f060013;
-        public static final int action_settings=0x7f060001;
-        public static final int app_name=0x7f060000;
-        public static final int brand=0x7f060006;
-        public static final int cost=0x7f060019;
-        public static final int databaseName=0x7f060012;
-        public static final int distanceMeasure=0x7f060011;
-        public static final int exampleBrand=0x7f060008;
-        public static final int exampleModel=0x7f060009;
-        public static final int exampleOdometer=0x7f060010;
-        public static final int exampleTankSize=0x7f06000b;
-        public static final int examplecost=0x7f060018;
-        public static final int examplelitre=0x7f060016;
-        public static final int hello_world=0x7f060002;
-        public static final int ifNotRegistered=0x7f06000c;
-        public static final int litre=0x7f060015;
-        public static final int model=0x7f060007;
-        public static final int name=0x7f060004;
-        public static final int odometer=0x7f06000f;
-        public static final int partial=0x7f060017;
-        public static final int pick_date=0x7f06001a;
-        public static final int primary=0x7f060005;
-        public static final int register=0x7f06000d;
-        public static final int submit=0x7f060003;
-        public static final int tankSize=0x7f06000a;
-        public static final int volumeMeasure=0x7f06000e;
-        public static final int whatisodo=0x7f060014;
+        public static int Odometer=0x7f060013;
+        public static int action_settings=0x7f060001;
+        public static int app_name=0x7f060000;
+        public static int brand=0x7f060006;
+        public static int cost=0x7f060019;
+        public static int databaseName=0x7f060012;
+        public static int distanceMeasure=0x7f060011;
+        public static int exampleBrand=0x7f060008;
+        public static int exampleModel=0x7f060009;
+        public static int exampleOdometer=0x7f060010;
+        public static int exampleTankSize=0x7f06000b;
+        public static int examplecost=0x7f060018;
+        public static int examplelitre=0x7f060016;
+        public static int hello_world=0x7f060002;
+        public static int ifNotRegistered=0x7f06000c;
+        public static int litre=0x7f060015;
+        public static int model=0x7f060007;
+        public static int name=0x7f060004;
+        public static int odometer=0x7f06000f;
+        public static int partial=0x7f060017;
+        public static int pick_date=0x7f06001a;
+        public static int primary=0x7f060005;
+        public static int register=0x7f06000d;
+        public static int submit=0x7f060003;
+        public static int tankSize=0x7f06000a;
+        public static int volumeMeasure=0x7f06000e;
+        public static int whatisodo=0x7f060014;
     }
     public static final class style {
         /** 
@@ -121,10 +124,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static int AppTheme=0x7f070001;
     }
 }
