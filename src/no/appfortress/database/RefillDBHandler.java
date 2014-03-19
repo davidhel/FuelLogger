@@ -76,6 +76,10 @@ public class RefillDBHandler {
 		return this.newRefill(c, fuelLitre, fuelPrice, odometer,
 				new GregorianCalendar(), Float.MIN_VALUE, Float.MIN_VALUE);
 	}
+	
+	public Refill newRefill(Car c, float fuelLitre, float fuelPrice, long odometer, Calendar date){
+		return this.newRefill(c, fuelLitre, fuelPrice, odometer, date, Float.MIN_VALUE, Float.MIN_VALUE);
+	}
 
 	public Refill getRefill(long _id) {
 		Refill refill = null;

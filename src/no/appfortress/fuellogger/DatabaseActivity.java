@@ -25,6 +25,11 @@ public class DatabaseActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.database_layout);
 		
+		RefillDBHandler refillDB = new RefillDBHandler(this);
+		
+		
+		
+		
 		fuelingHandler = new RefillDBHandler(this);
 		fuelingHandler.newRefill(new Car(1,"Peugoet", "306", 1997, 420400, 0f), 20.2f, 512.2f, 420442);
 		fuelings = fuelingHandler.getAllRefills();
