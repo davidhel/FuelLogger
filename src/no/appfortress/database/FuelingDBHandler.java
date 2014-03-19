@@ -154,7 +154,10 @@ public class FuelingDBHandler {
 	}
 	
 	public void deleteFueling(long fuelingID){
-		// TODO write code to delete fueling id
+		try{
+			db = dbHelper.getWritableDatabase();
+			
+		}
 	}
 
 	private Car getCarFromFueling(long fkID) {
