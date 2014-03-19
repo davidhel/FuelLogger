@@ -45,4 +45,24 @@
         android:text="Database Test" 
         android:onClick="btnDatabaseClick" />
 
+ 	<Button
+ 	    android:id="@+id/bGPS"
+ 	    android:layout_width="wrap_content"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_alignBaseline="@+id/btnAddFueling"
+ 	    android:layout_alignBottom="@+id/btnAddFueling"
+ 	    android:layout_alignLeft="@+id/btnRegister"
+ 	    android:text="GPS"
+ 	    android:onClick="btnGPS" />
+
+ 	<Button
+ 	    android:id="@+id/bMap"
+ 	    android:layout_width="wrap_content"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_alignLeft="@+id/btnAddFueling"
+ 	    android:layout_below="@+id/btnAddFueling"
+ 	    android:layout_marginTop="50dp"
+ 	    android:text="Map"
+ 	    android:onClick="btnMap" />
+
 </RelativeLayout>
