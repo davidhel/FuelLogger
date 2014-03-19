@@ -25,10 +25,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="no.appfortress.fuellogger.RegisterVehicleActivity"
+            android:name=".RegisterVehicleActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name=".MyVehiclesActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".RegisterFuelingActivity"
             android:name="no.appfortress.fuellogger.DatabaseActivity"
             android:label="@string/app_name" >
         </activity>
