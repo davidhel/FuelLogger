@@ -3,7 +3,7 @@ package no.appfortress.fuellogger;
 import java.util.List;
 
 import no.appfortress.database.CarDBHandler;
-import no.appfortress.database.FuelingDBHandler;
+import no.appfortress.database.RefillDBHandler;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -14,11 +14,10 @@ import android.widget.ListView;
 
 public class DatabaseActivity extends ListActivity {
 
-	List<Fueling> fuelings;
-	FuelingDBHandler fuelingHandler;
-	CarDBHandler carHandler;
-	ArrayAdapter<Fueling> aa;
-	int deletedItems;
+	private List<Refill> fuelings;
+	private RefillDBHandler fuelingHandler;
+	private ArrayAdapter<Refill> aa;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +25,9 @@ public class DatabaseActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.database_layout);
 		
-		fuelingHandler = new FuelingDBHandler(this);
-		fuelingHandler.newFueling(new Car(1,"Peugoet", "306", 1997, 420400, 0f), 20.2f, 512.2f, 420442);
-		fuelings = fuelingHandler.getAllFuelings();
+		fuelingHandler = new RefillDBHandler(this);
+		fuelingHandler.newRefill(new Car(1,"Peugoet", "306", 1997, 420400, 0f), 20.2f, 512.2f, 420442);
+		fuelings = fuelingHandler.getAllRefills();
 		fuelingHandler.close();
 		updateListAdapter();
 	}
@@ -47,7 +46,9 @@ public class DatabaseActivity extends ListActivity {
 							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
-								
+								Refill f = fuelings.get(position);
+								fuelingHandler.deleteRefill(f.getID());
+								fuelings.remove(position);
 								updateListAdapter();
 							}
 
@@ -65,7 +66,7 @@ public class DatabaseActivity extends ListActivity {
 	}
 
 	protected void updateListAdapter() {
-		aa = new ArrayAdapter<Fueling>(this,
+		aa = new ArrayAdapter<Refill>(this,
 				android.R.layout.simple_list_item_1, fuelings);
 		setListAdapter(aa);
 	}

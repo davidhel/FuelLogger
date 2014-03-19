@@ -12,21 +12,21 @@ import android.provider.BaseColumns;
  * 
  * Tabellen skal inneholde alle påfyllingene med bensin som har blitt registrert.
  */
-public final class FuelingDatabaseContract {
+public final class RefillDatabaseContract {
 	
 	
 	/**
  	 * Konstruktør som vil sørge for at hvis noen finner på å instansiere
  	 * klassen, så vil den ikke gjøre noen ting.
  	 */
-	public FuelingDatabaseContract(){};
+	public RefillDatabaseContract(){};
 	/**
 	 * 
 	 * @author Morgan
 	 *
 	 *	En klasse som holder verdiene til tabellen
 	 */
-	public static abstract class FuelingFeedEntry implements BaseColumns{
+	public static abstract class RefillFeedEntry implements BaseColumns{
 		// Navn på tabellen
 		public static final String TABLE_NAME = "fueling";
 		// IDen på påfyllingen

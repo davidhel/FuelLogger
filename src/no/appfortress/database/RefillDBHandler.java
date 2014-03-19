@@ -9,31 +9,31 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import no.appfortress.database.CarDatabaseContract.CarFeedEntry;
-import no.appfortress.database.FuelingDatabaseContract.FuelingFeedEntry;
+import no.appfortress.database.RefillDatabaseContract.RefillFeedEntry;
 import no.appfortress.fuellogger.Car;
-import no.appfortress.fuellogger.Fueling;
+import no.appfortress.fuellogger.Refill;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
-public class FuelingDBHandler {
+public class RefillDBHandler {
 
-	FuelingDBHelper dbHelper;
+	RefillDBHelper dbHelper;
 	SQLiteDatabase db;
 
-	public FuelingDBHandler(Context c) {
-		dbHelper = new FuelingDBHelper(c);
+	public RefillDBHandler(Context c) {
+		dbHelper = new RefillDBHelper(c);
 	}
 
 	public void close() {
 		dbHelper.close();
 	}
 
-	public Fueling newFueling(Car c, float fuelLitre, float fuelPrice,
+	public Refill newRefill(Car c, float fuelLitre, float fuelPrice,
 			long odometer, Calendar date, float latitude, float longitude) {
-		Fueling fueling = null; 
+		Refill refill = null; 
 		try {
 			db = dbHelper.getWritableDatabase();
 			String dateString = Integer.toString(date.get(Calendar.YEAR)) + "-"
@@ -43,14 +43,14 @@ public class FuelingDBHandler {
 					+ Integer.toString(date.get(Calendar.MINUTE)) + ":"
 					+ Integer.toString(date.get(Calendar.SECOND));
 			Log.d("dato", dateString);
-			String sqlQuery = "INSERT INTO " + FuelingFeedEntry.TABLE_NAME
-					+ " ( " + FuelingFeedEntry.COLUMN_CAR_ID_FK_CAR + ","
-					+ FuelingFeedEntry.COLUMN_FUEL_LITERS + ","
-					+ FuelingFeedEntry.COLUMN_FUEL_PRICE + ","
-					+ FuelingFeedEntry.COLUMN_DATE + ","
-					+ FuelingFeedEntry.COLUMN_ODOMETER + ","
-					+ FuelingFeedEntry.COLUMN_LATITUDE + ","
-					+ FuelingFeedEntry.COLUMN_LONGITUDE + ") VALUES ("
+			String sqlQuery = "INSERT INTO " + RefillFeedEntry.TABLE_NAME
+					+ " ( " + RefillFeedEntry.COLUMN_CAR_ID_FK_CAR + ","
+					+ RefillFeedEntry.COLUMN_FUEL_LITERS + ","
+					+ RefillFeedEntry.COLUMN_FUEL_PRICE + ","
+					+ RefillFeedEntry.COLUMN_DATE + ","
+					+ RefillFeedEntry.COLUMN_ODOMETER + ","
+					+ RefillFeedEntry.COLUMN_LATITUDE + ","
+					+ RefillFeedEntry.COLUMN_LONGITUDE + ") VALUES ("
 					+ Long.toString(c.getID()) + ","
 					+ Float.toString(fuelLitre) + ","
 					+ Float.toString(fuelPrice) + ",'" + dateString + "',"
@@ -58,53 +58,53 @@ public class FuelingDBHandler {
 					+ "," + Float.toString(longitude) + ")";
 			Log.d("SQL", sqlQuery);
 			db.execSQL(sqlQuery);
-			sqlQuery = "SELECT " + FuelingFeedEntry._ID + " FROM " +FuelingFeedEntry.TABLE_NAME;
+			sqlQuery = "SELECT " + RefillFeedEntry._ID + " FROM " +RefillFeedEntry.TABLE_NAME;
 			Cursor cursor = db.rawQuery(sqlQuery, null);
 			cursor.moveToFirst();
-			long id = cursor.getLong(cursor.getColumnIndex(FuelingFeedEntry._ID));			
-			fueling = new Fueling(id, c, fuelLitre, fuelPrice, odometer, date,
+			long id = cursor.getLong(cursor.getColumnIndex(RefillFeedEntry._ID));			
+			refill = new Refill(id, c, fuelLitre, fuelPrice, odometer, date,
 					latitude, longitude);
 		} catch (SQLiteException ex) {
 			ex.printStackTrace();
 			return null;
 		}
-		return fueling;
+		return refill;
 	}
 
-	public Fueling newFueling(Car c, float fuelLitre, float fuelPrice,
+	public Refill newRefill(Car c, float fuelLitre, float fuelPrice,
 			long odometer) {
-		return this.newFueling(c, fuelLitre, fuelPrice, odometer,
+		return this.newRefill(c, fuelLitre, fuelPrice, odometer,
 				new GregorianCalendar(), Float.MIN_VALUE, Float.MIN_VALUE);
 	}
 
-	public Fueling getFueling(long _id) {
-		Fueling fueling = null;
+	public Refill getRefill(long _id) {
+		Refill refill = null;
 		try {
 			db = dbHelper.getReadableDatabase();
-			String sqlQuery = "SELECT * FROM " + FuelingFeedEntry.TABLE_NAME
-					+ " WHERE " + FuelingFeedEntry._ID + "=" + _id;
+			String sqlQuery = "SELECT * FROM " + RefillFeedEntry.TABLE_NAME
+					+ " WHERE " + RefillFeedEntry._ID + "=" + _id;
 			Cursor cursor = db.rawQuery(sqlQuery, null);
-			long id = cursor.getLong(cursor.getColumnIndex(FuelingFeedEntry._ID));
-			Car car = getCarFromFueling(cursor.getLong(cursor
-					.getColumnIndex(FuelingFeedEntry.COLUMN_CAR_ID_FK_CAR)));
+			long id = cursor.getLong(cursor.getColumnIndex(RefillFeedEntry._ID));
+			Car car = getCarFromRefill(cursor.getLong(cursor
+					.getColumnIndex(RefillFeedEntry.COLUMN_CAR_ID_FK_CAR)));
 			float fuelLitre = cursor.getFloat(cursor
-					.getColumnIndex(FuelingFeedEntry.COLUMN_FUEL_LITERS));
+					.getColumnIndex(RefillFeedEntry.COLUMN_FUEL_LITERS));
 			float fuelPrice = cursor.getFloat(cursor
-					.getColumnIndex(FuelingFeedEntry.COLUMN_FUEL_PRICE));
+					.getColumnIndex(RefillFeedEntry.COLUMN_FUEL_PRICE));
 			long odometer = cursor.getLong(cursor
-					.getColumnIndex(FuelingFeedEntry.COLUMN_ODOMETER));
-			Calendar date = getDateFromString(cursor.getString(cursor.getColumnIndex(FuelingFeedEntry.COLUMN_DATE)));
+					.getColumnIndex(RefillFeedEntry.COLUMN_ODOMETER));
+			Calendar date = getDateFromString(cursor.getString(cursor.getColumnIndex(RefillFeedEntry.COLUMN_DATE)));
 			float latitude = cursor.getFloat(cursor
-					.getColumnIndex(FuelingFeedEntry.COLUMN_LATITUDE));
+					.getColumnIndex(RefillFeedEntry.COLUMN_LATITUDE));
 			float longitude = cursor.getFloat(cursor
-					.getColumnIndex(FuelingFeedEntry.COLUMN_LONGITUDE));
-			fueling = new Fueling(id, car, fuelLitre, fuelPrice, odometer, date,
+					.getColumnIndex(RefillFeedEntry.COLUMN_LONGITUDE));
+			refill = new Refill(id, car, fuelLitre, fuelPrice, odometer, date,
 					latitude, longitude);
 			cursor.close();
 		} catch (SQLiteException ex) {
 			ex.printStackTrace();
 		}
-		return fueling;
+		return refill;
 	}
 
 	private Calendar getDateFromString(String calendarString) {
@@ -117,30 +117,30 @@ public class FuelingDBHandler {
 		return dateFormat.getCalendar();
 	}
 
-	public List<Fueling> getAllFuelings() {
-		List<Fueling> fuelings = new ArrayList<Fueling>();
+	public List<Refill> getAllRefills() {
+		List<Refill> refills = new ArrayList<Refill>();
 		try {
 			db = dbHelper.getReadableDatabase();
-			String sqlQuery = "SELECT * FROM " + FuelingFeedEntry.TABLE_NAME;
+			String sqlQuery = "SELECT * FROM " + RefillFeedEntry.TABLE_NAME;
 			Log.d("SQL", sqlQuery);
 			Cursor cursor = db.rawQuery(sqlQuery, null);
 			Car car;
-			float fuelingLitre, fuelingPrice, latitude, longitude;
+			float refillLitre, refillPrice, latitude, longitude;
 			long odometer,id;
 			Calendar date;
 			Log.d("Number of rows",Integer.toString(cursor.getCount()));
 			if(cursor != null && cursor.moveToFirst()){
 				while (!cursor.isAfterLast()) {
-					id = cursor.getLong(cursor.getColumnIndex(FuelingFeedEntry._ID));
-					car = getCarFromFueling(cursor.getLong(cursor
-							.getColumnIndex(FuelingFeedEntry.COLUMN_CAR_ID_FK_CAR)));
-					fuelingLitre = cursor.getFloat(cursor.getColumnIndex(FuelingFeedEntry.COLUMN_FUEL_LITERS));
-					fuelingPrice = cursor.getFloat(cursor.getColumnIndex(FuelingFeedEntry.COLUMN_FUEL_PRICE));
-					odometer = cursor.getLong(cursor.getColumnIndex(FuelingFeedEntry.COLUMN_ODOMETER));
-					date = getDateFromString(cursor.getString(cursor.getColumnIndex(FuelingFeedEntry.COLUMN_DATE)));
-					latitude = cursor.getFloat(cursor.getColumnIndex(FuelingFeedEntry.COLUMN_LATITUDE));
-					longitude = cursor.getFloat(cursor.getColumnIndex(FuelingFeedEntry.COLUMN_LONGITUDE));
-					fuelings.add(new Fueling(id, car, fuelingLitre, fuelingPrice,
+					id = cursor.getLong(cursor.getColumnIndex(RefillFeedEntry._ID));
+					car = getCarFromRefill(cursor.getLong(cursor
+							.getColumnIndex(RefillFeedEntry.COLUMN_CAR_ID_FK_CAR)));
+					refillLitre = cursor.getFloat(cursor.getColumnIndex(RefillFeedEntry.COLUMN_FUEL_LITERS));
+					refillPrice = cursor.getFloat(cursor.getColumnIndex(RefillFeedEntry.COLUMN_FUEL_PRICE));
+					odometer = cursor.getLong(cursor.getColumnIndex(RefillFeedEntry.COLUMN_ODOMETER));
+					date = getDateFromString(cursor.getString(cursor.getColumnIndex(RefillFeedEntry.COLUMN_DATE)));
+					latitude = cursor.getFloat(cursor.getColumnIndex(RefillFeedEntry.COLUMN_LATITUDE));
+					longitude = cursor.getFloat(cursor.getColumnIndex(RefillFeedEntry.COLUMN_LONGITUDE));
+					refills.add(new Refill(id, car, refillLitre, refillPrice,
 							odometer, date, latitude, longitude));
 					cursor.moveToNext();
 				}
@@ -150,17 +150,21 @@ public class FuelingDBHandler {
 			ex.printStackTrace();
 		}
 		db.close();
-		return fuelings;
+		return refills;
 	}
 	
-	public void deleteFueling(long fuelingID){
+	public void deleteRefill(long refillID){
 		try{
 			db = dbHelper.getWritableDatabase();
+			String sqlQuery = "DELETE FROM " + RefillFeedEntry.TABLE_NAME
+					+ " WHERE " + RefillFeedEntry._ID + "=" + refillID;
+			db.execSQL(sqlQuery);
+		}catch(SQLiteException ex){
 			
 		}
 	}
 
-	private Car getCarFromFueling(long fkID) {
+	private Car getCarFromRefill(long fkID) {
 		String sqlQuery = "SELECT * FROM " + CarFeedEntry.TABLE_NAME
 				+ " WHERE " + CarFeedEntry._ID + "=" + Long.toString(fkID);
 		Cursor cursor = db.rawQuery(sqlQuery, null);

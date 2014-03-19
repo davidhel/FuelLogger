@@ -2,7 +2,7 @@ package no.appfortress.fuellogger;
 
 import java.util.Calendar;
 
-public class Fueling {
+public class Refill {
 
 	private long id;
 	private Car car;
@@ -10,7 +10,7 @@ public class Fueling {
 	private long odometer;
 	private Calendar date;
 
-	public Fueling(long _id, Car _car, float _fuelLitre, float _fuelPrice,
+	public Refill(long _id, Car _car, float _fuelLitre, float _fuelPrice,
 			long _odometer, Calendar _date, float _latitude, float _longitude) {
 		id = _id;
 		car = _car;
@@ -27,6 +27,7 @@ public class Fueling {
 	@Override
 	public String toString() {
 		String rtnString = "";
+		rtnString += Long.toString(id) + ". ";
 		rtnString += car.getBrand() + " " + car.getModel() + ": ";
 		rtnString += "Liter " + Float.toString(fuelLitre) + ", ";
 		rtnString += "Price " + Float.toString(fuelPrice) + ".";
@@ -35,7 +36,7 @@ public class Fueling {
 
 
 
-	public Fueling(long _id, Car _car, float _fuelLitre, float _fuelPrice, long _odometer) {
+	public Refill(long _id, Car _car, float _fuelLitre, float _fuelPrice, long _odometer) {
 		this(_id,_car, _fuelLitre, _fuelPrice, _odometer, null, Float.MIN_VALUE,
 				Float.MIN_VALUE);
 	}
