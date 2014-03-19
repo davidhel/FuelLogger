@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -36,9 +37,10 @@ public class MainActivity extends FragmentActivity  {
 		// This checks if the device is compatible and up to date with Google Play Services
 			int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
 			if(status == ConnectionResult.SUCCESS) {
-			    System.out.println();
+			    Log.d("Fuellogger", "mapssuccess");
 			}
 			else if(status == ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED){
+				
 			}
 	}
 
