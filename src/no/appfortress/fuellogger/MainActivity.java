@@ -1,11 +1,12 @@
 package no.appfortress.fuellogger;
 
 import android.os.Bundle;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -14,7 +15,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 	}
 
 	@Override
@@ -29,9 +29,15 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
+
 	public void btnAddFueling(View view) {
 		Intent intent = new Intent(this, RegisterFuelingActivity.class);
 		startActivity(intent);
 	}
 
+	public void btnDatabaseClick(View view){
+		Intent i = new Intent(this, DatabaseActivity.class);
+		startActivity(i);
+	}
+	
 }
