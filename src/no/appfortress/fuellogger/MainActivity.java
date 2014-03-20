@@ -1,6 +1,7 @@
 package no.appfortress.fuellogger;
 
 import no.appfortress.gps.MyGoogleMap;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,11 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		setUpActionBar();
+	}
+
+	private void setUpActionBar() {
+		ActionBar actionBar = getActionBar();
 	}
 
 	public void btnRegister(View view) {
