@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -10,32 +10,36 @@
         android:layout_height="wrap_content"
         android:text="Latitude"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:text="Longitude"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
+	<TextView
         android:id="@+id/tvLatitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
         android:text="latitude"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Longitude"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/tvLongitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvLatitude"
-        android:layout_alignBottom="@+id/tvLatitude"
-        android:layout_alignParentRight="true"
         android:text="longitude"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-</RelativeLayout>
+    <ToggleButton
+        android:id="@+id/tbStartService"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/custom_toggle_button"
+        android:textOff="Start Tracking"
+        android:textOn="Stop Tracking" />
+
+    <ListView 
+        android:id="@+id/lvLocations"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
