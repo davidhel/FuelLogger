@@ -31,9 +31,12 @@
 
     <ToggleButton
         android:id="@+id/tbStartService"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ToggleButton" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/custom_toggle_button"
+        android:textOff="Start Tracking"
+        android:textOn="Stop Tracking" />
+
     <ListView 
         android:id="@+id/lvLocations"
         android:layout_width="match_parent"

@@ -20,11 +20,10 @@ public class MyGoogleMap extends FragmentActivity{
 		setContentView(R.layout.google_map_activity);
 		
 		GoogleMap map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-		map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 		LatLng halden = new LatLng(59.1293771,11.3702121);
 		
 		map.setMyLocationEnabled(true);
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(halden,10));
+		map.moveCamera(CameraUpdateFactory.newLatLng(halden));
 		Polyline polyline = map.addPolyline(new PolylineOptions().geodesic(true)
 				.add(new LatLng(59.1293686,11.3702836),new LatLng(59.131645,11.360442),new LatLng(59.128804,11.351687)));
 		

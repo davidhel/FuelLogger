@@ -30,13 +30,13 @@ public class GPSActivity extends Activity {
 			gpsTrackService = gpsTrackBinder.getService();
 			boundToService = true;
 			startServiceTracking();
-
+			
 		}
 
 		@Override
 		public void onServiceDisconnected(ComponentName name) {
 			boundToService = false;
-
+			
 		}
 
 	};
@@ -58,6 +58,13 @@ public class GPSActivity extends Activity {
 		initGUI();
 	}
 
+	protected void stopServiceTracking() {
+		gpsTrackService.stopGPSTracking();
+		trackedLocations = gpsTrackService.getLocations();
+		updateListAdapter();
+		
+	}
+
 	protected void startServiceTracking() {
 		gpsTrackService.startGPSTracking();
 
@@ -70,6 +77,10 @@ public class GPSActivity extends Activity {
 
 		gpsServiceIntent = new Intent(this, GPSTrackService.class);
 
+		// Get the list view
+		
+		lstPos = (ListView) findViewById(R.id.lvLocations);
+		
 		// Gets the ToggleButton from the xml layout file
 
 		tglSer = (ToggleButton) findViewById(R.id.tbStartService);
@@ -85,16 +96,12 @@ public class GPSActivity extends Activity {
 				// if toggle button is checked, it will start a bind service
 
 				if (isChecked) {
-
 					bindService(gpsServiceIntent, mConnection,
 							Context.BIND_AUTO_CREATE);
 				} else {
 					if (boundToService) {
-						gpsTrackService.stopGPSTracking();
-						trackedLocations = gpsTrackService.getLocations();
 						unbindService(mConnection);
-						boundToService = false;
-						updateListAdapter();
+						stopServiceTracking();
 					}
 				}
 
@@ -107,10 +114,6 @@ public class GPSActivity extends Activity {
 	}
 
 	protected void updateListAdapter() {
-		// Get ListView from xml document
-
-		lstPos = (ListView) findViewById(R.id.lvLocations);
-
 		// Initialize ArrayAdapter
 		List<String> stringLocations = getLocationAsStrings();
 		aa = new ArrayAdapter<String>(this,

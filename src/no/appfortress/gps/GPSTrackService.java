@@ -25,7 +25,7 @@ public class GPSTrackService extends Service implements
 	private LocationClient mLocationClient;
 	private boolean tracking = false;
 	private List<Location> locations;
-
+	private GPSTrackingTask mGPSTrackingTask;
 	
 	public class GPSTrackBinder extends Binder {
 		public GPSTrackService getService() {
@@ -39,6 +39,7 @@ public class GPSTrackService extends Service implements
 	}
 
 	public void startGPSTracking() {
+		locations = new ArrayList<Location>();
 		mLocationClient = new LocationClient(this, this, this);
 		mLocationClient.connect();
 		tracking = true;
@@ -46,6 +47,7 @@ public class GPSTrackService extends Service implements
 	
 	public void stopGPSTracking(){
 		tracking = false;
+		mGPSTrackingTask.cancel(true);
 		mLocationClient.disconnect();
 	}
 	
@@ -55,14 +57,13 @@ public class GPSTrackService extends Service implements
 
 	@Override
 	public void onConnectionFailed(ConnectionResult arg0) {
-		Toast.makeText(this, "Couldn't connect to Google Services", Toast.LENGTH_LONG).show();
 		stopSelf();
 	}
 
 	@Override
 	public void onConnected(Bundle arg0) {
-		Toast.makeText(this, "Service is running", Toast.LENGTH_LONG).show();
-		new GPSTrackingTask().execute();
+		mGPSTrackingTask = new GPSTrackingTask();
+		mGPSTrackingTask.execute();
 	}
 
 
@@ -77,7 +78,6 @@ public class GPSTrackService extends Service implements
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Toast.makeText(this, "Service is destroyed", Toast.LENGTH_LONG).show();;
 	}
 
 
@@ -86,22 +86,15 @@ public class GPSTrackService extends Service implements
 
 		@Override
 		protected Void doInBackground(Void... params) {
-			locations = new ArrayList<Location>();
 			while(tracking){
 				locations.add(mLocationClient.getLastLocation());
-				Log.d("hei", "se her");
 				try{
-					Thread.sleep(1000);
+					Thread.sleep(1000*60);
 				}catch(InterruptedException ex){
-					ex.printStackTrace();
 				}
 			}
 			return null;
-		}
-		
-		
-		
-		
+		}		
 		
 	}
 	
