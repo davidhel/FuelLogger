@@ -1,5 +1,6 @@
 package no.appfortress.fuellogger;
 
+<<<<<<< HEAD
 import no.appfortress.gps.MyGoogleMap;
 import android.R;
 import android.app.Activity;
@@ -10,14 +11,37 @@ import android.view.View;
 public class MainActivity extends Activity {
 
 
+=======
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+>>>>>>> cc1b8eaeed3eec15e6a112a96096d801ecfa6a01
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+<<<<<<< HEAD
 		setUpActionBar();
 	}
 
 	private void setUpActionBar() {
+=======
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+>>>>>>> cc1b8eaeed3eec15e6a112a96096d801ecfa6a01
 	}
 
 	public void btnRegister(View view) {
@@ -27,6 +51,7 @@ public class MainActivity extends Activity {
 
 	public void btnAddFueling(View view) {
 		Intent intent = new Intent(this, RegisterFuelingActivity.class);
+<<<<<<< HEAD
 
 		startActivity(intent);
 	}
@@ -46,4 +71,9 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 	
+=======
+		startActivity(intent);
+	}
+
+>>>>>>> cc1b8eaeed3eec15e6a112a96096d801ecfa6a01
 }

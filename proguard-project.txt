@@ -18,6 +18,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+<<<<<<< HEAD
 
 
 #Dette er i følge android.developer nødvendig for å benytte google maps
@@ -37,3 +38,5 @@
 -keepnames class * implements android.os.Parcelable {
     public static final ** CREATOR;
 }
+=======
+>>>>>>> cc1b8eaeed3eec15e6a112a96096d801ecfa6a01
