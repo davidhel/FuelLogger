@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Fuel Logger</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello git!</string>
+    <string name="submit">Submit</string>
+    <string name="name">Name:</string>
+    <string name="primary">This is my primary vehicle</string>
+    <string name="brand">Bilmerke:</string>
+    <string name="model">Bilmodell:</string>
+    <string name="exampleBrand">Toyota</string>
+    <string name="exampleModel">Corolla</string>
+    <string name="tankSize">Tank volum:</string>
+    <string name="exampleTankSize">50</string>
+    <string name="ifNotRegistered">Vennligst reigistrer deg</string>
+    <string name="register">Registrer</string>
+    <string name="volumeMeasure">L</string>
+    <string name="odometer">Odometer:</string>
+    <string name="exampleOdometer">135234</string>
+    <string name="distanceMeasure">km</string>
+    <string name="databaseName">FuelLoggerDatabase.db</string>
+    <string name="Odometer">Odometer</string>
+    <string name="whatisodo"><u>What is odometer?</u></string>
+    <string name="litre">Litre:</string>
+    <string name="examplelitre">42</string>
+    <string name="partial">This is a partial fill up</string>
+    <string name="examplecost">546</string>
+    <string name="cost">Cost:</string>
+    <string name="pick_date">Pick date:</string>
+
+
+</resources>
