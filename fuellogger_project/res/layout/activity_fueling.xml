@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/imgFuel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="49dp"
+        android:src="@drawable/ic_car" />
+
+    <TextView
+        android:id="@+id/txtOdo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgFuel"
+        android:layout_below="@+id/imgFuel"
+        android:layout_marginTop="20dp"
+        android:text="@string/Odometer" />
+
+    <EditText
+        android:id="@+id/editOdo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtOdo"
+        android:layout_toRightOf="@+id/txtOdo"
+        android:text="@string/exampleOdometer" />
+
+    <TextView
+        android:id="@+id/txtWhatIsOdo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editOdo"
+        android:layout_below="@id/editOdo"
+        android:layout_marginTop="5dp"
+        android:clickable="true"
+        android:text="@string/whatisodo" />
+
+    <TextView
+        android:id="@+id/txtLitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtOdo"
+        android:layout_below="@+id/txtWhatIsOdo"
+        android:layout_marginTop="30dp"
+        android:text="@string/litre" />
+
+    <EditText
+        android:id="@+id/etLitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtLitre"
+        android:layout_alignLeft="@+id/editOdo"
+        android:layout_toRightOf="@+id/txtLitre"
+        android:inputType="number"
+        android:maxLength="3"
+        android:text="@string/examplelitre" />
+
+    <CheckBox
+        android:id="@+id/chkPartial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etLitre"
+        android:layout_below="@+id/txtLitre"
+        android:layout_marginTop="10dp"
+        android:text="@string/partial" />
+
+    <TextView
+        android:id="@+id/tvCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtLitre"
+        android:layout_below="@+id/chkPartial"
+        android:layout_marginTop="22dp"
+        android:text="@string/cost" />
+
+    <EditText
+        android:id="@+id/etCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/chkPartial"
+        android:layout_below="@+id/chkPartial"
+        android:inputType="number"
+        android:text="@string/examplecost" />
+
+    <TextView
+        android:id="@+id/tvPickDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvCost"
+        android:layout_alignLeft="@+id/tvCost"
+        android:layout_marginTop="40dp"
+        android:text="@string/set_date" />
+
+    <Button
+        android:id="@+id/btnPickDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvPickDate"
+        android:layout_alignLeft="@+id/etCost"
+        android:onClick="showDatePickerDialog"
+        android:text="@string/pick_date" />
+
+    <Button
+        android:id="@+id/btnSubmitFueling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:onClick="btnSubmitFueling"
+        android:text="@string/submit" />
+
+</RelativeLayout>
