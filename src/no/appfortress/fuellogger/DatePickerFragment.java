@@ -17,11 +17,12 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 		int year = cal.get(Calendar.YEAR);
 		int month = cal.get(Calendar.MONTH);
 		int  day = cal.get(Calendar.DAY_OF_MONTH);		
-		return super.onCreateDialog(savedInstanceState);
+		
+		return new DatePickerDialog(getActivity(),this,year,month,day);
 	}
 
 	@Override
-	public void onDateSet(DatePicker View, int arg1, int arg2, int arg3) {
+	public void onDateSet(DatePicker View, int year, int month, int day) {
 		// TODO Auto-generated method stub
 		
 	}
