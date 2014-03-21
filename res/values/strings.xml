@@ -28,6 +28,7 @@
     <string name="examplecost">546</string>
     <string name="cost">Cost:</string>
     <string name="pick_date">Pick date:</string>
+    <string name="set_date">Set date:</string>
 
 
 </resources>

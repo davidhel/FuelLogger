@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.widget.DatePicker;
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
@@ -23,8 +24,8 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
 	@Override
 	public void onDateSet(DatePicker View, int year, int month, int day) {
-		// TODO Auto-generated method stub
-		
+		RegisterFuelingActivity regFuel = (RegisterFuelingActivity) getActivity();
+		regFuel.setDate(year, month, day);
 	}
 	
 	
