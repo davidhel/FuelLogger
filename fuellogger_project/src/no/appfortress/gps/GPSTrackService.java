@@ -69,7 +69,6 @@ public class GPSTrackService extends Service implements
 
 	@Override
 	public void onDisconnected() {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -89,7 +88,7 @@ public class GPSTrackService extends Service implements
 			while(tracking){
 				locations.add(mLocationClient.getLastLocation());
 				try{
-					Thread.sleep(1000*60);
+					Thread.sleep(1000*10);
 				}catch(InterruptedException ex){
 				}
 			}
