@@ -37,6 +37,7 @@
         android:layout_below="@id/editOdo"
         android:layout_marginTop="5dp"
         android:clickable="true"
+        android:onClick="btnOdo"
         android:text="@string/whatisodo" />
 
     <TextView
