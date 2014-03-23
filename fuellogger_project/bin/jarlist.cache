@@ -1,5 +1,10 @@
 # cache for current jar dependency. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
-1395421379937 621451 5896b0a4e377ac4242eb2bc785220c1c4fc052f4 I:\appforrest\fuellogger\fuellogger\fuellogger_project\libs\android-support-v4.jar
-1395484907975 621451 5896b0a4e377ac4242eb2bc785220c1c4fc052f4 I:\appforrest\fuellogger\fuellogger\appcompat\libs\android-support-v4.jar
+<<<<<<< HEAD
+1395429979094 621451 5896b0a4e377ac4242eb2bc785220c1c4fc052f4 D:\android_programmering\fuellogger\fuellogger_project\libs\android-support-v4.jar
+1395608570136 621451 5896b0a4e377ac4242eb2bc785220c1c4fc052f4 D:\android_programmering\fuellogger\appcompat\libs\android-support-v4.jar
+=======
+1395509350756 621451 5896b0a4e377ac4242eb2bc785220c1c4fc052f4 C:\Users\crappylappy\workspace\FuelLogger\fuellogger_project\libs\android-support-v4.jar
+1395509347605 621451 5896b0a4e377ac4242eb2bc785220c1c4fc052f4 C:\Users\crappylappy\workspace\FuelLogger\appcompat\libs\android-support-v4.jar
+>>>>>>> 2d150fee2e32f9050a24ed61635e56ac0d96ff69
