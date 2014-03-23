@@ -2,7 +2,6 @@ package no.appfortress.fuellogger;
 
 import no.appfortress.gps.MyGoogleMap;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -20,8 +19,8 @@ public class MainActivity extends ActionBarActivity {
 
 	private void setUpActionBar() {
 		ActionBar actionbar = getSupportActionBar();
-		ColorDrawable cd = new ColorDrawable(getResources().getColor(R.color.actionbar_background));
-		actionbar.setBackgroundDrawable(cd);
+		
+		actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.actionbar_background));
 	}
 
 	public void btnRegister(View view) {
