@@ -107,14 +107,6 @@ public class GPSTrackService extends Service implements
 
 	@Override
 	public void onDisconnected() {
-<<<<<<< HEAD
-		// TODO Auto-generated method stub
-=======
-		
-	}
-	
-	
->>>>>>> 0d723fbf304cbea73548f9c5eca626ee8ee36135
 
 	}
 
@@ -128,8 +120,6 @@ public class GPSTrackService extends Service implements
 	public void onLocationChanged(Location location) {
 		locations.add(location);
 
-<<<<<<< HEAD
-=======
 		@Override
 		protected Void doInBackground(Void... params) {
 			while(tracking){
