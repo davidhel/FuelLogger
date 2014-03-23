@@ -120,6 +120,7 @@ public class GPSTrackService extends Service implements
 	public void onLocationChanged(Location location) {
 		locations.add(location);
 
+<<<<<<< HEAD
 		@Override
 		protected Void doInBackground(Void... params) {
 			while(tracking){
@@ -133,6 +134,8 @@ public class GPSTrackService extends Service implements
 		}		
 		
 >>>>>>> 0d723fbf304cbea73548f9c5eca626ee8ee36135
+=======
+>>>>>>> 8c9329d1ba2e1b6b402de657aeef4f3f35f6aeec
 	}
 
 }
