@@ -1,16 +1,11 @@
 package no.appfortress.fuellogger;
 
-import no.appfortress.gps.MyGoogleMap;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 
 public class RegisterFuelingActivity extends FragmentActivity {
 
@@ -37,6 +32,9 @@ public class RegisterFuelingActivity extends FragmentActivity {
 		btnDate.setText(year + "/" + month + "/" + day);
 	}
 	
+	public void btnOdo(View view){
+		//Pop up message shows information what an ODO is
+	}
 	public void btnSubmitFueling(View view){
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
