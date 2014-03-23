@@ -32,7 +32,6 @@ public class MainActivity extends ActionBarActivity {
 
 	public void btnAddFueling(View view) {
 		Intent intent = new Intent(this, RegisterFuelingActivity.class);
-
 		startActivity(intent);
 	}
 

@@ -3,30 +3,39 @@ package no.appfortress.gps;
 import java.util.ArrayList;
 import java.util.List;
 
+import no.appfortress.fuellogger.R;
+
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
-import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 
 public class GPSTrackService extends Service implements
-		GooglePlayServicesClient.ConnectionCallbacks,
-		GooglePlayServicesClient.OnConnectionFailedListener {
+		GooglePlayServicesClient.OnConnectionFailedListener,
+		GooglePlayServicesClient.ConnectionCallbacks, LocationListener {
+
+	private static final int TRACKING_NOTIFICATION_ID = 1000;
 
 	private final IBinder mBinder = new GPSTrackBinder();
-	private LocationClient mLocationClient;
+
 	private boolean tracking = false;
+	private LocationRequest locationRequest;
+
 	private List<Location> locations;
-	private GPSTrackingTask mGPSTrackingTask;
-	
+	private LocationClient locationClient;
+	private NotificationManager notificationManager;
+
 	public class GPSTrackBinder extends Binder {
 		public GPSTrackService getService() {
 			return GPSTrackService.this;
@@ -39,50 +48,88 @@ public class GPSTrackService extends Service implements
 	}
 
 	public void startGPSTracking() {
-		locations = new ArrayList<Location>();
-		mLocationClient = new LocationClient(this, this, this);
-		mLocationClient.connect();
-		tracking = true;
+		if (!tracking) {
+			tracking = true;
+			locations = new ArrayList<Location>();
+			locationClient = new LocationClient(this, this, this);
+			locationClient.connect();
+		}
 	}
-	
-	public void stopGPSTracking(){
-		tracking = false;
-		mGPSTrackingTask.cancel(true);
-		mLocationClient.disconnect();
+
+	public void stopGPSTracking() {
+		if (tracking) {
+			tracking = false;
+			removeNotification();
+			locationClient.removeLocationUpdates(this);
+			locationClient.disconnect();
+		}
 	}
-	
-	public List<Location> getLocations(){
+
+	public List<Location> getLocations() {
 		return locations;
 	}
-
-	@Override
-	public void onConnectionFailed(ConnectionResult arg0) {
-		stopSelf();
-	}
-
-	@Override
-	public void onConnected(Bundle arg0) {
-		mGPSTrackingTask = new GPSTrackingTask();
-		mGPSTrackingTask.execute();
-	}
-
-
-	@Override
-	public void onDisconnected() {
-		
-	}
-	
-	
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 	}
 
+	@Override
+	public void onConnected(Bundle arg) {
+		if (tracking) {
+			
+			locationRequest = new LocationRequest();
+			if(arg == null){
+				locationRequest.setInterval(1000 * 10 * 1);
+				locationClient.requestLocationUpdates(locationRequest, this);
+				setNotification();
+			}
+		}
 
+	}
 
-	private class GPSTrackingTask extends AsyncTask<Void,Void,Void>{
+	private void setNotification() {
+		Notification.Builder notificationBuilder = new Notification.Builder(
+				this)
+				.setSmallIcon(R.drawable.notification_icon)
+				.setContentTitle(
+						getString(R.string.tracking_notification_title))
+				.setContentText(getString(R.string.tracking_notification_text))
+				.setOngoing(true);
+		notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		notificationManager.notify(TRACKING_NOTIFICATION_ID,
+				notificationBuilder.build());
+	}
 
+	private void removeNotification() {
+		notificationManager.cancel(TRACKING_NOTIFICATION_ID);
+	}
+
+	@Override
+	public void onDisconnected() {
+<<<<<<< HEAD
+		// TODO Auto-generated method stub
+=======
+		
+	}
+	
+	
+>>>>>>> 0d723fbf304cbea73548f9c5eca626ee8ee36135
+
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		locations.add(location);
+
+<<<<<<< HEAD
+=======
 		@Override
 		protected Void doInBackground(Void... params) {
 			while(tracking){
@@ -95,6 +142,7 @@ public class GPSTrackService extends Service implements
 			return null;
 		}		
 		
+>>>>>>> 0d723fbf304cbea73548f9c5eca626ee8ee36135
 	}
-	
+
 }

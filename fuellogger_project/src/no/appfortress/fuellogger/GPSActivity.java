@@ -13,6 +13,7 @@ import android.content.ServiceConnection;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -29,8 +30,7 @@ public class GPSActivity extends Activity {
 			GPSTrackBinder gpsTrackBinder = (GPSTrackBinder) service;
 			gpsTrackService = gpsTrackBinder.getService();
 			boundToService = true;
-			startServiceTracking();
-			
+			startServiceTracking();			
 		}
 
 		@Override
@@ -56,13 +56,13 @@ public class GPSActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		initGUI();
+		
 	}
 
 	protected void stopServiceTracking() {
 		gpsTrackService.stopGPSTracking();
 		trackedLocations = gpsTrackService.getLocations();
 		updateListAdapter();
-		
 	}
 
 	protected void startServiceTracking() {
@@ -74,6 +74,7 @@ public class GPSActivity extends Activity {
 		setContentView(R.layout.activity_gps);
 
 		// Initializing the service Intent
+
 
 		gpsServiceIntent = new Intent(this, GPSTrackService.class);
 
@@ -111,6 +112,7 @@ public class GPSActivity extends Activity {
 			updateListAdapter();
 		}
 
+
 	}
 
 	protected void updateListAdapter() {
@@ -125,11 +127,13 @@ public class GPSActivity extends Activity {
 	private List<String> getLocationAsStrings() {
 		List<String> rtnList = new ArrayList<String>();
 		Location curLoc;
+		Log.d("Test","l1");
 		for (int i = 0; i < trackedLocations.size(); i++) {
 			curLoc = trackedLocations.get(i);
-			rtnList.add("Latitude: " + Double.toString(curLoc.getLatitude()) + "\n"
-					+ "Longitude: " + Double.toString(curLoc.getLongitude()));
+			rtnList.add("Latitude:\t" + Double.toString(curLoc.getLatitude()) + "\n"
+					+ "Longitude:\t" + Double.toString(curLoc.getLongitude()));
 		}
+		Log.d("Test","l2");
 		return rtnList;
 	}
 
