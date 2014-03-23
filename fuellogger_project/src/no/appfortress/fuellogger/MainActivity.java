@@ -28,7 +28,6 @@ public class MainActivity extends Activity {
 
 	public void btnAddFueling(View view) {
 		Intent intent = new Intent(this, RegisterFuelingActivity.class);
-
 		startActivity(intent);
 	}
 

@@ -227,7 +227,8 @@ containing a value of this type.
         public static final int ic_plusone_small_off_client=0x7f02001e;
         public static final int ic_plusone_standard_off_client=0x7f02001f;
         public static final int ic_plusone_tall_off_client=0x7f020020;
-        public static final int red_round_button=0x7f020021;
+        public static final int notification_icon=0x7f020021;
+        public static final int red_round_button=0x7f020022;
     }
     public static final class id {
         public static final int action_settings=0x7f05002c;
@@ -413,6 +414,8 @@ containing a value of this type.
         public static final int set_date=0x7f060035;
         public static final int submit=0x7f06001d;
         public static final int tankSize=0x7f060024;
+        public static final int tracking_notification_text=0x7f060037;
+        public static final int tracking_notification_title=0x7f060036;
         public static final int volumeMeasure=0x7f060028;
         public static final int whatisodo=0x7f06002e;
     }

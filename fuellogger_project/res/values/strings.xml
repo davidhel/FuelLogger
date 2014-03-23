@@ -29,6 +29,8 @@
     <string name="cost">Cost:</string>
     <string name="pick_date">Pick date:</string>
     <string name="set_date">Set date:</string>
+    <string name="tracking_notification_title">Tracking</string>
+    <string name="tracking_notification_text">Currently tracking your route</string>
 
 
 </resources>
