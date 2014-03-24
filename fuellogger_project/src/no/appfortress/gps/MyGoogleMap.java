@@ -24,8 +24,8 @@ public class MyGoogleMap extends FragmentActivity{
 		
 		map.setMyLocationEnabled(true);
 		map.moveCamera(CameraUpdateFactory.newLatLng(halden));
-		Polyline polyline = map.addPolyline(new PolylineOptions().geodesic(true)
-				.add(new LatLng(59.1293686,11.3702836),new LatLng(59.131645,11.360442),new LatLng(59.128804,11.351687)));
+		//Polyline polyline = map.addPolyline(new PolylineOptions().geodesic(true)
+		//		.add(new LatLng(59.1293686,11.3702836),new LatLng(59.131645,11.360442),new LatLng(59.128804,11.351687)));
 		
 		
 	}

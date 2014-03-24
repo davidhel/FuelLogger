@@ -80,7 +80,7 @@ public class GPSTrackService extends Service implements
 			
 			locationRequest = new LocationRequest();
 			if(arg == null){
-				locationRequest.setInterval(1000 * 10 * 1);
+				locationRequest.setInterval(1000 * 60 * 1);
 				locationClient.requestLocationUpdates(locationRequest, this);
 				setNotification();
 			}
