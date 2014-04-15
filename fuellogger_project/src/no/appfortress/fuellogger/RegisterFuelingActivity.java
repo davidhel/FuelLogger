@@ -1,5 +1,9 @@
 package no.appfortress.fuellogger;
 
+import java.util.Calendar;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -19,7 +23,15 @@ public class RegisterFuelingActivity extends FragmentActivity {
 	}
 	
 	public void initGUIElements(){
+		Calendar c = Calendar.getInstance();
+		int year = c.get(Calendar.YEAR);
+		int month = c.get(Calendar.MONTH);
+		int day = c.get(Calendar.DAY_OF_MONTH);
 		
+		btnDate = (Button)findViewById(R.id.btnPickDate);
+		btnDate.setEnabled(true );
+		btnDate.setText(day + "/" + month + "/" + year);
+
 	}
 
 	public void showDatePickerDialog(View v) {
@@ -33,7 +45,9 @@ public class RegisterFuelingActivity extends FragmentActivity {
 	}
 	
 	public void btnOdo(View view){
-		//Pop up message shows information what an ODO is
+		new AlertDialog.Builder(this)
+	    .setMessage(R.string.whatIsOdo)
+	    .show();
 	}
 	public void btnSubmitFueling(View view){
 		Intent intent = new Intent(this, MainActivity.class);
