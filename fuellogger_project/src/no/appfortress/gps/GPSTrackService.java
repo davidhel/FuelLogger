@@ -77,10 +77,10 @@ public class GPSTrackService extends Service implements
 	@Override
 	public void onConnected(Bundle arg) {
 		if (tracking) {
-			
+
 			locationRequest = new LocationRequest();
-			if(arg == null){
-				locationRequest.setInterval(1000 * 10 * 1);
+			if (arg == null) {
+				locationRequest.setInterval(1000 * 10 * 1); 
 				locationClient.requestLocationUpdates(locationRequest, this);
 				setNotification();
 			}
@@ -119,7 +119,6 @@ public class GPSTrackService extends Service implements
 	@Override
 	public void onLocationChanged(Location location) {
 		locations.add(location);
-
 	}
 
 }
