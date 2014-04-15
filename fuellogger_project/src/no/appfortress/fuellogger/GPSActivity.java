@@ -1,11 +1,14 @@
 package no.appfortress.fuellogger;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import no.appfortress.gps.GPSTrackService;
-import no.appfortress.gps.GPSTrackService.GPSTrackBinder;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -18,12 +21,13 @@ import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class GPSActivity extends Activity {
 
 	// Used to keep track of if a service is binding
-	private ServiceConnection mConnection = new ServiceConnection() {
+	/*private ServiceConnection mConnection = new ServiceConnection() {
 
 		@Override
 		public void onServiceConnected(ComponentName name, IBinder service) {
@@ -39,7 +43,21 @@ public class GPSActivity extends Activity {
 			
 		}
 
+	};*/
+	
+	private BroadcastReceiver receiver = new BroadcastReceiver(){
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			Bundle bundle = intent.getExtras();
+			Double latitude = bundle.getDouble(GPSTrackService.LATITUDE);
+			Double longitude = bundle.getDouble(GPSTrackService.LONGITUDE);
+			createToast(latitude + " : " + longitude);
+		}
+		
 	};
+	
+	private static final int REPEAT_TIME = 10 * 1000;
 
 	private GPSTrackService gpsTrackService;
 	private boolean boundToService = false;
@@ -59,6 +77,8 @@ public class GPSActivity extends Activity {
 		
 	}
 
+
+
 	protected void stopServiceTracking() {
 		gpsTrackService.stopGPSTracking();
 		trackedLocations = gpsTrackService.getLocations();
@@ -73,11 +93,16 @@ public class GPSActivity extends Activity {
 	private void initGUI() {
 		setContentView(R.layout.activity_gps);
 
+		final AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+		
+		
 		// Initializing the service Intent
 
 
 		gpsServiceIntent = new Intent(this, GPSTrackService.class);
 
+		final PendingIntent pintent = PendingIntent.getService(this, 0, gpsServiceIntent, 0);
+		
 		// Get the list view
 		
 		lstPos = (ListView) findViewById(R.id.lvLocations);
@@ -86,6 +111,9 @@ public class GPSActivity extends Activity {
 
 		tglSer = (ToggleButton) findViewById(R.id.tbStartService);
 
+		tglSer.setChecked(boundToService);
+
+		
 		// Handling the ToggleButton actions
 
 		tglSer.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -96,13 +124,20 @@ public class GPSActivity extends Activity {
 
 				// if toggle button is checked, it will start a bind service
 
+				createToast("Bound to service: " + boundToService + " - is checked : " + isChecked);
 				if (isChecked) {
+					Calendar cal = Calendar.getInstance();
+					alarm.setRepeating(AlarmManager.RTC,cal.getTimeInMillis(), REPEAT_TIME, pintent);
+					/*
 					bindService(gpsServiceIntent, mConnection,
-							Context.BIND_AUTO_CREATE);
+							Context.BIND_NOT_FOREGROUND);*/
 				} else {
 					if (boundToService) {
+						
+						alarm.cancel(pintent);
+						/*
 						unbindService(mConnection);
-						stopServiceTracking();
+						stopServiceTracking();*/
 					}
 				}
 
@@ -137,6 +172,10 @@ public class GPSActivity extends Activity {
 		return rtnList;
 	}
 
+	private void createToast(String text){
+		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+	}
+	
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
