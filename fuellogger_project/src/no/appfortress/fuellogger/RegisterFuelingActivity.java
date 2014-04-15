@@ -1,5 +1,7 @@
 package no.appfortress.fuellogger;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -33,7 +35,9 @@ public class RegisterFuelingActivity extends FragmentActivity {
 	}
 	
 	public void btnOdo(View view){
-		//Pop up message shows information what an ODO is
+		new AlertDialog.Builder(this)
+	    .setMessage(R.string.whatIsOdo)
+	    .show();
 	}
 	public void btnSubmitFueling(View view){
 		Intent intent = new Intent(this, MainActivity.class);

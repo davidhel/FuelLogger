@@ -433,9 +433,10 @@ int layout activity_main 0x7f030019
 int layout activity_myvehicles 0x7f03001a
 int layout activity_register 0x7f03001b
 int layout database_layout 0x7f03001c
-int layout google_map_activity 0x7f03001d
-int layout support_simple_spinner_dropdown_item 0x7f03001e
-int layout widget_layout 0x7f03001f
+int layout fragment_whatisodo 0x7f03001d
+int layout google_map_activity 0x7f03001e
+int layout support_simple_spinner_dropdown_item 0x7f03001f
+int layout widget_layout 0x7f030020
 int menu main 0x7f0d0000
 int string Odometer 0x7f08003a
 int string abc_action_bar_home_description 0x7f08001b
@@ -505,6 +506,7 @@ int string tankSize 0x7f080031
 int string tracking_notification_text 0x7f080044
 int string tracking_notification_title 0x7f080043
 int string volumeMeasure 0x7f080035
+int string whatIsOdo 0x7f080045
 int string whatisodo 0x7f08003b
 int style AppBaseTheme 0x7f0c0084
 int style BaseTheme 0x7f0c0083
