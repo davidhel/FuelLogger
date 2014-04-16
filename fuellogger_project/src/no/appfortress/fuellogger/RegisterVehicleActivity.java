@@ -86,7 +86,7 @@ public class RegisterVehicleActivity extends Activity implements
 
 	private void printMakes() {
 		for(int i=0; i<makes.length; i++){
-			Log.d("MAKES", makes[i]);
+			//Log.d("MAKES", makes[i]);
 		}
 		
 	}
