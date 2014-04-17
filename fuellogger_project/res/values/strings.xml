@@ -33,5 +33,9 @@
     <string name="tracking_notification_text">Currently tracking your route</string>
     <string name="whatIsOdo">The odometer is an instrument that indicates the total distance traveled by a vehicle</string>
 
+    <string-array name="carmodels">
+        <item>Toyota</item>
+        <item>Peugeot</item>
+    </string-array>
 
 </resources>

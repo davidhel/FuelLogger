@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="49dp"
         android:src="@drawable/ic_car" />
-
+	
     <TextView
         android:id="@+id/txtVehicleBrand"
         android:layout_width="wrap_content"
@@ -21,7 +21,7 @@
         android:layout_marginRight="31dp"
         android:text="@string/brand" />
 
-    <EditText
+    <Spinner
         android:id="@+id/editVehicleBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
         android:layout_marginTop="31dp"
         android:layout_toRightOf="@+id/txtVehicleBrand"
         android:ems="10"
-        android:text="@string/exampleBrand" />
+        android:entries="@array/carmodels"/>
 
     <TextView
         android:id="@+id/txtVehicleModel"
