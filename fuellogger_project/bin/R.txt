@@ -4,6 +4,7 @@ int anim abc_slide_in_bottom 0x7f040002
 int anim abc_slide_in_top 0x7f040003
 int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
+int array carmodels 0x7f0d0000
 int attr actionBarDivider 0x7f01001c
 int attr actionBarItemBackground 0x7f01001d
 int attr actionBarSize 0x7f01001b
@@ -437,7 +438,7 @@ int layout fragment_whatisodo 0x7f03001d
 int layout google_map_activity 0x7f03001e
 int layout support_simple_spinner_dropdown_item 0x7f03001f
 int layout widget_layout 0x7f030020
-int menu main 0x7f0d0000
+int menu main 0x7f0e0000
 int string Odometer 0x7f08003a
 int string abc_action_bar_home_description 0x7f08001b
 int string abc_action_bar_up_description 0x7f08001c

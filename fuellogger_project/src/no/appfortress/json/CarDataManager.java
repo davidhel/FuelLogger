@@ -37,6 +37,10 @@ public class CarDataManager {
 	private OnVehicleRequestListener caller;
 
 	private JSONObject jsonObject;
+<<<<<<< HEAD
+=======
+	private JSONObject test;
+>>>>>>> c39dc69bf5de18096a672f96168f26cfb2878749
 	private static final String JSONMAKESURL = "http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key="
 			+ APIKEY;
 	private  String jSONModelsURL = "https://api.edmunds.com/api/vehicle/v2/"
@@ -58,12 +62,25 @@ public class CarDataManager {
 	public String[] getMakes(){
 		String[] makes;
 		try {
+<<<<<<< HEAD
 			Log.d("MAKES", "hei verden");
 			Log.d("MAKES", jsonObject.toString());
 			String genresString = jsonObject.getString(tag_makes);
 			//JSONObject json = new JSONObject(genresString);
 			//Log.d("MAKES", genresString);
 			//Log.d("MAKES", json.getString("name"));
+=======
+			String genresString = jsonObject.getJSONObject(tag_makes).getString(tag_models);
+			test = new JSONObject("Your string here").getJSONObject(tag_makes);
+			//test = jsonObject.getJSONObject(tag_models);
+			Log.d("MAKES", "hei verden");
+			Log.d("MAKES", test.toString());
+			//Log.d("MAKES", jsonObject.toString());
+			//String genresString = jsonObject.getJSONObject(tag_makes).getString(tag_models);
+			/*JSONObject json = new JSONObject(genresString);
+			Log.d("MAKES", genresString);
+			Log.d("MAKES", json.getString("name"));*/
+>>>>>>> c39dc69bf5de18096a672f96168f26cfb2878749
 			makes = genresString.split(",");
 		} catch (JSONException e) {
 			return null;
