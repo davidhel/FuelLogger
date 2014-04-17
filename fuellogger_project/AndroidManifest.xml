@@ -46,7 +46,8 @@
         <activity
             android:name=".DatabaseActivity"
             android:label="@string/app_name" />
-        <activity android:name=".GPSActivity" />
+        <activity android:name=".GPSActivity" 
+            android:configChanges="orientation"/>
         <activity android:name="no.appfortress.gps.MyGoogleMap" />
 
         <service
