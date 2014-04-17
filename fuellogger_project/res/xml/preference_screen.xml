@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:title="@string/Unit_convertion" >
+		<ListPreference 
+		    android:key="pref_unit_length"
+		    android:entries="@array/lengthUnits"
+		    android:summary="@string/pref_unit_length_summary"
+		    android:entryValues="@array/lengthUnitsValues"
+		    android:title="@string/unit_length"/>
+		<ListPreference 
+		    android:key="pref_unit_liquid"
+		    android:entries="@array/liquidUnits"
+		    android:summary="@string/pref_unit_liquid_summary"
+		    android:entryValues="@array/liquidUnits"
+		    android:title="@string/unit_liquid"/>
+ </PreferenceCategory>
+ <PreferenceCategory
+     android:title="@string/Tracking">
+        <ListPreference 
+            android:key="pref_tracking_frequency"
+            android:entries="@array/trackFrequency"
+            android:summary="@string/pref_track_summmary"
+            android:entryValues="@array/syncFrequencyValues"
+            android:title="@string/Tracking"/>
+     
+ </PreferenceCategory>
+</PreferenceScreen>

@@ -37,5 +37,13 @@
         <item>Toyota</item>
         <item>Peugeot</item>
     </string-array>
+    <string name="Tracking">Tracking</string>
+    <string name="Unit_convertion">Unit convertion</string>
+    <string name="pref_track_summmary">Choose how often the GPS should track your device</string>
+    <string name="pref_unit_length_summary">Choose your prefered unit for measuring length</string>
+    <string name="unit_length">Lenght unit</string>
+    <string name="pref_unit_liquid_summary">Choose your prefered unit for measuring liquid</string>
+    <string name="unit_liquid">Liquid unit</string>
+    <string name="distance">Distance</string>
 
 </resources>

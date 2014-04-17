@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -52,6 +53,10 @@ public class MainActivity extends ActionBarActivity {
 		Intent intent = new Intent(this, MyGoogleMap.class);
 		startActivity(intent);
 	}
+	public void btnCalculate(View view){
+		Intent intent = new Intent(this, TripCalculatorActivity.class);
+		startActivity(intent);
+	}
 	//MENU
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
@@ -65,6 +70,9 @@ public class MainActivity extends ActionBarActivity {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+			Log.d("menu", "menu");
+			Intent prefs = new Intent(this, Preferences.class);
+			startActivity(prefs);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
