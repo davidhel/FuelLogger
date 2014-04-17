@@ -17,7 +17,6 @@ public class Preferences extends PreferenceActivity {
 		} else {
 			startFragment();
 		}
-
 	}
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void startFragment(){
