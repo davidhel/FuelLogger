@@ -65,25 +65,7 @@ public class GPSActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		Log.d("Fuel", "onCreate");
-		/*if(savedInstanceState != null){
-			// Init list for holding locations
-			locationsTracked = new ArrayList<double[]>();
-			
-			double[] longitudeList = savedInstanceState.getDoubleArray(SAVE_LONGITUDE_LIST);
-			double[] latitudeList = savedInstanceState.getDoubleArray(SAVE_LATITUDE_LIST);
-			
-			for(int i = 0; i < longitudeList.length; i++){
-				double[] position = {longitudeList[i], latitudeList[i]};
-				locationsTracked.add(position);
-				Log.d("Fuel", "LOAD DATA: long: " + position[0] + " lat: " + position[1]);
-			}
-			
-			tracking = savedInstanceState.getBoolean(SAVE_TRACKING_STATE);
-			
-		}else{
-			Log.d("Fuel", "nullstill!");
-			locationsTracked = new ArrayList<double[]>();
-		}*/
+	
 		if(savedInstanceState == null || locationsTracked == null){
 			locationsTracked = new ArrayList<double[]>();
 		}
@@ -185,24 +167,4 @@ public class GPSActivity extends Activity {
 
 	}
 
-	/*@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		Log.d("Fuel", "onSaveInstanceState");
-		double[] longitudeList = new double[locationsTracked.size()];
-		double[] latitudeList = new double[locationsTracked.size()];
-		for (int i = 0; i < locationsTracked.size(); i++) {
-			longitudeList[i] = locationsTracked.get(i)[0];
-			latitudeList[i] = locationsTracked.get(i)[1];
-			Log.d("Fuel", "SAVE DATA: long: " + longitudeList[i] + " lat: " + latitudeList[i]);
-		}
-		outState.putDoubleArray(SAVE_LONGITUDE_LIST, longitudeList);
-		outState.putDoubleArray(SAVE_LATITUDE_LIST, latitudeList);
-		outState.putBoolean(SAVE_TRACKING_STATE, tracking);
-		super.onSaveInstanceState(outState);
-	}*/
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-	}
 }
