@@ -60,6 +60,7 @@ public class CarDataManager {
 		String[] makes;
 		try {
 			String genresString = jsonObject.getJSONObject(tag_makes).getString(tag_models);
+
 			test = new JSONObject("Your string here").getJSONObject(tag_makes);
 			//test = jsonObject.getJSONObject(tag_models);
 			Log.d("MAKES", "hei verden");
