@@ -767,4 +767,5 @@ int[] styleable View { 0x010100da, 0x7f010045, 0x7f010046 }
 int styleable View_android_focusable 0
 int styleable View_paddingEnd 2
 int styleable View_paddingStart 1
-int xml widget_info 0x7f050000
+int xml preference_screen 0x7f050000
+int xml widget_info 0x7f050001
