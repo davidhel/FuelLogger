@@ -53,6 +53,10 @@ public class MainActivity extends ActionBarActivity {
 		Intent intent = new Intent(this, MyGoogleMap.class);
 		startActivity(intent);
 	}
+	public void btnCalculate(View view){
+		Intent intent = new Intent(this, TripCalculatorActivity.class);
+		startActivity(intent);
+	}
 	//MENU
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
