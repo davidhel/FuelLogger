@@ -65,7 +65,9 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDerDKoq4MtMnwbnweyLpLA67sDnqyL-Nc" />
-
+        <receiver android:name="no.appfortress.fuellogger.GPSReceiver">
+            
+        </receiver>
         <receiver
             android:name="MyWidgetProvider">
             <intent-filter>
