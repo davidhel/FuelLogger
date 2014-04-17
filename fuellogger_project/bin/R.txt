@@ -4,7 +4,12 @@ int anim abc_slide_in_bottom 0x7f040002
 int anim abc_slide_in_top 0x7f040003
 int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
-int array carmodels 0x7f0d0000
+int array carmodels 0x7f0d0005
+int array lengthUnits 0x7f0d0000
+int array lengthUnitsValues 0x7f0d0001
+int array liquidUnits 0x7f0d0002
+int array syncFrequencyValues 0x7f0d0004
+int array trackFrequency 0x7f0d0003
 int attr actionBarDivider 0x7f01001c
 int attr actionBarItemBackground 0x7f01001d
 int attr actionBarSize 0x7f01001b
@@ -440,6 +445,8 @@ int layout support_simple_spinner_dropdown_item 0x7f03001f
 int layout widget_layout 0x7f030020
 int menu main 0x7f0e0000
 int string Odometer 0x7f08003a
+int string Tracking 0x7f080046
+int string Unit_convertion 0x7f080047
 int string abc_action_bar_home_description 0x7f08001b
 int string abc_action_bar_up_description 0x7f08001c
 int string abc_action_menu_overflow_description 0x7f08001d
@@ -499,6 +506,9 @@ int string name 0x7f08002b
 int string odometer 0x7f080036
 int string partial 0x7f08003e
 int string pick_date 0x7f080041
+int string pref_track_summmary 0x7f080048
+int string pref_unit_length_summary 0x7f080049
+int string pref_unit_liquid_summary 0x7f08004b
 int string primary 0x7f08002c
 int string register 0x7f080034
 int string set_date 0x7f080042
@@ -506,6 +516,8 @@ int string submit 0x7f08002a
 int string tankSize 0x7f080031
 int string tracking_notification_text 0x7f080044
 int string tracking_notification_title 0x7f080043
+int string unit_length 0x7f08004a
+int string unit_liquid 0x7f08004c
 int string volumeMeasure 0x7f080035
 int string whatIsOdo 0x7f080045
 int string whatisodo 0x7f08003b

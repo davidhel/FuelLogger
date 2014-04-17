@@ -17,7 +17,12 @@ public final class R {
         public static final int abc_slide_out_top=0x7f040005;
     }
     public static final class array {
-        public static final int carmodels=0x7f0d0000;
+        public static final int carmodels=0x7f0d0005;
+        public static final int lengthUnits=0x7f0d0000;
+        public static final int lengthUnitsValues=0x7f0d0001;
+        public static final int liquidUnits=0x7f0d0002;
+        public static final int syncFrequencyValues=0x7f0d0004;
+        public static final int trackFrequency=0x7f0d0003;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1366,6 +1371,8 @@ containing a value of this type.
     }
     public static final class string {
         public static final int Odometer=0x7f08003a;
+        public static final int Tracking=0x7f080046;
+        public static final int Unit_convertion=0x7f080047;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f08001b;
@@ -1520,6 +1527,9 @@ containing a value of this type.
         public static final int odometer=0x7f080036;
         public static final int partial=0x7f08003e;
         public static final int pick_date=0x7f080041;
+        public static final int pref_track_summmary=0x7f080048;
+        public static final int pref_unit_length_summary=0x7f080049;
+        public static final int pref_unit_liquid_summary=0x7f08004b;
         public static final int primary=0x7f08002c;
         public static final int register=0x7f080034;
         public static final int set_date=0x7f080042;
@@ -1527,6 +1537,8 @@ containing a value of this type.
         public static final int tankSize=0x7f080031;
         public static final int tracking_notification_text=0x7f080044;
         public static final int tracking_notification_title=0x7f080043;
+        public static final int unit_length=0x7f08004a;
+        public static final int unit_liquid=0x7f08004c;
         public static final int volumeMeasure=0x7f080035;
         public static final int whatIsOdo=0x7f080045;
         public static final int whatisodo=0x7f08003b;
