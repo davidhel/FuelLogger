@@ -87,6 +87,7 @@ int string common_google_play_services_update_text 0x7f050008
 int string common_google_play_services_update_title 0x7f050007
 int string common_signin_button_text 0x7f050012
 int string common_signin_button_text_long 0x7f050013
+int string location_client_powered_by_google 0x7f05001a
 int[] styleable AdsAttrs { 0x7f010000, 0x7f010001, 0x7f010002 }
 int styleable AdsAttrs_adSize 0
 int styleable AdsAttrs_adSizes 1

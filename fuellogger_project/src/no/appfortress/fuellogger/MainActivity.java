@@ -1,6 +1,6 @@
 package no.appfortress.fuellogger;
 
-import no.appfortress.gps.MyGoogleMap;
+import no.appfortress.gps.MyGoogleMaps;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -50,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 	public void btnMap(View view){
-		Intent intent = new Intent(this, MyGoogleMap.class);
+		Intent intent = new Intent(this, MyGoogleMaps.class);
 		startActivity(intent);
 	}
 	public void btnCalculate(View view){

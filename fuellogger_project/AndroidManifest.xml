@@ -8,14 +8,25 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="19" />
 
+    
+
+    <permission
+        android:name="no.appfortress.fuellogger.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="no.appfortress.fuellogger.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
+    
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -24,7 +35,7 @@
         <activity
             android:name="no.appfortress.fuellogger.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/BaseTheme">
+            android:theme="@style/BaseTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,12 +63,13 @@
         <activity
             android:name=".DatabaseActivity"
             android:label="@string/app_name" />
-        <activity android:name=".GPSActivity" 
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".GPSActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".TripCalculatorActivity"
             android:label="@string/app_name" />
-        <activity android:name="no.appfortress.gps.MyGoogleMap" />
+        <activity android:name="no.appfortress.gps.MyGoogleMaps" />
 
         <service
             android:name="no.appfortress.gps.GPSTrackService"
@@ -68,16 +80,15 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAp8R-zKcOm8B_aFJqPAAbrszBlKxGD928" />
-        <receiver android:name="no.appfortress.fuellogger.GPSReceiver">
-            
+            android:value="AIzaSyAUyFm_zaQvR0JqtCuWVhUTDkMqTIpYfkc" />
+
+        <receiver android:name="no.appfortress.fuellogger.GPSReceiver" >
         </receiver>
-        <receiver
-            android:name="MyWidgetProvider">
+        <receiver android:name="MyWidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />

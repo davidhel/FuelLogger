@@ -314,6 +314,9 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static int common_signin_button_text_long=0x7f050013;
+        /**  Location client code resources (prefix with location_client) 
+         */
+        public static int location_client_powered_by_google=0x7f05001a;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.
