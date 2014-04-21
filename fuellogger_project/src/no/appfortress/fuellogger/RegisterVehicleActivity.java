@@ -1,5 +1,6 @@
 package no.appfortress.fuellogger;
 
+import no.appfortress.database.CarDBHandler;
 import no.appfortress.json.CarDataManager;
 import no.appfortress.json.CarDataManager.OnVehicleRequestListener;
 import android.app.Activity;
@@ -44,14 +45,16 @@ public class RegisterVehicleActivity extends Activity implements
 		TextView tankSize = (TextView) findViewById(R.id.editTankSize);
 		TextView odometer = (TextView) findViewById(R.id.editOdometer);
 
-		// A bundle with data that can be sent between activities
+		/*// A bundle with data that can be sent between activities
 		Bundle extras = new Bundle();
 		extras.putString(EXTRA_MESSAGE, carBrand.getText().toString());
 		extras.putString(EXTRA_MESSAGE2, carModel.getText().toString());
 		extras.putString(EXTRA_MESSAGE3, tankSize.getText().toString());
 		extras.putString(EXTRA_MESSAGE4, odometer.getText().toString());
-
 		intent.putExtras(extras);
+		*/
+		CarDBHandler database = new CarDBHandler(this);
+		database.insertCar(carBrand.toString(), carModel.toString(), 2000, Integer.parseInt(odometer.toString()), Float.parseFloat(tankSize.toString()));
 		startActivity(intent);
 	}
 

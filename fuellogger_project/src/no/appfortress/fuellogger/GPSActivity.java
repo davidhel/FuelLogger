@@ -1,10 +1,20 @@
 package no.appfortress.fuellogger;
 
-import no.appfortress.gps.GPSReceiver;
+import java.util.ArrayList;
+import java.util.List;
+
+import no.appfortress.gps.GPSTrackService;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -14,9 +24,39 @@ import android.widget.ToggleButton;
 public class GPSActivity extends Activity {
 
 	public static final String SEND_LOCATION = "SEND_LOCATION";
-	
-	private ArrayAdapter<String> aa;
+	public static final String LOCATION_FILTER = "LOCATION_FILTER";
+	public static final String RECEIVE_LATITUDE = "RECEIVE_LATITUDE";
+	public static final String RECEIVE_LONGITUDE = "RECEIVE_LONGITUDE";
+	public static final String SAVE_LONGITUDE_LIST = "SAVE_LONGITUDE_LIST";
+	public static final String SAVE_LATITUDE_LIST = "SAVE_LATITUDE_LIST";
+	public static final String SAVE_TRACKING_STATE = "SAVE_TRACKING_STATE";
 
+	private BroadcastReceiver locationReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			Log.d("Fuel", "onReceive");
+			double latitude = intent.getDoubleExtra(RECEIVE_LATITUDE, -1000);
+			double longitude = intent.getDoubleExtra(RECEIVE_LONGITUDE, -1000);
+			double[] position = { longitude, latitude };
+			locationsTracked.add(position);
+			updateList();
+		}
+
+	};
+
+	// Tracking variable
+	private AlarmManager alarmManager;
+	private Intent startServiceIntent;
+	private PendingIntent startServicePendingIntent;
+	private List<double[]> locationsTracked;
+	private int intervalTime = 5 * 1000;
+	private boolean tracking = false;
+	
+	
+
+	// GUI VARIABLES
+	private ArrayAdapter<String> aa;
 	private ToggleButton tglSer;
 	private ListView lstPos;
 
@@ -24,12 +64,41 @@ public class GPSActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		Log.d("Fuel", "onCreate");
+	
+		if(savedInstanceState == null || locationsTracked == null){
+			locationsTracked = new ArrayList<double[]>();
+		}
+		setContentView(R.layout.activity_gps);
 		initGUI();
+
+	}
+	
+	
+
+	protected void updateList() {
+		Log.d("Fuel", "onUpdate");
+		
+		List<String> listPositions = getLatLonForList(locationsTracked);
+		
+		aa = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, listPositions);
+		lstPos.setAdapter(aa);
 	}
 
-	private void initGUI() {
-		setContentView(R.layout.activity_gps);
+	private List<String> getLatLonForList(List<double[]> locationList) {
+		List<String> rtnList = new ArrayList<String>();
+		for(int i = 0; i < locationList.size(); i++){
+			rtnList.add(locationList.get(i)[0] + ", " + locationList.get(i)[1]);
+		}
+		return rtnList;
+	}
 
+
+
+	private void initGUI() {
+
+		
 		// Get the list view
 
 		lstPos = (ListView) findViewById(R.id.lvLocations);
@@ -37,6 +106,11 @@ public class GPSActivity extends Activity {
 		// Gets the ToggleButton from the xml layout file
 
 		tglSer = (ToggleButton) findViewById(R.id.tbStartService);
+
+		// Set toogle buttons checked true/false, depending if the app is
+		// tracking location or not
+
+		tglSer.setChecked(tracking);
 
 		// Handling the ToggleButton actions
 
@@ -47,25 +121,50 @@ public class GPSActivity extends Activity {
 					boolean isChecked) {
 				if (isChecked) {
 					registerReceiver();
+					locationsTracked.clear();
+					updateList();
 				} else {
 					unregisterReceiver();
 				}
 
 			}
 		});
+		
+		updateList();
 
 	}
 
 	protected void unregisterReceiver() {
-		GPSReceiver.stopService(this);
-		
+		LocalBroadcastManager.getInstance(this).unregisterReceiver(
+				locationReceiver);
+		stopService();
+	}
+
+	private void stopService() {
+		if (alarmManager != null) {
+			alarmManager.cancel(startServicePendingIntent);
+		}
 	}
 
 	protected void registerReceiver() {
-		IntentFilter mStatusIntentFilter = new IntentFilter(
-				SEND_LOCATION);
-		LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
-		GPSReceiver gpsRec = new GPSReceiver();
-		lbm.registerReceiver(gpsRec, mStatusIntentFilter);
+		LocalBroadcastManager.getInstance(this).registerReceiver(
+				locationReceiver, new IntentFilter(LOCATION_FILTER));
+		startService();
+
 	}
+
+	private void startService() {
+		alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+		startServiceIntent = new Intent(this, GPSTrackService.class);
+
+		startServicePendingIntent = PendingIntent.getService(this, 0,
+				startServiceIntent, 0);
+
+		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+				System.currentTimeMillis() - intervalTime, intervalTime,
+				startServicePendingIntent);
+
+	}
+
 }
