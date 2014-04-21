@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    >
+    android:layout_height="match_parent" >
 
     <ImageView
         android:id="@+id/imgFuel"
@@ -37,8 +36,6 @@
         android:layout_alignLeft="@+id/editOdo"
         android:layout_below="@id/editOdo"
         android:layout_marginTop="5dp"
-        android:clickable="true"
-        android:onClick="btnOdo"
         android:text="@string/whatisodo" />
 
     <TextView
@@ -103,7 +100,6 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tvPickDate"
         android:layout_alignLeft="@+id/etCost"
-        android:onClick="showDatePickerDialog"
         android:text="@string/pick_date" />
 
     <Button
@@ -114,7 +110,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
-        android:onClick="btnSubmitFueling"
         android:text="@string/submit" />
 
 </RelativeLayout>

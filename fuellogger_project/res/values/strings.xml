@@ -32,10 +32,18 @@
     <string name="tracking_notification_title">Tracking</string>
     <string name="tracking_notification_text">Currently tracking your route</string>
     <string name="whatIsOdo">The odometer is an instrument that indicates the total distance traveled by a vehicle</string>
-
+	<string name="drawer_open">Open</string>
+	<string name="drawer_close">Close</string>
+    
     <string-array name="carmodels">
         <item>Toyota</item>
         <item>Peugeot</item>
+    </string-array>
+    <string-array name="navigation_list">
+        <item>Cars</item>
+        <item>Drive</item>
+        <item>History</item>
+        <item>Settings</item>
     </string-array>
     <string name="Tracking">Tracking</string>
     <string name="Unit_convertion">Unit convertion</string>
