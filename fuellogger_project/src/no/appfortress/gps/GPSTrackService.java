@@ -70,8 +70,8 @@ public class GPSTrackService extends IntentService implements
 	
 	private void broadcastCoordinations(double longitude, double latitude){
 		Intent newIntent = new Intent(GPSActivity.LOCATION_FILTER);
-		newIntent.putExtra(GPSActivity.RECEIVE_LATITUDE, longitude);
-		newIntent.putExtra(GPSActivity.RECEIVE_LONGITUDE, latitude);
+		newIntent.putExtra(GPSActivity.RECEIVE_LATITUDE, latitude);
+		newIntent.putExtra(GPSActivity.RECEIVE_LONGITUDE, longitude);
 		LocalBroadcastManager.getInstance(this).sendBroadcast(newIntent);
 	}
 

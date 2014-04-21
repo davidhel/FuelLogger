@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.appfortress.gps.GPSTrackService;
+import no.appfortress.gps.MyGoogleMaps;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -30,6 +31,8 @@ public class GPSActivity extends Activity {
 	public static final String SAVE_LONGITUDE_LIST = "SAVE_LONGITUDE_LIST";
 	public static final String SAVE_LATITUDE_LIST = "SAVE_LATITUDE_LIST";
 	public static final String SAVE_TRACKING_STATE = "SAVE_TRACKING_STATE";
+	public static final String TRACKED_LONGITUDES = "TRACKED_LONGITUDES";
+	public static final String TRACKED_LATITUDES = "TRACKED_LATITUDES";
 
 	private BroadcastReceiver locationReceiver = new BroadcastReceiver() {
 
@@ -38,7 +41,7 @@ public class GPSActivity extends Activity {
 			Log.d("Fuel", "onReceive");
 			double latitude = intent.getDoubleExtra(RECEIVE_LATITUDE, -1000);
 			double longitude = intent.getDoubleExtra(RECEIVE_LONGITUDE, -1000);
-			double[] position = { longitude, latitude };
+			double[] position = { latitude,longitude};
 			locationsTracked.add(position);
 			updateList();
 		}
@@ -125,6 +128,7 @@ public class GPSActivity extends Activity {
 					updateList();
 				} else {
 					unregisterReceiver();
+					showRoute();
 				}
 
 			}
@@ -133,6 +137,25 @@ public class GPSActivity extends Activity {
 		updateList();
 
 	}
+
+	protected void showRoute() {
+		if(locationsTracked.size() < 1){
+			return;
+		}
+		Intent intent = new Intent(this, MyGoogleMaps.class);
+		double[] longitudesTracked = new double[locationsTracked.size()];
+		double[] latitudesTracked = new double[locationsTracked.size()];
+		
+		for(int i = 0; i < locationsTracked.size();i++){
+			longitudesTracked[i] = locationsTracked.get(i)[1];
+			latitudesTracked[i] = locationsTracked.get(i)[0];
+		}
+		intent.putExtra(TRACKED_LONGITUDES, longitudesTracked);
+		intent.putExtra(TRACKED_LATITUDES, latitudesTracked);
+		startActivity(intent);
+	}
+
+
 
 	protected void unregisterReceiver() {
 		LocalBroadcastManager.getInstance(this).unregisterReceiver(
