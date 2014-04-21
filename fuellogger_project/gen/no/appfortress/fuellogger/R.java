@@ -1253,7 +1253,7 @@ containing a value of this type.
         public static final int imgFuel=0x7f060046;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f06002c;
-        public static final int listview=0x7f06005d;
+        public static final int listview=0x7f06005a;
         public static final int lvLocations=0x7f060056;
         public static final int lvNavDrawer=0x7f060059;
         public static final int mapsFragment=0x7f060069;
@@ -1293,10 +1293,6 @@ containing a value of this type.
         public static final int tvLatitude=0x7f060053;
         public static final int tvLongitude=0x7f060054;
         public static final int tvPickDate=0x7f06004f;
-<<<<<<< HEAD
-        public static final int txtCarData=0x7f06005a;
-=======
->>>>>>> f5b826026e549eff4bd6979e6cb1d745a6adde80
         public static final int txtDistance=0x7f06003f;
         public static final int txtDistanceMeasure=0x7f060065;
         public static final int txtLengthUnit=0x7f060041;
