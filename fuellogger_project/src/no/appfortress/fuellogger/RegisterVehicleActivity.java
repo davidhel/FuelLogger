@@ -48,7 +48,7 @@ public class RegisterVehicleActivity extends Activity implements
 		getMakes();
 		
 		
-		carBrand = (Spinner) findViewById(R.id.editVehicleBrand);
+		carBrand = (Spinner) findViewById(R.id.spVehicleBrand);
 		carModel = (EditText) findViewById(R.id.editVehicleModel);
 		tankSize = (EditText) findViewById(R.id.editTankSize);
 		odometer = (EditText) findViewById(R.id.editOdometer);

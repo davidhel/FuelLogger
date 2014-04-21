@@ -16,13 +16,13 @@
         android:id="@+id/txtVehicleBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editVehicleBrand"
+        android:layout_alignBottom="@+id/spVehicleBrand"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="31dp"
         android:text="@string/brand" />
 
     <Spinner
-        android:id="@+id/editVehicleBrand"
+        android:id="@+id/spVehicleBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgCar"
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/txtVehicleModel"
-        android:layout_alignLeft="@+id/editVehicleBrand"
+        android:layout_alignLeft="@+id/spVehicleBrand"
         android:ems="10"
         android:text="@string/exampleModel" />
 

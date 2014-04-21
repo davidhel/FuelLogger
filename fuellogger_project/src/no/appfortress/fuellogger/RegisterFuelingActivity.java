@@ -2,6 +2,8 @@ package no.appfortress.fuellogger;
 
 import java.util.Calendar;
 
+import no.appfortress.database.RefillDBHandler;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -50,7 +52,11 @@ public class RegisterFuelingActivity extends FragmentActivity {
 	    .show();
 	}
 	public void btnSubmitFueling(View view){
-		Intent intent = new Intent(this, MainActivity.class);
+		RefillDBHandler database = new RefillDBHandler(this);
+		Car car = new Car(15, "Toyota", "Corolla", 2003, 150000, 50);
+		database.newRefill(car, 40, 13, 156000);
+		
+		Intent intent = new Intent(this, MyFuelingsActivity.class);
 		startActivity(intent);
 	}
 }
