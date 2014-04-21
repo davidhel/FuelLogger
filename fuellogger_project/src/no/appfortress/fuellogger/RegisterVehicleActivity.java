@@ -8,10 +8,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class RegisterVehicleActivity extends Activity implements
-		OnVehicleRequestListener {
+		OnVehicleRequestListener, OnItemSelectedListener {
 
 	public static String EXTRA_MESSAGE = "no.appfortress.fuellogger.RegisterActivity";
 	public static String EXTRA_MESSAGE2;
@@ -27,6 +31,14 @@ public class RegisterVehicleActivity extends Activity implements
 
 	private String[] makes;
 	private String[] models;
+	
+	private String[] carmodels;
+	private String selectedBrand;
+	
+	Spinner carBrand;
+	EditText carModel;
+	EditText tankSize;
+	EditText odometer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +46,21 @@ public class RegisterVehicleActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 		getMakes();
-
+		
+		
+		carBrand = (Spinner) findViewById(R.id.editVehicleBrand);
+		carModel = (EditText) findViewById(R.id.editVehicleModel);
+		tankSize = (EditText) findViewById(R.id.editTankSize);
+		odometer = (EditText) findViewById(R.id.editOdometer);
+		
+		carBrand.setOnItemSelectedListener(this);
 	}
 
 	public void btnSubmit(View view) {
-		Intent intent = new Intent(this, MyVehiclesActivity.class);
 
-		TextView carBrand = (TextView) findViewById(R.id.editVehicleBrand);
-		TextView carModel = (TextView) findViewById(R.id.editVehicleModel);
-		TextView tankSize = (TextView) findViewById(R.id.editTankSize);
-		TextView odometer = (TextView) findViewById(R.id.editOdometer);
+
+		
+
 
 		/*// A bundle with data that can be sent between activities
 		Bundle extras = new Bundle();
@@ -53,11 +70,19 @@ public class RegisterVehicleActivity extends Activity implements
 		extras.putString(EXTRA_MESSAGE4, odometer.getText().toString());
 		intent.putExtras(extras);
 		*/
+		Log.d("MAKES", "database");
+		
 		CarDBHandler database = new CarDBHandler(this);
-		database.insertCar(carBrand.toString(), carModel.toString(), 2000, Integer.parseInt(odometer.toString()), Float.parseFloat(tankSize.toString()));
+		Log.d("MAKES", "database");
+		
+		database.insertCar(selectedBrand, carModel.getText().toString(), 0, Integer.parseInt(odometer.getText().toString()), Float.parseFloat(tankSize.getText().toString()));
+		
+		Intent intent = new Intent(this, MyVehiclesActivity.class);
 		startActivity(intent);
 	}
 
+	
+			
 	private void getMakes() {
 		downloadStatus = DOWNLOAD_MAKES;
 		carDataManager = new CarDataManager(this);
@@ -91,6 +116,22 @@ public class RegisterVehicleActivity extends Activity implements
 		for(int i=0; i<makes.length; i++){
 			//Log.d("MAKES", makes[i]);
 		}
+		
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position,
+			long id) {
+		// TODO Auto-generated method stub
+		carmodels = getResources().getStringArray(R.array.carmodels);
+		selectedBrand = carmodels[position];
+		Log.d("DATABASE", selectedBrand);
+		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		// TODO Auto-generated method stub
 		
 	}
 }
