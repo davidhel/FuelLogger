@@ -32,6 +32,7 @@
     <string name="tracking_notification_title">Tracking</string>
     <string name="tracking_notification_text">Currently tracking your route</string>
     <string name="whatIsOdo">The odometer is an instrument that indicates the total distance traveled by a vehicle</string>
+<<<<<<< HEAD
 	<string name="drawer_open">Open</string>
 	<string name="drawer_close">Close</string>
     
@@ -45,6 +46,10 @@
         <item>History</item>
         <item>Settings</item>
     </string-array>
+=======
+
+
+>>>>>>> f5b826026e549eff4bd6979e6cb1d745a6adde80
     <string name="Tracking">Tracking</string>
     <string name="Unit_convertion">Unit convertion</string>
     <string name="pref_track_summmary">Choose how often the GPS should track your device</string>

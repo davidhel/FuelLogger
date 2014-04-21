@@ -25,5 +25,9 @@
         <item name="5">5000</item>
         <item name="10">10000</item>
     </string-array>
+        <string-array name="carmodels">
+        <item>Toyota</item>
+        <item>Peugeot</item>
+    </string-array>
 
 </resources>

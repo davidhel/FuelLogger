@@ -357,6 +357,7 @@ int id imgCar 0x7f06005b
 int id imgFuel 0x7f060046
 int id listMode 0x7f060001
 int id list_item 0x7f06002c
+int id listview 0x7f06005d
 int id lvLocations 0x7f060056
 int id lvNavDrawer 0x7f060059
 int id mapsFragment 0x7f060069
@@ -396,7 +397,10 @@ int id tvCost 0x7f06004d
 int id tvLatitude 0x7f060053
 int id tvLongitude 0x7f060054
 int id tvPickDate 0x7f06004f
+<<<<<<< HEAD
 int id txtCarData 0x7f06005a
+=======
+>>>>>>> f5b826026e549eff4bd6979e6cb1d745a6adde80
 int id txtDistance 0x7f06003f
 int id txtDistanceMeasure 0x7f060065
 int id txtLengthUnit 0x7f060041
