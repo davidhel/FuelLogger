@@ -33,12 +33,11 @@ public class RegisterFuelingActivity extends FragmentActivity {
 		btnDate = (Button)findViewById(R.id.btnPickDate);
 		btnDate.setEnabled(true );
 		btnDate.setText(day + "/" + month + "/" + year);
-
 	}
 
 	public void showDatePickerDialog(View v) {
-		DialogFragment newFragment = new DatePickerFragment();
-		newFragment.show(getSupportFragmentManager(), "datePicker");
+		//DialogFragment newFragment = new DatePickerFragment();
+		//newFragment.show(getSupportFragmentManager(), "datePicker");
 	}
 	
 	public void setDate(int year, int month, int day){

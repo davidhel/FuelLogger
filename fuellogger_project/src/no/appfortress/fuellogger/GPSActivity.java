@@ -5,16 +5,15 @@ import java.util.List;
 
 import no.appfortress.gps.GPSTrackService;
 import no.appfortress.gps.MyGoogleMaps;
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
@@ -22,7 +21,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 import android.widget.ToggleButton;
 
-public class GPSActivity extends Activity {
+public class GPSActivity extends ActionBarActivity {
 
 	public static final String SEND_LOCATION = "SEND_LOCATION";
 	public static final String LOCATION_FILTER = "LOCATION_FILTER";
@@ -100,6 +99,8 @@ public class GPSActivity extends Activity {
 
 
 	private void initGUI() {
+
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		
 		// Get the list view

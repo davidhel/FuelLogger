@@ -3,6 +3,7 @@ package no.appfortress.gps;
 import no.appfortress.fuellogger.GPSActivity;
 import no.appfortress.fuellogger.R;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -12,7 +13,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.LatLngBoundsCreator;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MyGoogleMaps extends FragmentActivity {
@@ -45,8 +46,9 @@ public class MyGoogleMaps extends FragmentActivity {
 			polOptions.add(new LatLng(latitudes[i], longitudes[i]));
 			bounds.include(new LatLng(latitudes[i], longitudes[i]));
 		}
-
-		googleMap.addPolyline(polOptions);
+			
+		
+		Polyline polyline = googleMap.addPolyline(polOptions);
 
 		googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(
 				bounds.build(),
@@ -54,5 +56,7 @@ public class MyGoogleMaps extends FragmentActivity {
 						.getResources().getDisplayMetrics().heightPixels, 10));
 
 	}
+	
+	
 
 }

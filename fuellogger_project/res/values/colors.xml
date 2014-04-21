@@ -5,4 +5,5 @@
     <color name="theme_foreground_color">#000088</color>
     <color name="actionbar_background">#000088</color>
     <color name="actionbar_text">#FFFF22</color>
+    <color name="blue_nav">#000088</color>
 </resources>
