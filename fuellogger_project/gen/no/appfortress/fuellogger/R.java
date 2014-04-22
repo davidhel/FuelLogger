@@ -1073,6 +1073,7 @@ containing a value of this type.
          */
         public static final int activity_horizontal_margin=0x7f090011;
         public static final int activity_vertical_margin=0x7f090012;
+        public static final int widget_margin=0x7f090013;
     }
     public static final class drawable {
         public static final int abc_ab_bottom_solid_dark_holo=0x7f020000;
@@ -1232,10 +1233,16 @@ containing a value of this type.
         public static final int drawer_layout=0x7f060057;
         public static final int dropdown=0x7f06000f;
         public static final int editOdo=0x7f060048;
+<<<<<<< HEAD
+        public static final int editOdometer=0x7f060067;
+        public static final int editTankSize=0x7f060064;
+        public static final int editVehicleModel=0x7f060062;
+=======
         public static final int editOdometer=0x7f060064;
         public static final int editTankSize=0x7f060061;
         public static final int editVehicleBrand=0x7f06005d;
         public static final int editVehicleModel=0x7f06005f;
+>>>>>>> f395d28235a88644f2aa9340cf1e790d0cfa5ed2
         public static final int edit_query=0x7f060033;
         public static final int end=0x7f060013;
         public static final int etCost=0x7f06004e;
@@ -1251,6 +1258,7 @@ containing a value of this type.
         public static final int image=0x7f06002a;
         public static final int imgCar=0x7f06005b;
         public static final int imgFuel=0x7f060046;
+        public static final int layout=0x7f06006d;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f06002c;
         public static final int listview=0x7f06005a;
@@ -1281,6 +1289,7 @@ containing a value of this type.
         public static final int showTitle=0x7f060006;
         public static final int spFuelConsumption=0x7f060043;
         public static final int spFuelCost=0x7f060042;
+        public static final int spVehicleBrand=0x7f060060;
         public static final int split_action_bar=0x7f060021;
         public static final int submit_area=0x7f06003c;
         public static final int tabMode=0x7f060002;
@@ -1307,9 +1316,13 @@ containing a value of this type.
         public static final int txtVoulumeMeasure=0x7f060062;
         public static final int txtWhatIsOdo=0x7f060049;
         public static final int up=0x7f060024;
+        public static final int update=0x7f06006e;
         public static final int useLogo=0x7f060003;
+<<<<<<< HEAD
+=======
         public static final int widgetLayout=0x7f06006a;
         public static final int widgetUpdate=0x7f06006b;
+>>>>>>> f395d28235a88644f2aa9340cf1e790d0cfa5ed2
         public static final int withText=0x7f06000c;
     }
     public static final class integer {
@@ -1448,6 +1461,7 @@ containing a value of this type.
          */
         public static final int auth_client_using_bad_version_title=0x7f0b0021;
         public static final int brand=0x7f0b002e;
+        public static final int car=0x7f0b004f;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 

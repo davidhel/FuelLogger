@@ -54,5 +54,6 @@
     <string name="pref_unit_liquid_summary">Choose your prefered unit for measuring liquid</string>
     <string name="unit_liquid">Liquid unit</string>
     <string name="distance">Distance</string>
+    <string name="car">Car:</string>
 
 </resources>
