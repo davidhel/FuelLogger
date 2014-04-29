@@ -318,15 +318,16 @@ int id action_context_bar 0x7f060020
 int id action_menu_divider 0x7f060016
 int id action_menu_presenter 0x7f060017
 int id action_mode_close_button 0x7f060027
-int id action_settings 0x7f06006c
+int id action_settings 0x7f06006d
 int id activity_chooser_view_content 0x7f060028
 int id always 0x7f06000b
 int id beginning 0x7f060011
+int id btnAddCar 0x7f06005a
 int id btnCalculate 0x7f060044
 int id btnPickDate 0x7f060050
-int id btnSubmit 0x7f060067
+int id btnSubmit 0x7f060068
 int id btnSubmitFueling 0x7f060051
-int id chcPrimary 0x7f060066
+int id chcPrimary 0x7f060067
 int id checkbox 0x7f060030
 int id chkPartial 0x7f06004c
 int id collapseActionView 0x7f06000d
@@ -337,16 +338,9 @@ int id disableHome 0x7f060008
 int id drawer_layout 0x7f060057
 int id dropdown 0x7f06000f
 int id editOdo 0x7f060048
-<<<<<<< HEAD
-int id editOdometer 0x7f060067
-int id editTankSize 0x7f060064
-int id editVehicleModel 0x7f060062
-=======
-int id editOdometer 0x7f060064
-int id editTankSize 0x7f060061
-int id editVehicleBrand 0x7f06005d
-int id editVehicleModel 0x7f06005f
->>>>>>> f395d28235a88644f2aa9340cf1e790d0cfa5ed2
+int id editOdometer 0x7f060065
+int id editTankSize 0x7f060062
+int id editVehicleModel 0x7f060060
 int id edit_query 0x7f060033
 int id end 0x7f060013
 int id etCost 0x7f06004e
@@ -360,15 +354,15 @@ int id hybrid 0x7f06001c
 int id icon 0x7f06002d
 int id ifRoom 0x7f06000a
 int id image 0x7f06002a
-int id imgCar 0x7f06005b
+int id imgCar 0x7f06005c
 int id imgFuel 0x7f060046
-int id layout 0x7f06006d
+int id layout 0x7f06006b
 int id listMode 0x7f060001
 int id list_item 0x7f06002c
-int id listview 0x7f06005a
+int id listview 0x7f06005b
 int id lvLocations 0x7f060056
 int id lvNavDrawer 0x7f060059
-int id mapsFragment 0x7f060069
+int id mapsFragment 0x7f06006a
 int id middle 0x7f060012
 int id never 0x7f060009
 int id none 0x7f060010
@@ -393,7 +387,7 @@ int id showHome 0x7f060004
 int id showTitle 0x7f060006
 int id spFuelConsumption 0x7f060043
 int id spFuelCost 0x7f060042
-int id spVehicleBrand 0x7f060060
+int id spVehicleBrand 0x7f06005e
 int id split_action_bar 0x7f060021
 int id submit_area 0x7f06003c
 int id tabMode 0x7f060002
@@ -407,26 +401,21 @@ int id tvLatitude 0x7f060053
 int id tvLongitude 0x7f060054
 int id tvPickDate 0x7f06004f
 int id txtDistance 0x7f06003f
-int id txtDistanceMeasure 0x7f060065
+int id txtDistanceMeasure 0x7f060066
 int id txtLengthUnit 0x7f060041
 int id txtLitre 0x7f06004a
 int id txtOdo 0x7f060047
-int id txtOdometer 0x7f060063
+int id txtOdometer 0x7f060064
 int id txtResult 0x7f060045
-int id txtTankSize 0x7f060060
-int id txtVehicleBrand 0x7f06005c
-int id txtVehicleModel 0x7f06005e
-int id txtVehicleName 0x7f060068
-int id txtVoulumeMeasure 0x7f060062
+int id txtTankSize 0x7f060061
+int id txtVehicleBrand 0x7f06005d
+int id txtVehicleModel 0x7f06005f
+int id txtVehicleName 0x7f060069
+int id txtVoulumeMeasure 0x7f060063
 int id txtWhatIsOdo 0x7f060049
 int id up 0x7f060024
-int id update 0x7f06006e
+int id update 0x7f06006c
 int id useLogo 0x7f060003
-<<<<<<< HEAD
-=======
-int id widgetLayout 0x7f06006a
-int id widgetUpdate 0x7f06006b
->>>>>>> f395d28235a88644f2aa9340cf1e790d0cfa5ed2
 int id withText 0x7f06000c
 int integer abc_max_action_buttons 0x7f0a0000
 int integer databaseVersion 0x7f0a0002
@@ -491,7 +480,7 @@ int string auth_client_play_services_err_notification_msg 0x7f0b0025
 int string auth_client_requested_by_msg 0x7f0b0026
 int string auth_client_using_bad_version_title 0x7f0b0021
 int string brand 0x7f0b002e
-int string car 0x7f0b004f
+int string car 0x7f0b0051
 int string common_google_play_services_enable_button 0x7f0b0013
 int string common_google_play_services_enable_text 0x7f0b0012
 int string common_google_play_services_enable_title 0x7f0b0011

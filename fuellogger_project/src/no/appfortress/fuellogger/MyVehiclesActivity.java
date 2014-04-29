@@ -1,20 +1,20 @@
 package no.appfortress.fuellogger;
 
-import java.util.HashMap;
 import java.util.List;
 
 import no.appfortress.database.CarDBHandler;
 import android.app.Activity;
-import android.app.ListActivity;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 public class MyVehiclesActivity extends Activity {
 
@@ -23,7 +23,16 @@ public class MyVehiclesActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_myvehicles);
-
+		
+		Button addCar = (Button) findViewById(R.id.btnAddCar);
+		addCar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				registerNewCar();
+				
+			}
+		});
 		final ListView listview = (ListView) findViewById(R.id.listview);
 
 		/*
@@ -43,6 +52,10 @@ public class MyVehiclesActivity extends Activity {
 		 * ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(this,
 		 * android.R.layout.simple_list_item_1, cars); setListAdapter(adapter);
 		 */
+		
+		for(int i = 0; i < cars.size(); i++){
+			Log.d("Cars", cars.get(i).toString());
+		}
 		final ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(this,
 				android.R.layout.simple_list_item_1, cars);
 		// setListAdapter(adapter);
@@ -71,5 +84,11 @@ public class MyVehiclesActivity extends Activity {
 			}
 		});
 
+	}
+
+	protected void registerNewCar() {
+		Intent intent = new Intent(this, RegisterVehicleActivity.class);
+		startActivity(intent);
+		
 	}
 }

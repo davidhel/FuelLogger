@@ -1214,15 +1214,16 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060027;
-        public static final int action_settings=0x7f06006c;
+        public static final int action_settings=0x7f06006d;
         public static final int activity_chooser_view_content=0x7f060028;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
+        public static final int btnAddCar=0x7f06005a;
         public static final int btnCalculate=0x7f060044;
         public static final int btnPickDate=0x7f060050;
-        public static final int btnSubmit=0x7f060067;
+        public static final int btnSubmit=0x7f060068;
         public static final int btnSubmitFueling=0x7f060051;
-        public static final int chcPrimary=0x7f060066;
+        public static final int chcPrimary=0x7f060067;
         public static final int checkbox=0x7f060030;
         public static final int chkPartial=0x7f06004c;
         public static final int collapseActionView=0x7f06000d;
@@ -1233,16 +1234,9 @@ containing a value of this type.
         public static final int drawer_layout=0x7f060057;
         public static final int dropdown=0x7f06000f;
         public static final int editOdo=0x7f060048;
-<<<<<<< HEAD
-        public static final int editOdometer=0x7f060067;
-        public static final int editTankSize=0x7f060064;
-        public static final int editVehicleModel=0x7f060062;
-=======
-        public static final int editOdometer=0x7f060064;
-        public static final int editTankSize=0x7f060061;
-        public static final int editVehicleBrand=0x7f06005d;
-        public static final int editVehicleModel=0x7f06005f;
->>>>>>> f395d28235a88644f2aa9340cf1e790d0cfa5ed2
+        public static final int editOdometer=0x7f060065;
+        public static final int editTankSize=0x7f060062;
+        public static final int editVehicleModel=0x7f060060;
         public static final int edit_query=0x7f060033;
         public static final int end=0x7f060013;
         public static final int etCost=0x7f06004e;
@@ -1256,15 +1250,15 @@ containing a value of this type.
         public static final int icon=0x7f06002d;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f06002a;
-        public static final int imgCar=0x7f06005b;
+        public static final int imgCar=0x7f06005c;
         public static final int imgFuel=0x7f060046;
-        public static final int layout=0x7f06006d;
+        public static final int layout=0x7f06006b;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f06002c;
-        public static final int listview=0x7f06005a;
+        public static final int listview=0x7f06005b;
         public static final int lvLocations=0x7f060056;
         public static final int lvNavDrawer=0x7f060059;
-        public static final int mapsFragment=0x7f060069;
+        public static final int mapsFragment=0x7f06006a;
         public static final int middle=0x7f060012;
         public static final int never=0x7f060009;
         public static final int none=0x7f060010;
@@ -1289,7 +1283,7 @@ containing a value of this type.
         public static final int showTitle=0x7f060006;
         public static final int spFuelConsumption=0x7f060043;
         public static final int spFuelCost=0x7f060042;
-        public static final int spVehicleBrand=0x7f060060;
+        public static final int spVehicleBrand=0x7f06005e;
         public static final int split_action_bar=0x7f060021;
         public static final int submit_area=0x7f06003c;
         public static final int tabMode=0x7f060002;
@@ -1303,26 +1297,21 @@ containing a value of this type.
         public static final int tvLongitude=0x7f060054;
         public static final int tvPickDate=0x7f06004f;
         public static final int txtDistance=0x7f06003f;
-        public static final int txtDistanceMeasure=0x7f060065;
+        public static final int txtDistanceMeasure=0x7f060066;
         public static final int txtLengthUnit=0x7f060041;
         public static final int txtLitre=0x7f06004a;
         public static final int txtOdo=0x7f060047;
-        public static final int txtOdometer=0x7f060063;
+        public static final int txtOdometer=0x7f060064;
         public static final int txtResult=0x7f060045;
-        public static final int txtTankSize=0x7f060060;
-        public static final int txtVehicleBrand=0x7f06005c;
-        public static final int txtVehicleModel=0x7f06005e;
-        public static final int txtVehicleName=0x7f060068;
-        public static final int txtVoulumeMeasure=0x7f060062;
+        public static final int txtTankSize=0x7f060061;
+        public static final int txtVehicleBrand=0x7f06005d;
+        public static final int txtVehicleModel=0x7f06005f;
+        public static final int txtVehicleName=0x7f060069;
+        public static final int txtVoulumeMeasure=0x7f060063;
         public static final int txtWhatIsOdo=0x7f060049;
         public static final int up=0x7f060024;
-        public static final int update=0x7f06006e;
+        public static final int update=0x7f06006c;
         public static final int useLogo=0x7f060003;
-<<<<<<< HEAD
-=======
-        public static final int widgetLayout=0x7f06006a;
-        public static final int widgetUpdate=0x7f06006b;
->>>>>>> f395d28235a88644f2aa9340cf1e790d0cfa5ed2
         public static final int withText=0x7f06000c;
     }
     public static final class integer {
@@ -1461,7 +1450,7 @@ containing a value of this type.
          */
         public static final int auth_client_using_bad_version_title=0x7f0b0021;
         public static final int brand=0x7f0b002e;
-        public static final int car=0x7f0b004f;
+        public static final int car=0x7f0b0051;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
