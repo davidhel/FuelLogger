@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="lengthUnits">
+        <item name="metric">Metric</item>
+        <item name="imperial">Imperial</item>
+    </string-array>
+    <string-array name="lengthUnitsValues">
+        <item name="metric">KM</item>
+        <item name="imperial">Miles</item>
+    </string-array>
+    <string-array name="liquidUnits">
+        <item name="oz">Ounces</item>
+        <item name="ml">Milliliters</item>
+    </string-array>
+    <string-array name="trackFrequency">
+        <item name="1">Once per minute</item>
+        <item name="2">Once per 2 minutes</item>
+        <item name="5">Once per 5 minutes</item>
+        <item name="10">Once per 10 minutes</item>
+    </string-array>
+    <string-array name="syncFrequencyValues">
+        <item name="1">1000</item>
+        <item name="2">2000</item>
+        <item name="5">5000</item>
+        <item name="10">10000</item>
+    </string-array>
+        <string-array name="carmodels">
+        <item>Toyota</item>
+        <item>Peugeot</item>
+    </string-array>
+
+</resources>
