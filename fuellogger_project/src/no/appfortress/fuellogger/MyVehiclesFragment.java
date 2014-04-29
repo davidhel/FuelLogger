@@ -3,28 +3,30 @@ package no.appfortress.fuellogger;
 import java.util.List;
 
 import no.appfortress.database.CarDBHandler;
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class MyVehiclesActivity extends Activity {
+public class MyVehiclesFragment extends Fragment {
+
+	public static final String REGISTER_NEW_CAR = "REGISTER_NEW_CAR";
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_myvehicles);
-		
-		Button addCar = (Button) findViewById(R.id.btnAddCar);
+		super.onViewCreated(view, savedInstanceState);
+
+		Button addCar = (Button) getActivity().findViewById(R.id.btnAddCar);
 		addCar.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -33,7 +35,7 @@ public class MyVehiclesActivity extends Activity {
 				
 			}
 		});
-		final ListView listview = (ListView) findViewById(R.id.listview);
+		final ListView listview = (ListView) getActivity().findViewById(R.id.listview);
 
 		/*
 		 * //Receive intent message with Bundle() from RegisterActivity.class
@@ -46,7 +48,7 @@ public class MyVehiclesActivity extends Activity {
 		 * odometer = extras.getString(RegisterVehicleActivity.EXTRA_MESSAGE4);
 		 */
 		// Get data from localDB
-		final CarDBHandler database = new CarDBHandler(this);
+		final CarDBHandler database = new CarDBHandler(getActivity());
 		final List<Car> cars = database.getAllCars();
 		/*
 		 * ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(this,
@@ -56,11 +58,11 @@ public class MyVehiclesActivity extends Activity {
 		for(int i = 0; i < cars.size(); i++){
 			Log.d("Cars", cars.get(i).toString());
 		}
-		final ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(this,
+		final ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(getActivity(),
 				android.R.layout.simple_list_item_1, cars);
 		// setListAdapter(adapter);
 		listview.setAdapter(adapter);
-
+		
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -86,8 +88,18 @@ public class MyVehiclesActivity extends Activity {
 
 	}
 
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		return inflater.inflate(R.layout.activity_myvehicles, container, false);
+	}
+
 	protected void registerNewCar() {
-		Intent intent = new Intent(this, RegisterVehicleActivity.class);
-		startActivity(intent);
+		MainActivity activity = (MainActivity)getActivity();
+		activity.setContent(new RegisterVehicleFragment(), true, REGISTER_NEW_CAR);
+		//Intent intent = new Intent(getActivity(), RegisterVehicleActivity.class);
+		//startActivity(intent);
+
 	}
 }

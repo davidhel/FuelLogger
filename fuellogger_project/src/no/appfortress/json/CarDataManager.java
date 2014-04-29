@@ -81,7 +81,6 @@ public class CarDataManager {
 		String[] models;
 		try {
 			String genresString = jsonObject.getString(tag_models);
-			
 			models = genresString.split(",");
 		} catch (JSONException e) {
 			return null;

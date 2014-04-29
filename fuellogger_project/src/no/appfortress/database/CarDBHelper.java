@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class CarDBHelper extends SQLiteOpenHelper {
 	
-	private static String SQL_CREATE_ENTRIES = "CREATE TABLE "
+	private static String SQL_CREATE_ENTRIES = "CREATE TABLE IF NOT EXISTS "
 			+ CarFeedEntry.TABLE_NAME + " (" 
 			+ CarFeedEntry._ID + " INTEGER PRIMARY KEY, "
 			+ CarFeedEntry.COLUMN_CAR_BRAND + " VARCHAR(255), "

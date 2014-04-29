@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class RefillDBHelper extends SQLiteOpenHelper{
 	
 	private static final String SQL_CREATE_ENTRIES = 
-			"CREATE TABLE " + RefillFeedEntry.TABLE_NAME + " ( " 
+			"CREATE TABLE IF NOT EXISTS " + RefillFeedEntry.TABLE_NAME + " ( " 
 			+ RefillFeedEntry._ID + " INTEGER PRIMARY KEY, "
 			+ RefillFeedEntry.COLUMN_CAR_ID_FK_CAR + " INTEGER NOT NULL, "
 			+ RefillFeedEntry.COLUMN_DATE + " DATETIME, "

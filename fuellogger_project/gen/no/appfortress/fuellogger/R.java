@@ -15,6 +15,10 @@ public final class R {
         public static final int abc_slide_in_top=0x7f040003;
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
+        public static final int slide_in_left=0x7f040006;
+        public static final int slide_in_right=0x7f040007;
+        public static final int slide_out_left=0x7f040008;
+        public static final int slide_out_right=0x7f040009;
     }
     public static final class array {
         public static final int carmodels=0x7f0d0005;
@@ -1214,7 +1218,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060027;
-        public static final int action_settings=0x7f06006d;
+        public static final int action_settings=0x7f06006f;
         public static final int activity_chooser_view_content=0x7f060028;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1244,6 +1248,7 @@ containing a value of this type.
         public static final int etLitre=0x7f06004b;
         public static final int expand_activities_button=0x7f060029;
         public static final int expanded_menu=0x7f06002f;
+        public static final int flVehicleContent=0x7f06006c;
         public static final int home=0x7f060014;
         public static final int homeAsUp=0x7f060005;
         public static final int hybrid=0x7f06001c;
@@ -1252,7 +1257,7 @@ containing a value of this type.
         public static final int image=0x7f06002a;
         public static final int imgCar=0x7f06005c;
         public static final int imgFuel=0x7f060046;
-        public static final int layout=0x7f06006b;
+        public static final int layout=0x7f06006d;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f06002c;
         public static final int listview=0x7f06005b;
@@ -1287,6 +1292,7 @@ containing a value of this type.
         public static final int split_action_bar=0x7f060021;
         public static final int submit_area=0x7f06003c;
         public static final int tabMode=0x7f060002;
+        public static final int tabhost=0x7f06006b;
         public static final int tbStartService=0x7f060055;
         public static final int terrain=0x7f06001b;
         public static final int textView1=0x7f060052;
@@ -1310,7 +1316,7 @@ containing a value of this type.
         public static final int txtVoulumeMeasure=0x7f060063;
         public static final int txtWhatIsOdo=0x7f060049;
         public static final int up=0x7f060024;
-        public static final int update=0x7f06006c;
+        public static final int update=0x7f06006e;
         public static final int useLogo=0x7f060003;
         public static final int withText=0x7f06000c;
     }
@@ -1375,7 +1381,8 @@ containing a value of this type.
         public static final int fragment_whatisodo=0x7f03001e;
         public static final int google_maps=0x7f03001f;
         public static final int support_simple_spinner_dropdown_item=0x7f030020;
-        public static final int widget_layout=0x7f030021;
+        public static final int vehicles_fragment=0x7f030021;
+        public static final int widget_layout=0x7f030022;
     }
     public static final class menu {
         public static final int main=0x7f0e0000;

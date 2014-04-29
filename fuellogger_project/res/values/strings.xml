@@ -40,8 +40,9 @@
         <item>Peugeot</item>
     </string-array>
     <string-array name="navigation_list">
-        <item>Cars</item>
-        <item>Drive</item>
+        <item>Add refill</item>
+        <item>My Cars</item>
+        <item>Track a drive</item>
         <item>History</item>
         <item>Settings</item>
     </string-array>

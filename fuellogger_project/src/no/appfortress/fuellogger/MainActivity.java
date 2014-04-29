@@ -5,7 +5,9 @@ import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -20,7 +22,8 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
-public class MainActivity extends ActionBarActivity implements OnItemClickListener{
+public class MainActivity extends ActionBarActivity implements
+		OnItemClickListener {
 
 	private DrawerLayout navDrawer;
 	private ListView listDrawer;
@@ -50,14 +53,13 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 
 		contentFrame = (FrameLayout) findViewById(R.id.content_frame);
 
-		setContent();
-		
+		setContent(new RegisterFuelFragment(), false, null);
+
 		listDrawer.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, navList));
 
-		
 		navDrawer.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
-		
+
 		listDrawer.setOnItemClickListener(this);
 
 		mTitle = mDrawerTitle = getTitle();
@@ -86,10 +88,18 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		actionbar.setHomeButtonEnabled(true);
 	}
 
-	private void setContent() {
-		
-		FragmentManager fragmentManager = (FragmentManager)getSupportFragmentManager();
-		fragmentManager.beginTransaction().add(R.id.content_frame, new RegisterFuelFragment()).commit();
+	public void setContent(Fragment fragment, boolean addToBackStack,
+			String backStack) {
+		FragmentManager fragmentManager = (FragmentManager) getSupportFragmentManager();
+		FragmentTransaction transaction = fragmentManager.beginTransaction();
+		if (addToBackStack) {
+			transaction.setCustomAnimations(R.anim.slide_in_left,
+					R.anim.slide_out_right, R.anim.slide_in_right,
+					R.anim.slide_out_left);
+			transaction.addToBackStack(backStack);
+		}
+		transaction.replace(R.id.content_frame, fragment);
+		transaction.commit();
 	}
 
 	// MENU
@@ -119,7 +129,7 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if(mDrawerToggle.onOptionsItemSelected(item)){
+		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
 		if (id == R.id.action_settings) {
@@ -135,29 +145,32 @@ public class MainActivity extends ActionBarActivity implements OnItemClickListen
 			long id) {
 		Intent i;
 		/*
-		 * 0 : Cars
-		 * 1 : Drive
-		 * 2 : History
-		 * 3 : Settings
+		 * 0 : Cars 1 : Drive 2 : History 3 : Settings
 		 */
-		switch(position){
+		FragmentManager fm = (FragmentManager) getSupportFragmentManager();
+		switch (position) {
 		case 0:
-			i = new Intent(this, MyVehiclesActivity.class);
+			setContent(new RegisterFuelFragment(), false, null);
 			break;
 		case 1:
-			i = new Intent(this, GPSActivity.class);
+			setContent(new VehiclesFragment(), false, null);
 			break;
 		case 2:
-			return;
+			i = new Intent(this, GPSActivity.class);
+			startActivity(i);
+			break;
 		case 3:
+			return;
+		case 4:
 			i = new Intent(this, Preferences.class);
+			startActivity(i);
 			break;
 		default:
 			return;
 		}
-		
-		startActivity(i);
-		
+
+		navDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
 	}
 
 }

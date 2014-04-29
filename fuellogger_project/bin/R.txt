@@ -4,6 +4,10 @@ int anim abc_slide_in_bottom 0x7f040002
 int anim abc_slide_in_top 0x7f040003
 int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
+int anim slide_in_left 0x7f040006
+int anim slide_in_right 0x7f040007
+int anim slide_out_left 0x7f040008
+int anim slide_out_right 0x7f040009
 int array carmodels 0x7f0d0005
 int array lengthUnits 0x7f0d0000
 int array lengthUnitsValues 0x7f0d0001
@@ -318,7 +322,7 @@ int id action_context_bar 0x7f060020
 int id action_menu_divider 0x7f060016
 int id action_menu_presenter 0x7f060017
 int id action_mode_close_button 0x7f060027
-int id action_settings 0x7f06006d
+int id action_settings 0x7f06006f
 int id activity_chooser_view_content 0x7f060028
 int id always 0x7f06000b
 int id beginning 0x7f060011
@@ -348,6 +352,7 @@ int id etDistance 0x7f060040
 int id etLitre 0x7f06004b
 int id expand_activities_button 0x7f060029
 int id expanded_menu 0x7f06002f
+int id flVehicleContent 0x7f06006c
 int id home 0x7f060014
 int id homeAsUp 0x7f060005
 int id hybrid 0x7f06001c
@@ -356,7 +361,7 @@ int id ifRoom 0x7f06000a
 int id image 0x7f06002a
 int id imgCar 0x7f06005c
 int id imgFuel 0x7f060046
-int id layout 0x7f06006b
+int id layout 0x7f06006d
 int id listMode 0x7f060001
 int id list_item 0x7f06002c
 int id listview 0x7f06005b
@@ -391,6 +396,7 @@ int id spVehicleBrand 0x7f06005e
 int id split_action_bar 0x7f060021
 int id submit_area 0x7f06003c
 int id tabMode 0x7f060002
+int id tabhost 0x7f06006b
 int id tbStartService 0x7f060055
 int id terrain 0x7f06001b
 int id textView1 0x7f060052
@@ -414,7 +420,7 @@ int id txtVehicleName 0x7f060069
 int id txtVoulumeMeasure 0x7f060063
 int id txtWhatIsOdo 0x7f060049
 int id up 0x7f060024
-int id update 0x7f06006c
+int id update 0x7f06006e
 int id useLogo 0x7f060003
 int id withText 0x7f06000c
 int integer abc_max_action_buttons 0x7f0a0000
@@ -453,7 +459,8 @@ int layout database_layout 0x7f03001d
 int layout fragment_whatisodo 0x7f03001e
 int layout google_maps 0x7f03001f
 int layout support_simple_spinner_dropdown_item 0x7f030020
-int layout widget_layout 0x7f030021
+int layout vehicles_fragment 0x7f030021
+int layout widget_layout 0x7f030022
 int menu main 0x7f0e0000
 int string Odometer 0x7f0b003b
 int string Tracking 0x7f0b0049

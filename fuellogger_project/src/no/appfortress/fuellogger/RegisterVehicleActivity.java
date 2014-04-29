@@ -101,11 +101,11 @@ public class RegisterVehicleActivity extends Activity implements
 	public void dataLoaded() {
 		switch (downloadStatus) {
 		case DOWNLOAD_MAKES:
-			makes = carDataManager.getMakes();
+			//makes = carDataManager.getMakes();
 			//printMakes();
 			break;
 		case DOWNLOAD_MODELS:
-			models = carDataManager.getModels();
+			//models = carDataManager.getModels();
 			break;
 
 		}
