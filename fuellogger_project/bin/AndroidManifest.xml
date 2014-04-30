@@ -69,7 +69,10 @@
         <activity
             android:name=".TripCalculatorFragment"
             android:label="@string/app_name" />
-        <activity android:name="no.appfortress.gps.MyGoogleMaps" />
+        <activity android:name="no.appfortress.gps.MyGoogleMaps" 
+            android:parentActivityName="no.appfortress.MainActivity">
+            
+        </activity>
 
         <service
             android:name="no.appfortress.gps.GPSTrackService"
@@ -84,7 +87,7 @@
 
         <receiver android:name="no.appfortress.fuellogger.GPSReceiver" >
         </receiver>
-        
+
         <!-- WIDGET STUFF, muligens noe som kan fjernes -->
         <receiver
             android:name=".MyWidgetProvider"
@@ -109,8 +112,8 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:configure=".MyWidgetProvider" >
         </appwidget-provider>
-		
-        <!-- WIDGET STUFF END-->
+
+        <!-- WIDGET STUFF END -->
     </application>
 
 </manifest>
