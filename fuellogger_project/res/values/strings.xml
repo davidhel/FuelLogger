@@ -43,7 +43,8 @@
     <string-array name="navigation_list">
         <item>Add refill</item>
         <item>My Cars</item>
-        <item>Track a drive</item>
+        <item>Track a trip</item>
+        <item>Trip calculator</item>
         <item>History</item>
         <item>Settings</item>
     </string-array>
