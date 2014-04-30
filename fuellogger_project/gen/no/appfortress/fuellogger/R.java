@@ -1218,7 +1218,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060027;
-        public static final int action_settings=0x7f06006f;
+        public static final int action_settings=0x7f060070;
         public static final int activity_chooser_view_content=0x7f060028;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1227,6 +1227,7 @@ containing a value of this type.
         public static final int btnPickDate=0x7f060050;
         public static final int btnSubmit=0x7f060068;
         public static final int btnSubmitFueling=0x7f060051;
+        public static final int button1=0x7f06006f;
         public static final int chcPrimary=0x7f060067;
         public static final int checkbox=0x7f060030;
         public static final int chkPartial=0x7f06004c;
