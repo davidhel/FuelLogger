@@ -107,7 +107,7 @@ public class CarDBHandler {
 					"Could not open database for reading.");
 			return null;
 		}
-		return car;//car;
+		return car;
 	}
 
 	public List<Car> getAllCars() {
