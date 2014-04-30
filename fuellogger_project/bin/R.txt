@@ -318,7 +318,7 @@ int id action_bar_overlay_layout 0x7f060022
 int id action_bar_root 0x7f06001d
 int id action_bar_subtitle 0x7f060026
 int id action_bar_title 0x7f060025
-int id action_calculator 0x7f060070
+int id action_calculator 0x7f060071
 int id action_context_bar 0x7f060020
 int id action_menu_divider 0x7f060016
 int id action_menu_presenter 0x7f060017
@@ -331,12 +331,8 @@ int id btnCalculate 0x7f060044
 int id btnPickDate 0x7f060050
 int id btnSubmit 0x7f060067
 int id btnSubmitFueling 0x7f060051
-<<<<<<< HEAD
-int id chcPrimary 0x7f060066
-=======
 int id button1 0x7f06006f
-int id chcPrimary 0x7f060067
->>>>>>> 6bc077a3848223832df99d1dc65f39cbbd9e21c4
+int id chcPrimary 0x7f060066
 int id checkbox 0x7f060030
 int id chkPartial 0x7f06004c
 int id collapseActionView 0x7f06000d

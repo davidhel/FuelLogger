@@ -1214,7 +1214,7 @@ containing a value of this type.
         public static final int action_bar_root=0x7f06001d;
         public static final int action_bar_subtitle=0x7f060026;
         public static final int action_bar_title=0x7f060025;
-        public static final int action_calculator=0x7f060070;
+        public static final int action_calculator=0x7f060071;
         public static final int action_context_bar=0x7f060020;
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
@@ -1227,12 +1227,8 @@ containing a value of this type.
         public static final int btnPickDate=0x7f060050;
         public static final int btnSubmit=0x7f060067;
         public static final int btnSubmitFueling=0x7f060051;
-<<<<<<< HEAD
-        public static final int chcPrimary=0x7f060066;
-=======
         public static final int button1=0x7f06006f;
-        public static final int chcPrimary=0x7f060067;
->>>>>>> 6bc077a3848223832df99d1dc65f39cbbd9e21c4
+        public static final int chcPrimary=0x7f060066;
         public static final int checkbox=0x7f060030;
         public static final int chkPartial=0x7f06004c;
         public static final int collapseActionView=0x7f06000d;
