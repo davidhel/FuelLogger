@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="30dp"
     android:orientation="vertical" >
 
     <TextView
@@ -10,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="33dp"
         android:layout_marginTop="68dp"
         android:text="@string/distance" />
 
@@ -22,6 +23,7 @@
         android:layout_alignBottom="@+id/txtDistance"
         android:layout_marginLeft="18dp"
         android:layout_toRightOf="@+id/txtDistance"
+        android:ems="4"
         android:inputType="numberSigned"
         android:text="10" />
 
@@ -29,43 +31,80 @@
         android:id="@+id/txtLengthUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/spFuelCost"
+        android:layout_alignBaseline="@+id/txtDistance"
         android:layout_marginLeft="34dp"
-        android:layout_toRightOf="@+id/txtDistance"
-        android:text="KM" />
+        android:layout_toRightOf="@+id/etDistance"
+        android:text="@string/km" />
 
-    <Spinner
-        android:id="@+id/spFuelCost"
+    <TextView
+        android:id="@+id/txtFuelPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtDistance"
-        android:layout_below="@+id/etDistance"
-        android:layout_marginTop="37dp" />
+        android:layout_below="@+id/txtDistance"
+        android:layout_marginTop="50dp"
+        android:text="@string/fuelPrice" />
 
-    <Spinner
-        android:id="@+id/spFuelConsumption"
+    <EditText
+        android:id="@+id/etFuelPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spFuelCost"
-        android:layout_below="@+id/spFuelCost"
-        android:layout_marginTop="22dp" />
+        android:layout_alignBaseline="@+id/txtFuelPrice"
+        android:layout_toRightOf="@+id/txtFuelPrice"
+        android:ems="4"
+        android:inputType="numberSigned"
+        android:text="10" />
+
+    <TextView
+        android:id="@+id/txtFuelUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtFuelPrice"
+        android:layout_toRightOf="@+id/etFuelPrice"
+        android:text="@string/volume_unit" />
+
+    <TextView
+        android:id="@+id/txtFuelConsumption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtFuelPrice"
+        android:layout_marginTop="50dp"
+        android:text="@string/fuel_consumption" />
+
+    <EditText
+        android:id="@+id/etFuelComsumption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtFuelConsumption"
+        android:layout_toRightOf="@+id/txtFuelConsumption"
+        android:ems="4"
+        android:inputType="numberSigned"
+        android:text="10" />
+
+    <TextView
+        android:id="@+id/txtVolumeUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtFuelConsumption"
+        android:layout_toRightOf="@+id/etFuelComsumption"
+        android:text="@string/litre_per_mile" />
 
     <Button
         android:id="@+id/btnCalculate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/txtResult"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="138dp"
-        android:layout_marginRight="20dp"
-        android:text="Button" />
+        android:layout_marginBottom="40dp"
+        android:text="@string/submit" />
 
     <TextView
         android:id="@+id/txtResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/btnCalculate"
-        android:layout_marginTop="68dp"/>
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="40dp"
+        android:text="result" />
 
 </RelativeLayout>
