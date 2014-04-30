@@ -131,10 +131,13 @@ public class MainActivity extends ActionBarActivity implements
 		int id = item.getItemId();
 		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
-		}
-		if (id == R.id.action_settings) {
+		}else if (id == R.id.action_settings) {
 			Intent prefs = new Intent(this, Preferences.class);
 			startActivity(prefs);
+			return true;
+		}else if (id == R.id.action_calculator){
+			Intent calc = new Intent(this, TripCalculatorActivity.class);
+			startActivity(calc);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
