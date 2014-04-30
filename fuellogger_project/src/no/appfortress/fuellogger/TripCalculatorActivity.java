@@ -13,7 +13,8 @@ public class TripCalculatorActivity extends Activity{
 	}
 	
 	public int calculate(float distance, float fuelPrice, float consumption ){
-		int sum = null;
+		int sum = 0;
+		
 		
 		return sum;
 	}
