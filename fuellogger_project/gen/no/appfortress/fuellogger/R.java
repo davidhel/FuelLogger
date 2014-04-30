@@ -1237,7 +1237,6 @@ containing a value of this type.
         public static final int disableHome=0x7f060008;
         public static final int drawer_layout=0x7f060057;
         public static final int dropdown=0x7f06000f;
-        public static final int editOdo=0x7f06004c;
         public static final int editOdometer=0x7f060064;
         public static final int editTankSize=0x7f060061;
         public static final int editVehicleModel=0x7f06005f;
@@ -1248,6 +1247,7 @@ containing a value of this type.
         public static final int etFuelComsumption=0x7f060046;
         public static final int etFuelPrice=0x7f060043;
         public static final int etLitre=0x7f06004f;
+        public static final int etOdo=0x7f06004c;
         public static final int expand_activities_button=0x7f060029;
         public static final int expanded_menu=0x7f06002f;
         public static final int flVehicleContent=0x7f06006e;

@@ -1,7 +1,13 @@
 package no.appfortress.fuellogger;
 
 import java.util.Calendar;
+import java.util.Date;
 
+import no.appfortress.database.CarDBHandler;
+import no.appfortress.database.RefillDBHandler;
+import no.appfortress.json.CarDataManager;
+
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
@@ -18,6 +24,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class RegisterFuelFragment extends Fragment {
@@ -27,7 +34,14 @@ public class RegisterFuelFragment extends Fragment {
 	private int year;
 	private int month;
 	private int day;
+	private EditText etFuelLitre;
+	private EditText etFuelPrice;
+	private EditText etOdometer;
+	private float fuelLitre;
+	private float fuelPrice;
+	private int odometer;
 
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -49,7 +63,9 @@ public class RegisterFuelFragment extends Fragment {
 		year = c.get(Calendar.YEAR);
 		month = c.get(Calendar.MONTH);
 		day = c.get(Calendar.DAY_OF_MONTH);
-
+		etFuelLitre = (EditText) activity.findViewById(R.id.etOdo);
+		etFuelPrice = (EditText) activity.findViewById(R.id.etFuelPrice);
+		etOdometer = (EditText) activity.findViewById(R.id.etOdo);
 		btnDate = (Button) activity.findViewById(R.id.btnPickDate);
 		btnDate.setEnabled(true);
 		setDate(year, month + 1, day);
@@ -84,22 +100,36 @@ public class RegisterFuelFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				btnSubmitFueling();
+				//Car c = getCarByID(1);
+				Calendar d = null;
+				fuelLitre = Float.valueOf(etFuelLitre.getText().toString());
+				fuelPrice = Float.valueOf(etFuelPrice.getText().toString());
+				odometer = Integer.valueOf(etOdometer.getText().toString());
+				//btnSubmitFueling(c, fuelLitre, fuelPrice, odometer, d);
 			}
 
 		});
 
 	}
-
+	protected void getCarById(int id){
+	/*	CarDBHandler carDatabase = new CarDBHandler();
+		carDatabase.*/
+	}
 	protected void setDate(int year, int month, int day) {
 		btnDate = (Button) activity.findViewById(R.id.btnPickDate);
 		btnDate.setText(year + "/" + month + "/" + day);
 	}
 
-	protected void btnSubmitFueling() {
+	protected void btnSubmitFueling(Car c, float fuelLitre, float fuelPrice, int odometer, Calendar date) {
 		// TODO Submit fueling
+		
+		RefillDBHandler database = new RefillDBHandler(getActivity());
+		database.newRefill(c, fuelLitre, fuelPrice, odometer, date);
+		/*VehiclesFragment vehicles = (VehiclesFragment)getParentFragment();
+		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);*/
 	}
 
+	@SuppressLint("ValidFragment")
 	protected class DatePickerFragment extends DialogFragment implements
 			OnDateSetListener {
 

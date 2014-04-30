@@ -341,7 +341,6 @@ int id dialog 0x7f06000e
 int id disableHome 0x7f060008
 int id drawer_layout 0x7f060057
 int id dropdown 0x7f06000f
-int id editOdo 0x7f06004c
 int id editOdometer 0x7f060064
 int id editTankSize 0x7f060061
 int id editVehicleModel 0x7f06005f
@@ -352,6 +351,7 @@ int id etDistance 0x7f060040
 int id etFuelComsumption 0x7f060046
 int id etFuelPrice 0x7f060043
 int id etLitre 0x7f06004f
+int id etOdo 0x7f06004c
 int id expand_activities_button 0x7f060029
 int id expanded_menu 0x7f06002f
 int id flVehicleContent 0x7f06006e

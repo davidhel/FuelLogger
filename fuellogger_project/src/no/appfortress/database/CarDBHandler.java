@@ -79,6 +79,26 @@ public class CarDBHandler {
 		db.close();
 		return rtnValue;
 	}
+	public Car getCarById(long ide){
+		long id = 0; 
+		int odometer;
+		String brand, model;
+		float fuelTank, fuel;
+		int year;
+		//Car car = new Car(id, brand, model, year, odometer, fuelTank);
+		try{
+			db = dbHelper.getReadableDatabase();
+			String query = "SELECT * FROM " + CarFeedEntry.TABLE_NAME + "WHERE id="+id;
+			Cursor cursor = db.rawQuery(query, null);
+			cursor.moveToFirst();
+			
+		}
+		catch(SQLiteException ex){
+			Log.e("Error in: getAllCars method in CarDBHandler class",
+					"Could not open database for reading.");
+		}
+		return null;//car;
+	}
 
 	public List<Car> getAllCars() {
 		List<Car> carList = new ArrayList<Car>();
@@ -87,7 +107,8 @@ public class CarDBHandler {
 			String query = "SELECT * FROM " + CarFeedEntry.TABLE_NAME;
 			Cursor cursor = db.rawQuery(query, null);
 			cursor.moveToFirst();
-			long id, odometer;
+			long id; 
+			int odometer;
 			String brand, model;
 			float fuelTank, fuel;
 			int year;
@@ -96,7 +117,7 @@ public class CarDBHandler {
 				brand = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_BRAND));
 				model = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_MODEL));
 				year = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_YEAR));
-				odometer = cursor.getLong(cursor.getColumnIndex(CarFeedEntry.COLUMN_ODOMETER));
+				odometer = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_ODOMETER));
 				fuelTank = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUELTANK));
 				fuel = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUEL));
 				Car car = new Car(id, brand, model, year, odometer, fuelTank);
