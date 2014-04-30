@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.google.android.gms.maps.model.LatLng;
 
 public class PathJSONParser {
@@ -30,8 +32,11 @@ public class PathJSONParser {
 	          /** Traversing all steps */
 	          for (int k = 0; k < jSteps.length(); k++) {
 	            String polyline = "";
+	            int distance = 0;
 	            polyline = (String) ((JSONObject) ((JSONObject) jSteps
 	                .get(k)).get("polyline")).get("points");
+	            distance = (int)((JSONObject)((JSONObject) jSteps.getJSONObject(k)).get("distance")).get("value");
+	            Log.d("DISTANCE", distance + "");
 	            List<LatLng> list = decodePoly(polyline);
 	 
 	            /** Traversing all points */

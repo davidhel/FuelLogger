@@ -1565,11 +1565,7 @@ containing a value of this type.
         public static final int pref_unit_liquid_summary=0x7f0b0051;
         public static final int primary=0x7f0b002d;
         public static final int register=0x7f0b0035;
-<<<<<<< HEAD
         public static final int result=0x7f0b004a;
-=======
-        public static final int result=0x7f0b0059;
->>>>>>> 292ca130ca8bca426578e7ff47b26f7d69a82ac6
         public static final int set_date=0x7f0b0043;
         public static final int start=0x7f0b0055;
         public static final int submit=0x7f0b002b;

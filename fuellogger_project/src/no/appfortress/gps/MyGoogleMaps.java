@@ -119,7 +119,6 @@ public class MyGoogleMaps extends ActionBarActivity {
 				HttpConnection http = new HttpConnection();
 				data = http.readUrl(params[0]);
 			} catch (Exception e) {
-
 			}
 			return data;
 		}
