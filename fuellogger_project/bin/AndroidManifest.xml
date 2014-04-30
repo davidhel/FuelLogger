@@ -67,7 +67,7 @@
             android:name=".MyFuelingsActivity"
             android:label="@string/app_name" />
         <activity
-            android:name=".TripCalculatorActivity"
+            android:name=".TripCalculatorFragment"
             android:label="@string/app_name" />
         <activity android:name="no.appfortress.gps.MyGoogleMaps" />
 
