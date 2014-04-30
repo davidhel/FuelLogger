@@ -100,7 +100,8 @@ public class RegisterFuelFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				Car c = getCarById(1);
+				Car c;
+				c = getCarById(1);
 				Calendar d = Calendar.getInstance();
 				fuelLitre = Float.valueOf(etFuelLitre.getText().toString());
 				fuelPrice = Float.valueOf(etFuelPrice.getText().toString());
