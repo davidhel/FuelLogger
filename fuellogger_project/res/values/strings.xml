@@ -48,7 +48,7 @@
         <item>History</item>
         <item>Settings</item>
     </string-array>
-
+	<string name="result">Result</string>
     <string name="Tracking">Tracking</string>
     <string name="Unit_convertion">Unit convertion</string>
     <string name="fuelPrice">Fuel price</string>
