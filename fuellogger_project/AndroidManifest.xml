@@ -65,7 +65,7 @@
             android:name=".GPSActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MyFuelingsActivity"
+            android:name=".MyFuelingsFragment"
             android:label="@string/app_name" />
         <activity
             android:name=".TripCalculatorFragment"

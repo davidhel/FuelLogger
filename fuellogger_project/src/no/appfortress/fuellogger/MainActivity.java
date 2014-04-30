@@ -161,8 +161,9 @@ public class MainActivity extends ActionBarActivity implements
 			setContent(new TripCalculatorFragment(), false, null);
 			break;
 		case 4:
-			
+			setContent(new MyFuelingsFragment(), false, null);
 			break;
+			
 		case 5:
 			i = new Intent(this, Preferences.class);
 			startActivity(i);
