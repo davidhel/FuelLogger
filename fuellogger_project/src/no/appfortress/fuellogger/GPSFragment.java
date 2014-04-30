@@ -12,17 +12,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 import android.widget.ToggleButton;
 
-public class GPSActivity extends ActionBarActivity {
-
+public class GPSFragment extends Fragment{
+	
 	public static final String SEND_LOCATION = "SEND_LOCATION";
 	public static final String LOCATION_FILTER = "LOCATION_FILTER";
 	public static final String RECEIVE_LATITUDE = "RECEIVE_LATITUDE";
@@ -42,7 +46,6 @@ public class GPSActivity extends ActionBarActivity {
 			double longitude = intent.getDoubleExtra(RECEIVE_LONGITUDE, -1000);
 			double[] position = { latitude,longitude};
 			locationsTracked.add(position);
-			updateList();
 		}
 
 	};
@@ -63,47 +66,37 @@ public class GPSActivity extends ActionBarActivity {
 	private ListView lstPos;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		Log.d("Fuel", "onCreate");
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		super.onCreateView(inflater, container, savedInstanceState);
+		return inflater.inflate(R.layout.activity_gps, container, false);
+	}
 	
+	
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onViewCreated(view, savedInstanceState);
+		
+		
+	}
+
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onActivityCreated(savedInstanceState);
 		if(savedInstanceState == null || locationsTracked == null){
 			locationsTracked = new ArrayList<double[]>();
 		}
-		setContentView(R.layout.activity_gps);
 		initGUI();
-
 	}
-	
-	
-
-	protected void updateList() {
-		Log.d("Fuel", "onUpdate");
-		
-		List<String> listPositions = getLatLonForList(locationsTracked);
-		
-		aa = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, listPositions);
-		lstPos.setAdapter(aa);
-	}
-
-	private List<String> getLatLonForList(List<double[]> locationList) {
-		List<String> rtnList = new ArrayList<String>();
-		for(int i = 0; i < locationList.size(); i++){
-			rtnList.add(locationList.get(i)[0] + ", " + locationList.get(i)[1]);
-		}
-		return rtnList;
-	}
-
 
 
 	private void initGUI() {
-
-
 		// Gets the ToggleButton from the xml layout file
 
-		tglSer = (ToggleButton) findViewById(R.id.tbStartService);
+		tglSer = (ToggleButton) getActivity().findViewById(R.id.tbStartService);
 
 		// Set toogle buttons checked true/false, depending if the app is
 		// tracking location or not
@@ -120,7 +113,6 @@ public class GPSActivity extends ActionBarActivity {
 				if (isChecked) {
 					registerReceiver();
 					locationsTracked.clear();
-					updateList();
 				} else {
 					unregisterReceiver();
 					showRoute();
@@ -129,7 +121,6 @@ public class GPSActivity extends ActionBarActivity {
 			}
 		});
 		
-		updateList();
 
 	}
 
@@ -137,7 +128,9 @@ public class GPSActivity extends ActionBarActivity {
 		if(locationsTracked.size() < 1){
 			return;
 		}
-		Intent intent = new Intent(this, MyGoogleMaps.class);
+		
+		
+		Intent intent = new Intent(getActivity(), MyGoogleMaps.class);
 		double[] longitudesTracked = new double[locationsTracked.size()];
 		double[] latitudesTracked = new double[locationsTracked.size()];
 		
@@ -153,7 +146,7 @@ public class GPSActivity extends ActionBarActivity {
 
 
 	protected void unregisterReceiver() {
-		LocalBroadcastManager.getInstance(this).unregisterReceiver(
+		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(
 				locationReceiver);
 		stopService();
 	}
@@ -165,18 +158,18 @@ public class GPSActivity extends ActionBarActivity {
 	}
 
 	protected void registerReceiver() {
-		LocalBroadcastManager.getInstance(this).registerReceiver(
+		LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
 				locationReceiver, new IntentFilter(LOCATION_FILTER));
 		startService();
 
 	}
 
 	private void startService() {
-		alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
 
-		startServiceIntent = new Intent(this, GPSTrackService.class);
+		startServiceIntent = new Intent(getActivity(), GPSTrackService.class);
 
-		startServicePendingIntent = PendingIntent.getService(this, 0,
+		startServicePendingIntent = PendingIntent.getService(getActivity(), 0,
 				startServiceIntent, 0);
 
 		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,

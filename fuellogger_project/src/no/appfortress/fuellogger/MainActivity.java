@@ -135,10 +135,6 @@ public class MainActivity extends ActionBarActivity implements
 			Intent prefs = new Intent(this, Preferences.class);
 			startActivity(prefs);
 			return true;
-		}else if (id == R.id.action_calculator){
-			Intent calc = new Intent(this, TripCalculatorActivity.class);
-			startActivity(calc);
-			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -159,12 +155,16 @@ public class MainActivity extends ActionBarActivity implements
 			setContent(new VehiclesFragment(), false, null);
 			break;
 		case 2:
-			i = new Intent(this, GPSActivity.class);
-			startActivity(i);
+			setContent(new GPSFragment(), false, null);
 			break;
 		case 3:
+			i = new Intent(this, TripCalculatorActivity.class);
+			startActivity(i);
 			return;
 		case 4:
+			
+			break;
+		case 5:
 			i = new Intent(this, Preferences.class);
 			startActivity(i);
 			break;
