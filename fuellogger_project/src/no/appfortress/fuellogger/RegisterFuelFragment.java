@@ -63,8 +63,8 @@ public class RegisterFuelFragment extends Fragment {
 		year = c.get(Calendar.YEAR);
 		month = c.get(Calendar.MONTH);
 		day = c.get(Calendar.DAY_OF_MONTH);
-		etFuelLitre = (EditText) activity.findViewById(R.id.etOdo);
-		etFuelPrice = (EditText) activity.findViewById(R.id.etFuelPrice);
+		etFuelLitre = (EditText) activity.findViewById(R.id.etLitre);
+		etFuelPrice = (EditText) activity.findViewById(R.id.etCost);
 		etOdometer = (EditText) activity.findViewById(R.id.etOdo);
 		btnDate = (Button) activity.findViewById(R.id.btnPickDate);
 		btnDate.setEnabled(true);
@@ -100,20 +100,21 @@ public class RegisterFuelFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				//Car c = getCarByID(1);
-				Calendar d = null;
+				Car c = getCarById(1);
+				Calendar d = Calendar.getInstance();
 				fuelLitre = Float.valueOf(etFuelLitre.getText().toString());
 				fuelPrice = Float.valueOf(etFuelPrice.getText().toString());
 				odometer = Integer.valueOf(etOdometer.getText().toString());
-				//btnSubmitFueling(c, fuelLitre, fuelPrice, odometer, d);
+				btnSubmitFueling(c, fuelLitre, fuelPrice, odometer, d);
 			}
 
 		});
 
 	}
-	protected void getCarById(int id){
-	/*	CarDBHandler carDatabase = new CarDBHandler();
-		carDatabase.*/
+	protected Car getCarById(int id){
+		CarDBHandler carDatabase = new CarDBHandler(activity);
+		Car c = carDatabase.getCarById(id);
+		return c;
 	}
 	protected void setDate(int year, int month, int day) {
 		btnDate = (Button) activity.findViewById(R.id.btnPickDate);
@@ -124,7 +125,9 @@ public class RegisterFuelFragment extends Fragment {
 		// TODO Submit fueling
 		
 		RefillDBHandler database = new RefillDBHandler(getActivity());
+		
 		database.newRefill(c, fuelLitre, fuelPrice, odometer, date);
+		Log.d("DATABASE", "fillup");
 		/*VehiclesFragment vehicles = (VehiclesFragment)getParentFragment();
 		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);*/
 	}
