@@ -8,25 +8,43 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class MyFuelingsActivity extends Activity {
+public class MyFuelingsActivity extends Fragment {
+
+	private FragmentActivity activity;
+
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		return inflater.inflate(R.layout.activity_myvehicles, container, false);
+
+	}
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_myvehicles);
-		final ListView listview = (ListView) findViewById(R.id.listview);
+		super.onViewCreated(view, savedInstanceState);
+		initGUIElements();
+	}
 
-		final RefillDBHandler database = new RefillDBHandler(this);
+	public void initGUIElements() {
+		activity = getActivity();
+		final ListView listview = (ListView) activity
+				.findViewById(R.id.listview);
+
+		final RefillDBHandler database = new RefillDBHandler(activity);
 		final List<Refill> refills = database.getAllRefills();
 
-		final ArrayAdapter<Refill> adapter = new ArrayAdapter<Refill>(this,
+		final ArrayAdapter<Refill> adapter = new ArrayAdapter<Refill>(activity,
 				android.R.layout.simple_list_item_1, refills);
 
 		listview.setAdapter(adapter);
@@ -42,11 +60,16 @@ public class MyFuelingsActivity extends Activity {
 							.withEndAction(new Runnable() {
 								@Override
 								public void run() {/*
-									Refill thisRefill = refills.get(position);
-									database.deleteRefill(thisRefill.getID());
-									refills.remove(position);
-									adapter.notifyDataSetChanged();
-									view.setAlpha(1);*/
+													 * Refill thisRefill =
+													 * refills.get(position);
+													 * database
+													 * .deleteRefill(thisRefill
+													 * .getID());
+													 * refills.remove(position);
+													 * adapter
+													 * .notifyDataSetChanged();
+													 * view.setAlpha(1);
+													 */
 								}
 							});
 				} else {
@@ -54,7 +77,5 @@ public class MyFuelingsActivity extends Activity {
 				}
 			}
 		});
-
 	}
-
 }

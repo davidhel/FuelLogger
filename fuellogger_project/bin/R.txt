@@ -540,6 +540,7 @@ int string pref_unit_length_summary 0x7f0b004e
 int string pref_unit_liquid_summary 0x7f0b0050
 int string primary 0x7f0b002d
 int string register 0x7f0b0035
+int string result 0x7f0b0059
 int string set_date 0x7f0b0043
 int string start 0x7f0b0054
 int string submit 0x7f0b002b
