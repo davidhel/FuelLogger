@@ -25,9 +25,11 @@ public final class R {
         public static final int lengthUnits=0x7f0d0000;
         public static final int lengthUnitsValues=0x7f0d0001;
         public static final int liquidUnits=0x7f0d0002;
-        public static final int navigation_list=0x7f0d0006;
+        public static final int months=0x7f0d0007;
+        public static final int navigation_list=0x7f0d0008;
         public static final int syncFrequencyValues=0x7f0d0004;
         public static final int trackFrequency=0x7f0d0003;
+        public static final int week_days=0x7f0d0006;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -1218,7 +1220,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060027;
-        public static final int action_settings=0x7f060070;
+        public static final int action_settings=0x7f060075;
         public static final int activity_chooser_view_content=0x7f060028;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1226,7 +1228,7 @@ containing a value of this type.
         public static final int btnPickDate=0x7f060054;
         public static final int btnSubmit=0x7f060067;
         public static final int btnSubmitFueling=0x7f060055;
-        public static final int btnWidget=0x7f06006f;
+        public static final int btnWidget=0x7f060074;
         public static final int chcPrimary=0x7f060066;
         public static final int checkbox=0x7f060030;
         public static final int chkPartial=0x7f060050;
@@ -1250,7 +1252,7 @@ containing a value of this type.
         public static final int etOdo=0x7f06004c;
         public static final int expand_activities_button=0x7f060029;
         public static final int expanded_menu=0x7f06002f;
-        public static final int flVehicleContent=0x7f06006e;
+        public static final int flVehicleContent=0x7f060073;
         public static final int home=0x7f060014;
         public static final int homeAsUp=0x7f060005;
         public static final int hybrid=0x7f06001c;
@@ -1291,15 +1293,20 @@ containing a value of this type.
         public static final int split_action_bar=0x7f060021;
         public static final int submit_area=0x7f06003c;
         public static final int tabMode=0x7f060002;
-        public static final int tabhost=0x7f06006c;
+        public static final int tabhost=0x7f060071;
         public static final int tbStartService=0x7f060056;
         public static final int terrain=0x7f06001b;
         public static final int title=0x7f06002e;
         public static final int top_action_bar=0x7f060023;
-        public static final int track_trip_container=0x7f06006b;
+        public static final int track_trip_container=0x7f060070;
         public static final int tvCost=0x7f060051;
+        public static final int tvDateTimeDrive=0x7f06006c;
+        public static final int tvDistanceDrive=0x7f06006d;
+        public static final int tvDistanceTitle=0x7f06006b;
+        public static final int tvFuelUsed=0x7f06006f;
+        public static final int tvFuelUsedTitle=0x7f06006e;
         public static final int tvPickDate=0x7f060053;
-        public static final int twVehicleTabs=0x7f06006d;
+        public static final int twVehicleTabs=0x7f060072;
         public static final int txtDistance=0x7f06003f;
         public static final int txtDistanceMeasure=0x7f060065;
         public static final int txtFuelConsumption=0x7f060045;
@@ -1392,8 +1399,8 @@ containing a value of this type.
     }
     public static final class string {
         public static final int Odometer=0x7f0b003b;
-        public static final int Tracking=0x7f0b004b;
-        public static final int Unit_convertion=0x7f0b004c;
+        public static final int Tracking=0x7f0b004d;
+        public static final int Unit_convertion=0x7f0b004e;
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
         public static final int abc_action_bar_home_description=0x7f0b0001;
@@ -1461,7 +1468,7 @@ containing a value of this type.
          */
         public static final int auth_client_using_bad_version_title=0x7f0b0021;
         public static final int brand=0x7f0b002e;
-        public static final int car=0x7f0b0054;
+        public static final int car=0x7f0b0056;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -1535,8 +1542,9 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f0b0020;
         public static final int cost=0x7f0b0041;
         public static final int databaseName=0x7f0b003a;
-        public static final int distance=0x7f0b0053;
+        public static final int distance=0x7f0b0055;
         public static final int distanceMeasure=0x7f0b0039;
+        public static final int distance_title=0x7f0b004a;
         public static final int drawer_close=0x7f0b0048;
         public static final int drawer_open=0x7f0b0047;
         public static final int exampleBrand=0x7f0b0030;
@@ -1545,13 +1553,14 @@ containing a value of this type.
         public static final int exampleTankSize=0x7f0b0033;
         public static final int examplecost=0x7f0b0040;
         public static final int examplelitre=0x7f0b003e;
-        public static final int fuelPrice=0x7f0b004d;
-        public static final int fuel_consumption=0x7f0b0057;
+        public static final int fuelPrice=0x7f0b004f;
+        public static final int fuel_consumption=0x7f0b0059;
+        public static final int fuel_used_title=0x7f0b004b;
         public static final int hello_world=0x7f0b002a;
         public static final int ifNotRegistered=0x7f0b0034;
-        public static final int km=0x7f0b0056;
+        public static final int km=0x7f0b0058;
         public static final int litre=0x7f0b003d;
-        public static final int litre_per_mile=0x7f0b0059;
+        public static final int litre_per_mile=0x7f0b005b;
         /**  Location client code resources (prefix with location_client) 
          */
         public static final int location_client_powered_by_google=0x7f0b0027;
@@ -1560,22 +1569,22 @@ containing a value of this type.
         public static final int odometer=0x7f0b0037;
         public static final int partial=0x7f0b003f;
         public static final int pick_date=0x7f0b0042;
-        public static final int pref_track_summmary=0x7f0b004e;
-        public static final int pref_unit_length_summary=0x7f0b004f;
-        public static final int pref_unit_liquid_summary=0x7f0b0051;
+        public static final int pref_track_summmary=0x7f0b0050;
+        public static final int pref_unit_length_summary=0x7f0b0051;
+        public static final int pref_unit_liquid_summary=0x7f0b0053;
         public static final int primary=0x7f0b002d;
         public static final int register=0x7f0b0035;
-        public static final int result=0x7f0b004a;
+        public static final int result=0x7f0b004c;
         public static final int set_date=0x7f0b0043;
-        public static final int start=0x7f0b0055;
+        public static final int start=0x7f0b0057;
         public static final int submit=0x7f0b002b;
         public static final int tankSize=0x7f0b0032;
         public static final int tracking_notification_text=0x7f0b0045;
         public static final int tracking_notification_title=0x7f0b0044;
-        public static final int unit_length=0x7f0b0050;
-        public static final int unit_liquid=0x7f0b0052;
+        public static final int unit_length=0x7f0b0052;
+        public static final int unit_liquid=0x7f0b0054;
         public static final int volumeMeasure=0x7f0b0036;
-        public static final int volume_unit=0x7f0b0058;
+        public static final int volume_unit=0x7f0b005a;
         public static final int whatIsOdo=0x7f0b0046;
         public static final int whatisodo=0x7f0b003c;
     }
