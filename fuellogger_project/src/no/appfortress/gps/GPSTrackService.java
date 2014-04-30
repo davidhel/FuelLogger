@@ -26,11 +26,19 @@ public class GPSTrackService extends IntentService implements
 	public static final String LONGITUDE = "longitude";
 	public static final String LATITUDE = "latitude";
 	public static final String SEND_LOCATION = "send_location";
+	
+	private static boolean tracking = false;
 
 	private LocationClient locationClient;
 
-	
+	public static void setTracking(boolean isTracking){
+		tracking = isTracking;
+	}
 
+	public static boolean isTracking(){
+		return tracking;
+	}
+	
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub

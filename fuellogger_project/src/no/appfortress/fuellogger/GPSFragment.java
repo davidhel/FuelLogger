@@ -23,10 +23,11 @@ import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
-public class GPSFragment extends Fragment{
-	
+public class GPSFragment extends Fragment {
+
 	public static final String SEND_LOCATION = "SEND_LOCATION";
 	public static final String LOCATION_FILTER = "LOCATION_FILTER";
 	public static final String RECEIVE_LATITUDE = "RECEIVE_LATITUDE";
@@ -36,6 +37,7 @@ public class GPSFragment extends Fragment{
 	public static final String SAVE_TRACKING_STATE = "SAVE_TRACKING_STATE";
 	public static final String TRACKED_LONGITUDES = "TRACKED_LONGITUDES";
 	public static final String TRACKED_LATITUDES = "TRACKED_LATITUDES";
+	private static final String IS_TRACKING = "IS_TRACKING";
 
 	private BroadcastReceiver locationReceiver = new BroadcastReceiver() {
 
@@ -44,7 +46,7 @@ public class GPSFragment extends Fragment{
 			Log.d("Fuel", "onReceive");
 			double latitude = intent.getDoubleExtra(RECEIVE_LATITUDE, -1000);
 			double longitude = intent.getDoubleExtra(RECEIVE_LONGITUDE, -1000);
-			double[] position = { latitude,longitude};
+			double[] position = { latitude, longitude };
 			locationsTracked.add(position);
 		}
 
@@ -57,8 +59,6 @@ public class GPSFragment extends Fragment{
 	private List<double[]> locationsTracked;
 	private int intervalTime = 5 * 1000;
 	private boolean tracking = false;
-	
-	
 
 	// GUI VARIABLES
 	private ArrayAdapter<String> aa;
@@ -71,27 +71,26 @@ public class GPSFragment extends Fragment{
 		super.onCreateView(inflater, container, savedInstanceState);
 		return inflater.inflate(R.layout.activity_gps, container, false);
 	}
-	
-	
+
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
-		
-		
-	}
 
+	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
-		if(savedInstanceState == null || locationsTracked == null){
-			locationsTracked = new ArrayList<double[]>();
+		if (savedInstanceState == null) {
+			if (locationsTracked == null) {
+				locationsTracked = new ArrayList<double[]>();
+			}
 		}
+		tracking = GPSTrackService.isTracking();
 		initGUI();
 	}
-
 
 	private void initGUI() {
 		// Gets the ToggleButton from the xml layout file
@@ -110,6 +109,7 @@ public class GPSFragment extends Fragment{
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView,
 					boolean isChecked) {
+				tracking = isChecked;
 				if (isChecked) {
 					registerReceiver();
 					locationsTracked.clear();
@@ -120,21 +120,19 @@ public class GPSFragment extends Fragment{
 
 			}
 		});
-		
 
 	}
 
 	protected void showRoute() {
-		if(locationsTracked.size() < 1){
+		if (locationsTracked.size() < 1) {
 			return;
 		}
-		
-		
+
 		Intent intent = new Intent(getActivity(), MyGoogleMaps.class);
 		double[] longitudesTracked = new double[locationsTracked.size()];
 		double[] latitudesTracked = new double[locationsTracked.size()];
-		
-		for(int i = 0; i < locationsTracked.size();i++){
+
+		for (int i = 0; i < locationsTracked.size(); i++) {
 			longitudesTracked[i] = locationsTracked.get(i)[1];
 			latitudesTracked[i] = locationsTracked.get(i)[0];
 		}
@@ -143,8 +141,6 @@ public class GPSFragment extends Fragment{
 		startActivity(intent);
 	}
 
-
-
 	protected void unregisterReceiver() {
 		LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(
 				locationReceiver);
@@ -152,9 +148,12 @@ public class GPSFragment extends Fragment{
 	}
 
 	private void stopService() {
-		if (alarmManager != null) {
-			alarmManager.cancel(startServicePendingIntent);
+		GPSTrackService.setTracking(false);
+		if(alarmManager == null){
+			alarmManager = (AlarmManager) getActivity().getSystemService(
+					Context.ALARM_SERVICE);
 		}
+		alarmManager.cancel(startServicePendingIntent);
 	}
 
 	protected void registerReceiver() {
@@ -164,8 +163,17 @@ public class GPSFragment extends Fragment{
 
 	}
 
+	@Override
+	public void onDetach() {
+		unregisterReceiver();
+		super.onDetach();
+	}
+	
 	private void startService() {
-		alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+		GPSTrackService.setTracking(true);
+		
+		alarmManager = (AlarmManager) getActivity().getSystemService(
+				Context.ALARM_SERVICE);
 
 		startServiceIntent = new Intent(getActivity(), GPSTrackService.class);
 
@@ -175,7 +183,8 @@ public class GPSFragment extends Fragment{
 		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
 				System.currentTimeMillis() - intervalTime, intervalTime,
 				startServicePendingIntent);
-
+		
 	}
+
 
 }
