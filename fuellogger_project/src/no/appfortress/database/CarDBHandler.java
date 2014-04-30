@@ -79,25 +79,35 @@ public class CarDBHandler {
 		db.close();
 		return rtnValue;
 	}
-	public Car getCarById(long ide){
-		long id = 0; 
+	public Car getCarById(long _id){
+		long id = _id;
 		int odometer;
 		String brand, model;
 		float fuelTank, fuel;
 		int year;
-		//Car car = new Car(id, brand, model, year, odometer, fuelTank);
+		Car car;
 		try{
 			db = dbHelper.getReadableDatabase();
 			String query = "SELECT * FROM " + CarFeedEntry.TABLE_NAME + "WHERE id="+id;
 			Cursor cursor = db.rawQuery(query, null);
 			cursor.moveToFirst();
 			
+			odometer = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_ODOMETER));
+			brand = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_BRAND));
+			model = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_MODEL));
+			fuelTank = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUELTANK));
+			fuel = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUEL));
+			year = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_YEAR));
+			
+			car = new Car(id, brand,model,year,odometer,fuelTank);
+			car.setFuel(fuel);
 		}
 		catch(SQLiteException ex){
 			Log.e("Error in: getAllCars method in CarDBHandler class",
 					"Could not open database for reading.");
+			return null;
 		}
-		return null;//car;
+		return car;//car;
 	}
 
 	public List<Car> getAllCars() {
