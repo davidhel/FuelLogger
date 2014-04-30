@@ -6,7 +6,59 @@
     <fragment
         android:id="@+id/mapsFragment"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/tvDistanceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvDateTimeDrive"
+            android:layout_alignParentLeft="true"
+            android:text="@string/distance_title" />
+
+        <TextView
+            android:id="@+id/tvDistanceDrive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvDistanceTitle"
+            android:layout_below="@+id/tvDistanceTitle"
+            android:paddingBottom="20dp"
+            android:text="Distance"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/tvDateTimeDrive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="20dp"
+            android:text="Large Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/tvFuelUsedTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvDistanceDrive"
+            android:layout_below="@+id/tvDistanceDrive"
+            android:text="@string/fuel_used_title" />
+
+        <TextView
+            android:id="@+id/tvFuelUsed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvFuelUsedTitle"
+            android:layout_below="@+id/tvFuelUsedTitle"
+            android:text="Fuel Used"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+    </RelativeLayout>
 
 </LinearLayout>

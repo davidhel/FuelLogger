@@ -88,7 +88,7 @@ public class CarDBHandler {
 		Car car;
 		try{
 			db = dbHelper.getReadableDatabase();
-			String query = "SELECT * FROM " + CarFeedEntry.TABLE_NAME + "WHERE id="+id;
+			String query = "SELECT * FROM " + CarFeedEntry.TABLE_NAME + " WHERE " + CarFeedEntry._ID + "="+id;
 			Cursor cursor = db.rawQuery(query, null);
 			cursor.moveToFirst();
 			

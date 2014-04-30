@@ -1,6 +1,7 @@
 package no.appfortress.gps;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,21 +28,21 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MyGoogleMaps extends ActionBarActivity {
-	
+
 	private GoogleMap googleMap;
 	private LatLngBounds.Builder bounds;
 	private PolylineOptions polylineOptions;
+	private String distance;
 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.google_maps);
-		
+
 		ActionBar actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		
+
 		double[] longitudes = getIntent().getDoubleArrayExtra(
 				GPSActivity.TRACKED_LONGITUDES);
 		double[] latitudes = getIntent().getDoubleArrayExtra(
@@ -49,46 +51,72 @@ public class MyGoogleMaps extends ActionBarActivity {
 		if (longitudes == null || latitudes == null) {
 			return;
 		}
-		
+
 		googleMap = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.mapsFragment)).getMap();
-		
+
 		String url = getMapsAPIUrl(latitudes, longitudes);
-		
+
 		ReadTask downloadTask = new ReadTask();
 		downloadTask.execute(url);
 
 	}
-	
-	
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch(item.getItemId()){
+		switch (item.getItemId()) {
 		case android.R.id.home:
 			finish();
 			return true;
 		}
-				
+
 		return super.onOptionsItemSelected(item);
 	}
 
-
-
-	private void setGoogleMap(){
-		if(polylineOptions != null){
+	private void setGoogleMap() {
+		if (polylineOptions != null) {
 			bounds = new LatLngBounds.Builder();
 			List<LatLng> points = polylineOptions.getPoints();
 			Log.d("POINTS SIZE", points.size() + "");
-			for(int i = 0; i < points.size(); i++){
+			for (int i = 0; i < points.size(); i++) {
 				bounds.include(points.get(i));
 			}
-			
-			googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(
-					bounds.build(),
+
+			googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds
+					.build(),
 					this.getResources().getDisplayMetrics().widthPixels, this
-							.getResources().getDisplayMetrics().heightPixels, 10));
+							.getResources().getDisplayMetrics().heightPixels,
+					10));
 		}
+
+		setDateToTextView();
+		setDistance();
+		setFuelUsed();
+
+	}
+
+	private void setFuelUsed() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void setDistance() {
+		TextView distanceDrive = (TextView) findViewById(R.id.tvDistanceDrive);
+		distanceDrive.setText(distance);
+	}
+
+	private void setDateToTextView() {
+		TextView dateTimeDrive = (TextView) findViewById(R.id.tvDateTimeDrive);
+		Calendar cal = Calendar.getInstance();
+		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+		int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+		int month = cal.get(Calendar.MONTH);
+		int year = cal.get(Calendar.YEAR);
+		String[] daysOfWeek = getResources().getStringArray(R.array.week_days);
+		String[] months = getResources().getStringArray(R.array.months);
+		dateTimeDrive.setText(daysOfWeek[dayOfWeek] + " " + dayOfMonth + ". "
+				+ months[month] + " " + year);
+
 	}
 
 	private String getMapsAPIUrl(double[] latitudes, double[] longitudes) {
@@ -97,7 +125,7 @@ public class MyGoogleMaps extends ActionBarActivity {
 		String destination = "destination=" + latitudes[latitudes.length - 1]
 				+ "," + longitudes[longitudes.length - 1];
 		for (int i = 1; i < latitudes.length - 1; i += Math
-				.ceil((latitudes.length / 7))+1) {
+				.ceil((latitudes.length / 7)) + 1) {
 			waypoints += "|" + latitudes[i] + "," + longitudes[i];
 		}
 		String sensor = "sensor=false";

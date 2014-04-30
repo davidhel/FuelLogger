@@ -32,10 +32,35 @@
     <string name="tracking_notification_title">Tracking</string>
     <string name="tracking_notification_text">Currently tracking your route</string>
     <string name="whatIsOdo">The odometer is an instrument that indicates the total distance traveled by a vehicle</string>
-	<string name="drawer_open">Open</string>
-	<string name="drawer_close">Close</string>
-	<string name="action_calculator">Trip Calculator</string>
-    
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="action_calculator">Trip Calculator</string>
+    <string name="distance_title">Distance:</string>
+    <string name="fuel_used_title">Fuel used:</string>
+
+    <string-array name="week_days">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Thuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
     <string-array name="carmodels">
         <item>Toyota</item>
         <item>Peugeot</item>
@@ -48,7 +73,8 @@
         <item>History</item>
         <item>Settings</item>
     </string-array>
-	<string name="result">Result</string>
+
+    <string name="result">Result</string>
     <string name="Tracking">Tracking</string>
     <string name="Unit_convertion">Unit convertion</string>
     <string name="fuelPrice">Fuel price</string>
@@ -64,6 +90,5 @@
     <string name="fuel_consumption">Fuel comsumption</string>
     <string name="volume_unit">l</string>
     <string name="litre_per_mile">l/1000km</string>
-    <string name="result">Result</string>
 
 </resources>

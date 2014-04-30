@@ -113,7 +113,7 @@ public class RegisterFuelFragment extends Fragment {
 
 	}
 	protected Car getCarById(int id){
-		CarDBHandler carDatabase = new CarDBHandler(activity);
+		CarDBHandler carDatabase = new CarDBHandler(getActivity());
 		Car c = carDatabase.getCarById(id);
 		return c;
 	}
