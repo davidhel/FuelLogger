@@ -1218,7 +1218,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060027;
-        public static final int action_settings=0x7f060070;
+        public static final int action_settings=0x7f06006e;
         public static final int activity_chooser_view_content=0x7f060028;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1227,7 +1227,7 @@ containing a value of this type.
         public static final int btnPickDate=0x7f060050;
         public static final int btnSubmit=0x7f060068;
         public static final int btnSubmitFueling=0x7f060051;
-        public static final int button1=0x7f06006f;
+        public static final int btnWidget=0x7f06006d;
         public static final int chcPrimary=0x7f060067;
         public static final int checkbox=0x7f060030;
         public static final int chkPartial=0x7f06004c;
@@ -1258,7 +1258,6 @@ containing a value of this type.
         public static final int image=0x7f06002a;
         public static final int imgCar=0x7f06005c;
         public static final int imgFuel=0x7f060046;
-        public static final int layout=0x7f06006d;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f06002c;
         public static final int listview=0x7f06005b;
@@ -1317,7 +1316,6 @@ containing a value of this type.
         public static final int txtVoulumeMeasure=0x7f060063;
         public static final int txtWhatIsOdo=0x7f060049;
         public static final int up=0x7f060024;
-        public static final int update=0x7f06006e;
         public static final int useLogo=0x7f060003;
         public static final int withText=0x7f06000c;
     }
@@ -1559,6 +1557,7 @@ containing a value of this type.
         public static final int primary=0x7f0b002d;
         public static final int register=0x7f0b0035;
         public static final int set_date=0x7f0b0043;
+        public static final int start=0x7f0b0052;
         public static final int submit=0x7f0b002b;
         public static final int tankSize=0x7f0b0032;
         public static final int tracking_notification_text=0x7f0b0045;

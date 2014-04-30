@@ -11,5 +11,11 @@ public class TripCalculatorActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calculator);
 	}
+	
+	public int calculate(float distance, float fuelPrice, float consumption ){
+		int sum = null;
+		
+		return sum;
+	}
 
 }

@@ -56,5 +56,6 @@
     <string name="unit_liquid">Liquid unit</string>
     <string name="distance">Distance</string>
     <string name="car">Car:</string>
+    <string name="start">Start</string>
 
 </resources>

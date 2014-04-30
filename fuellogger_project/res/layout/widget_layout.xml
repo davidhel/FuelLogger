@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-       <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-          android:id="@+id/layout"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_margin="8dip"
-          android:background="@drawable/widget_shape" >
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/widget_margin" >
 
-        <TextView
-            android:id="@+id/update"
-            style="@android:style/TextAppearance.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="4dip"
-            android:gravity="center_horizontal|center_vertical"
-            android:text="Static Text" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/widget_shape"
+        android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/update"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="145dp"
-            android:text="Button" />
+            android:id="@+id/btnWidget"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/start" />
+    </RelativeLayout>
 
-    </RelativeLayout> 
+</FrameLayout>

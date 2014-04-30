@@ -84,6 +84,8 @@
 
         <receiver android:name="no.appfortress.fuellogger.GPSReceiver" >
         </receiver>
+        
+        <!-- WIDGET STUFF, muligens noe som kan fjernes -->
         <receiver
             android:name=".MyWidgetProvider"
             android:icon="@drawable/ic_launcher"
@@ -107,7 +109,8 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:configure=".MyWidgetProvider" >
         </appwidget-provider>
-
+		
+        <!-- WIDGET STUFF END-->
     </application>
 
 </manifest>
