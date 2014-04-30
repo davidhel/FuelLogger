@@ -68,7 +68,8 @@ public class RegisterVehicleFragment extends Fragment implements
 		tankSize = (EditText) a.findViewById(R.id.editTankSize);
 		odometer = (EditText) a.findViewById(R.id.editOdometer);
 		saveCar = (Button) a.findViewById(R.id.btnSubmit);
-
+		
+		
 		carBrand.setOnItemSelectedListener(this);
 		saveCar.setOnClickListener(this);
 	}
@@ -87,11 +88,10 @@ public class RegisterVehicleFragment extends Fragment implements
 	}
 
 	@Override
-	public void dataLoaded() {
+	public void dataLoaded(String result) {
 		switch (downloadStatus) {
 		case DOWNLOAD_MAKES:
-			// makes = carDataManager.getMakes();
-			// printMakes();
+			makes = carDataManager.getMakes();
 			break;
 		case DOWNLOAD_MODELS:
 			// models = carDataManager.getModels();
@@ -101,12 +101,6 @@ public class RegisterVehicleFragment extends Fragment implements
 		downloadStatus = NOT_DOWNLOADING;
 	}
 
-	private void printMakes() {
-		for (int i = 0; i < makes.length; i++) {
-			// Log.d("MAKES", makes[i]);
-		}
-
-	}
 
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,

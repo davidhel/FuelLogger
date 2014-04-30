@@ -16,16 +16,19 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import android.os.AsyncTask;
+import android.util.JsonReader;
 import android.util.Log;
 
 public class CarDataManager {
 
 	public interface OnVehicleRequestListener {
-		public void dataLoaded();
+		public void dataLoaded(String result);
 	}
 
 	private final static String APIKEY = "xyvjjvsayxn6wc4456524z83";
@@ -39,7 +42,7 @@ public class CarDataManager {
 	private JSONObject jsonObject;
 	private JSONObject test;
 	private static final String JSONMAKESURL = "http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key="
-			+ APIKEY;
+			+ APIKEY + "&state=new&view=full";
 	private  String jSONModelsURL = "https://api.edmunds.com/api/vehicle/v2/"
 			+ make + "/models?fmt=json&api_key=" + APIKEY;
 
@@ -50,6 +53,8 @@ public class CarDataManager {
 	public void downloadMakes(){
 		new SearchForVehicleTask().execute(JSONMAKESURL);
 	}
+	
+	
 	public void downloadModelsByMake(String _make){
 		make = _make;
 		new SearchForVehicleTask().execute(jSONModelsURL);
@@ -57,26 +62,25 @@ public class CarDataManager {
 
 	
 	public String[] getMakes(){
-		String[] makes;
-		try {
-			String genresString = jsonObject.getJSONObject(tag_makes).getString(tag_models);
-
-			test = new JSONObject("Your string here").getJSONObject(tag_makes);
+		String[] makes = null;
+		/*try {
+			
+			JSONObject genresString = jsonObject.getJSONObject(1);
+			//Log.d("JSONOBJECT", genresString.toString());
 			//test = jsonObject.getJSONObject(tag_models);
-			Log.d("MAKES", "hei verden");
-			Log.d("MAKES", test.toString());
 			//Log.d("MAKES", jsonObject.toString());
 			//String genresString = jsonObject.getJSONObject(tag_makes).getString(tag_models);
 			/*JSONObject json = new JSONObject(genresString);
 			Log.d("MAKES", genresString);
-			Log.d("MAKES", json.getString("name"));*/
-			makes = genresString.split(",");
+			Log.d("MAKES", json.getString("name"));
+			//makes = genresString.split(",");
 		} catch (JSONException e) {
+			e.printStackTrace();
 			return null;
-		}
+		}*/
 		return makes;
 	}
-	
+	/*
 	public String[] getModels(){
 		String[] models;
 		try {
@@ -94,7 +98,7 @@ public class CarDataManager {
 			return false;
 		}
 		return true;
-	}
+	}*/
 
 	protected String getJSONString(String search) throws IOException {
 		StringBuilder builder = new StringBuilder();
@@ -142,20 +146,23 @@ public class CarDataManager {
 
 			try {
 				String jsonString = getJSONString(params[0]);
-				jsonObject = new JSONObject(jsonString);
 				return jsonString;
 			} catch (IOException ex) {
-				return "Couldn't retrive web page.";
-			} catch (JSONException ex) {
 				ex.printStackTrace();
-				return "Couldn't parse JSONObject";
 			}
-
+			return null;
 		}
 
 		@Override
 		protected void onPostExecute(String result) {
-			caller.dataLoaded();
+			try {
+				Log.d("String", result);
+				JSONArray json = new JSONObject(result).getJSONArray("makes");
+				
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			caller.dataLoaded(result);
 		}
 
 	}
