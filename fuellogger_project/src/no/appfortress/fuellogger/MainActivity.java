@@ -158,9 +158,8 @@ public class MainActivity extends ActionBarActivity implements
 			setContent(new GPSFragment(), false, null);
 			break;
 		case 3:
-			i = new Intent(this, TripCalculatorActivity.class);
-			startActivity(i);
-			return;
+			setContent(new TripCalculatorFragment(), false, null);
+			break;
 		case 4:
 			
 			break;
