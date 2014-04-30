@@ -19,7 +19,7 @@ import android.widget.Spinner;
 
 public class RegisterVehicleFragment extends Fragment implements
 		OnVehicleRequestListener, OnItemSelectedListener, OnClickListener {
-
+	
 	public static String EXTRA_MESSAGE = "no.appfortress.fuellogger.RegisterActivity";
 	public static String EXTRA_MESSAGE2;
 	public static String EXTRA_MESSAGE3;
@@ -44,6 +44,11 @@ public class RegisterVehicleFragment extends Fragment implements
 	EditText odometer;
 	Button saveCar;
 
+	public RegisterVehicleFragment(){	
+		
+	}
+	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -115,29 +120,16 @@ public class RegisterVehicleFragment extends Fragment implements
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onClick(View v) {
-
-		/*
-		 * // A bundle with data that can be sent between activities Bundle
-		 * extras = new Bundle(); extras.putString(EXTRA_MESSAGE,
-		 * carBrand.getText().toString()); extras.putString(EXTRA_MESSAGE2,
-		 * carModel.getText().toString()); extras.putString(EXTRA_MESSAGE3,
-		 * tankSize.getText().toString()); extras.putString(EXTRA_MESSAGE4,
-		 * odometer.getText().toString()); intent.putExtras(extras);
-		 */
-
 		CarDBHandler database = new CarDBHandler(getActivity());
-
 		database.insertCar(selectedBrand, carModel.getText().toString(), 0,
 				Integer.parseInt(odometer.getText().toString()),
 				Float.parseFloat(tankSize.getText().toString()));
-
-		getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right);
-		getFragmentManager().popBackStack();
+		VehiclesFragment vehicles = (VehiclesFragment)getParentFragment();
+		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);
 	}
 }

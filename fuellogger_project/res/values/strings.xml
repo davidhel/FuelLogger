@@ -34,6 +34,7 @@
     <string name="whatIsOdo">The odometer is an instrument that indicates the total distance traveled by a vehicle</string>
 	<string name="drawer_open">Open</string>
 	<string name="drawer_close">Close</string>
+	<string name="action_calculator">Trip Calculator</string>
     
     <string-array name="carmodels">
         <item>Toyota</item>

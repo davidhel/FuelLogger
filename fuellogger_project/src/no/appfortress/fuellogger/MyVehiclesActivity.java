@@ -24,15 +24,6 @@ public class MyVehiclesActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_myvehicles);
 		
-		Button addCar = (Button) findViewById(R.id.btnAddCar);
-		addCar.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				registerNewCar();
-				
-			}
-		});
 		final ListView listview = (ListView) findViewById(R.id.listview);
 
 		/*
@@ -48,6 +39,7 @@ public class MyVehiclesActivity extends Activity {
 		// Get data from localDB
 		final CarDBHandler database = new CarDBHandler(this);
 		final List<Car> cars = database.getAllCars();
+		database.close();
 		/*
 		 * ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(this,
 		 * android.R.layout.simple_list_item_1, cars); setListAdapter(adapter);
