@@ -2,15 +2,14 @@ package no.appfortress.graph;
 
 import java.util.List;
 
-import org.achartengine.GraphicalView;
-
 import no.appfortress.database.RefillDBHandler;
 import no.appfortress.fuellogger.R;
 import no.appfortress.fuellogger.Refill;
+
+import org.achartengine.GraphicalView;
+
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 public class GraphActivity extends Activity {
 
