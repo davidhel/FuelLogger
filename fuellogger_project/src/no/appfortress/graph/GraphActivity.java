@@ -11,6 +11,7 @@ import org.achartengine.GraphicalView;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 public class GraphActivity extends Activity {
 
@@ -26,7 +27,7 @@ public class GraphActivity extends Activity {
 		setContentView(R.layout.activity_graph);
 
 		refills = getDataFromDB();
-
+		Log.d("GRAPH", "start");
 		for (int i = 0; i <= refills.size(); i++) {
 			Refill r = refills.get(i);
 			Calendar c = r.getDate();
@@ -43,6 +44,7 @@ public class GraphActivity extends Activity {
 
 	@Override
 	protected void onStart() {
+		
 		super.onStart();
 		view = line.getView(this);
 		setContentView(view);
