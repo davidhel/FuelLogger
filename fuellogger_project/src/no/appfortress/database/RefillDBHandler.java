@@ -124,9 +124,32 @@ public class RefillDBHandler {
 	public List<Refill> getRefillsFromCar(long carID){
 		List<Refill> refills = new ArrayList<Refill>();
 		try{
-			
+			db = dbHelper.getReadableDatabase();
+			String sqlQuery = "SELECT * FROM " + RefillFeedEntry.TABLE_NAME + " WHERE " + RefillFeedEntry.COLUMN_CAR_ID_FK_CAR + "=" + carID;
+			Cursor cursor = db.rawQuery(sqlQuery, null);
+			Car car;
+			float refillLitre, refillPrice, latitude, longitude;
+			int odometer,id;
+			Calendar date;
+			if(cursor != null && cursor.moveToFirst()){
+				while(!cursor.isAfterLast()){
+					id = cursor.getInt(cursor.getColumnIndex(RefillFeedEntry._ID));
+					car = getCarFromRefill(cursor.getLong(cursor
+							.getColumnIndex(RefillFeedEntry.COLUMN_CAR_ID_FK_CAR)));
+					refillLitre = cursor.getFloat(cursor.getColumnIndex(RefillFeedEntry.COLUMN_FUEL_LITERS));
+					refillPrice = cursor.getFloat(cursor.getColumnIndex(RefillFeedEntry.COLUMN_FUEL_PRICE));
+					odometer = cursor.getInt(cursor.getColumnIndex(RefillFeedEntry.COLUMN_ODOMETER));
+					date = getDateFromString(cursor.getString(cursor.getColumnIndex(RefillFeedEntry.COLUMN_DATE)));
+					latitude = cursor.getFloat(cursor.getColumnIndex(RefillFeedEntry.COLUMN_LATITUDE));
+					longitude = cursor.getFloat(cursor.getColumnIndex(RefillFeedEntry.COLUMN_LONGITUDE));
+					refills.add(new Refill(id, car, refillLitre, refillPrice,
+							odometer, date, latitude, longitude));
+					cursor.moveToNext();
+				}
+				cursor.close();
+			}
 		}catch(SQLiteException ex){
-			
+			ex.printStackTrace();
 		}
 		return refills;
 	}
