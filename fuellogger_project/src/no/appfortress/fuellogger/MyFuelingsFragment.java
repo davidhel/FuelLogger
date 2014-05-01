@@ -32,6 +32,8 @@ public class MyFuelingsFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		/*View view = inflater.inflate(R.layout.fragment_my_fuelings, container, false);
+		return view;*/
 		return inflater
 				.inflate(R.layout.fragment_my_fuelings, container, false);
 

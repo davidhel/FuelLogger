@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="30dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/txtDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80dp"
+        android:text="@string/distance" />
+
+    <EditText
+        android:id="@+id/etDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtDistance"
+        android:layout_alignBottom="@+id/txtDistance"
+        android:layout_marginLeft="18dp"
+        android:layout_toRightOf="@+id/txtDistance"
+        android:ems="4"
+        android:inputType="numberSigned"
+        android:text="10" />
+
+    <TextView
+        android:id="@+id/txtLengthUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtDistance"
+        android:layout_marginLeft="34dp"
+        android:layout_toRightOf="@+id/etDistance"
+        android:text="@string/km" />
+
+    <TextView
+        android:id="@+id/txtFuelPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtDistance"
+        android:layout_marginTop="50dp"
+        android:text="@string/fuelPrice" />
+
+    <EditText
+        android:id="@+id/etFuelPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtFuelPrice"
+        android:layout_toRightOf="@+id/txtFuelPrice"
+        android:ems="4"
+        android:inputType="numberDecimal"
+        android:text="10" />
+
+    <TextView
+        android:id="@+id/txtFuelUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtFuelPrice"
+        android:layout_toRightOf="@+id/etFuelPrice"
+        android:text="@string/volume_unit" />
+
+    <TextView
+        android:id="@+id/txtFuelConsumption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtFuelPrice"
+        android:layout_marginTop="50dp"
+        android:text="@string/fuel_consumption" />
+
+    <EditText
+        android:id="@+id/etFuelComsumption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtFuelConsumption"
+        android:layout_toRightOf="@+id/txtFuelConsumption"
+        android:ems="4"
+        android:inputType="numberDecimal"
+        android:text="10" />
+
+    <TextView
+        android:id="@+id/txtVolumeUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtFuelConsumption"
+        android:layout_toRightOf="@+id/etFuelComsumption"
+        android:text="@string/litre_per_mile" />
+
+    <Button
+        android:id="@+id/btnCalculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtResult"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/submit" />
+
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="40dp"
+        android:text="@string/result" />
+
+</RelativeLayout>

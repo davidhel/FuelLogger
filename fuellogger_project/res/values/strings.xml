@@ -90,6 +90,6 @@
     <string name="km">KM</string>
     <string name="fuel_consumption">Fuel comsumption</string>
     <string name="volume_unit">l</string>
-    <string name="litre_per_mile">l/1000km</string>
+    <string name="litre_per_mile">l/10km</string>
 
 </resources>

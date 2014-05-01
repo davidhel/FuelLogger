@@ -32,66 +32,63 @@ public class MyVehiclesFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
-		View view = inflater.inflate(R.layout.activity_myvehicles, container, false);
+
+		View view = inflater.inflate(R.layout.activity_myvehicles, container,
+				false);
 		return view;
 	}
 
-
 	private void setListView() {
-		if(listview == null){
+		if (listview == null) {
 
-		listview = (ListView) getView().findViewById(R.id.listview);
-		
-		}else{
-			listview  = (ListView) getActivity().findViewById(R.id.listview);
+			listview = (ListView) getView().findViewById(R.id.listview);
+
+		} else {
+			listview = (ListView) getActivity().findViewById(R.id.listview);
 		}
 		cars = new ArrayList<Car>();
-		
+
 		adapter = new ArrayAdapter<Car>(getActivity(),
 				android.R.layout.simple_list_item_1, cars);
 
 		listview.setAdapter(adapter);
-		
+
 		database = new CarDBHandler(getActivity());
-		List<Car> carList= database.getAllCars();
+		List<Car> carList = database.getAllCars();
 		database.close();
-		
+
 		cars.clear();
-		for(Car c : carList){
+		for (Car c : carList) {
 			cars.add(c);
 		}
 
 		adapter.notifyDataSetChanged();
-		
 
 	}
 
-	
-	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
+
 		setListView();
-		
+
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,
 					final int position, long id) {
-					Car c = cars.get(position);
-					openCarInfo(c);
+				Car c = cars.get(position);
+				openCarInfo(c);
 			}
 		});
-		
+
 		listview.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				boolean rtn = listLongClick(position);
-				
+
 				return rtn;
 			}
 		});
@@ -115,22 +112,22 @@ public class MyVehiclesFragment extends Fragment {
 		startActivity(vehicleIntent);
 	}
 
-	private class LongClickCarDialog extends DialogFragment{
+	private class LongClickCarDialog extends DialogFragment {
 
 		private Car car;
-		
-		public LongClickCarDialog(Car c){
+
+		public LongClickCarDialog(Car c) {
 			car = c;
 		}
-		
+
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());	
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			builder.setTitle(car.getBrand() + " " + car.getModel());
 			return super.onCreateDialog(savedInstanceState);
 		}
-		
+
 	}
-	
+
 }
