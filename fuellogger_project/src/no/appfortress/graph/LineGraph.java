@@ -20,13 +20,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.Toast;
 
 public class LineGraph{
 	
 	
-	
+	Context c;
 	
 	//public Intent getIntent(Context context) {
 		
@@ -39,21 +41,29 @@ public class LineGraph{
 		 XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer(); // Holds a collection of XYSeriesRenderer
 		
 		 
-		public LineGraph()
+		public LineGraph(Context c)
 		{
+			//Set text size dependent on screen dimensions
+			DisplayMetrics metrics = c.getResources().getDisplayMetrics();
+			float val = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14, metrics);
+			
 			// Add single dataset to multiple dataset
 			mDataset.addSeries(dataset);
 			
 			// Customization time for line 1!
 			renderer.setColor(Color.WHITE);
 			renderer.setPointStyle(PointStyle.SQUARE);
+			renderer.setPointStrokeWidth(10);
 			renderer.setFillPoints(true);
+			mRenderer.setPointSize(6);
 			
 			// Enable Zoom
 			mRenderer.setZoomButtonsVisible(true);
 			mRenderer.setXTitle("Day");
 			mRenderer.setYTitle("Litre price");
 			
+
+			mRenderer.setLabelsTextSize(val);
 			
 			
 			// Add single renderer to multiple renderer

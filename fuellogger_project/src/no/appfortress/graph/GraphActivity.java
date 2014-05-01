@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class GraphActivity extends Activity {
 
 	private static GraphicalView view;
-	private LineGraph line = new LineGraph();
+	private LineGraph line;
 	private static Thread thread;
 	private List<Refill> refills;
 
@@ -26,7 +26,7 @@ public class GraphActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graph);
-
+		line = new LineGraph(this);
 		refills = getDataFromDB();
 		
 		for (int i = 0; i < refills.size(); i++) {
