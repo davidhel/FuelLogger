@@ -61,6 +61,10 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+    <string-array name="car_long_dialog">
+        <item>Edit vehicle</item>
+        <item>Delete vehicle</item>
+    </string-array>
     <string-array name="carmodels">
         <item>Toyota</item>
         <item>Peugeot</item>

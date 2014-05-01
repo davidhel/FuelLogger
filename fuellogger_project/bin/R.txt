@@ -8,12 +8,13 @@ int anim slide_in_left 0x7f040006
 int anim slide_in_right 0x7f040007
 int anim slide_out_left 0x7f040008
 int anim slide_out_right 0x7f040009
+int array car_long_dialog 0x7f0d0008
 int array carmodels 0x7f0d0005
 int array lengthUnits 0x7f0d0000
 int array lengthUnitsValues 0x7f0d0001
 int array liquidUnits 0x7f0d0002
 int array months 0x7f0d0007
-int array navigation_list 0x7f0d0008
+int array navigation_list 0x7f0d0009
 int array syncFrequencyValues 0x7f0d0004
 int array trackFrequency 0x7f0d0003
 int array week_days 0x7f0d0006

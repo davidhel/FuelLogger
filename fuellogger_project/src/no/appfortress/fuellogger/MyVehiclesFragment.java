@@ -6,9 +6,11 @@ import java.util.List;
 import no.appfortress.database.CarDBHandler;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.support.v4.app.DialogFragment;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -125,9 +127,31 @@ public class MyVehiclesFragment extends Fragment {
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			builder.setTitle(car.getBrand() + " " + car.getModel());
-			return super.onCreateDialog(savedInstanceState);
+			builder.setItems(R.array.car_long_dialog, new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					switch(which){
+					case 0:
+						break;
+					case 1:
+						deleteCar(car);
+						break;
+					}
+					
+				}
+			});
+			return builder.create();
 		}
 
+	}
+	
+	protected void deleteCar(Car c) {
+		CarDBHandler dbHandler = new CarDBHandler(getActivity());
+		dbHandler.deleteRow(c.getID());
+		dbHandler.close();
+		cars.remove(c);
+		adapter.notifyDataSetChanged();
 	}
 
 }

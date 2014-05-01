@@ -21,12 +21,13 @@ public final class R {
         public static final int slide_out_right=0x7f040009;
     }
     public static final class array {
+        public static final int car_long_dialog=0x7f0d0008;
         public static final int carmodels=0x7f0d0005;
         public static final int lengthUnits=0x7f0d0000;
         public static final int lengthUnitsValues=0x7f0d0001;
         public static final int liquidUnits=0x7f0d0002;
         public static final int months=0x7f0d0007;
-        public static final int navigation_list=0x7f0d0008;
+        public static final int navigation_list=0x7f0d0009;
         public static final int syncFrequencyValues=0x7f0d0004;
         public static final int trackFrequency=0x7f0d0003;
         public static final int week_days=0x7f0d0006;
