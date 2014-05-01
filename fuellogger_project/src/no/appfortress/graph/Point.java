@@ -2,20 +2,20 @@ package no.appfortress.graph;
 
 public class Point {
 	
-	private int x;
-	private int y;
+	private double x;
+	private double y;
 	
-	public Point( int x, int y)
+	public Point( double x2, double y2)
 	{
-		this.x = x;
-		this.y = y;
+		this.x = x2;
+		this.y = y2;
 	}
 	
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 	
