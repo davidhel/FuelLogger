@@ -24,7 +24,6 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
-@SuppressLint("NewApi")
 public class MainActivity extends ActionBarActivity implements
 		OnItemClickListener {
 
