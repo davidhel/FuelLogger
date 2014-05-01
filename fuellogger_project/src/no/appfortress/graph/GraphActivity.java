@@ -16,7 +16,7 @@ public class GraphActivity extends Activity {
 	private static GraphicalView view;
 	private LineGraph line = new LineGraph();
 	private static Thread thread;
-	private List refills;
+	private List<Refill> refills;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -24,10 +24,13 @@ public class GraphActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graph);
 
-		getDataFromDB();
+		refills = getDataFromDB();
 
 		for (int i = 0; i <= refills.size(); i++) {
-			Point p = MockData.getDataFromReceiver(i, i); // We got new data!
+			Refill r = refills.get(i);
+			Calendar c = r.getDate();
+			float cons = 
+			Point p = MockData.getDataFromReceiver(Integer.parseInt(refills.get(i).getDate().), Integer.parseInt(refills.get(i).toString())); // We got new data!
 			line.addNewPoints(p); // Add it to our graph
 			// view.repaint();
 		}
@@ -43,10 +46,12 @@ public class GraphActivity extends Activity {
 
 	private List<Refill> getDataFromDB() {
 
-		refills = null;
+		List<Refill> refills = null;
 		RefillDBHandler database = new RefillDBHandler(this);
+		
+		refills = database.getAllRefills();
 		database.close();
-		return refills = database.getAllRefills();
+		return refills;
 
 	}
 }
