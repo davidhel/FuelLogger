@@ -1,5 +1,7 @@
 package no.appfortress.fuellogger;
 
+import no.appfortress.graph.*;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
@@ -22,6 +24,7 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
+@SuppressLint("NewApi")
 public class MainActivity extends ActionBarActivity implements
 		OnItemClickListener {
 
@@ -167,6 +170,10 @@ public class MainActivity extends ActionBarActivity implements
 		case 5:
 			i = new Intent(this, Preferences.class);
 			startActivity(i);
+			break;
+		case 6:
+			Intent intent = new Intent(this, GraphActivity.class);
+			startActivity(intent);
 			break;
 		default:
 			return;

@@ -32,8 +32,8 @@
         <activity
             android:name="no.appfortress.fuellogger.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/BaseTheme" 
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/BaseTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -70,9 +70,9 @@
         <activity
             android:name=".TripCalculatorFragment"
             android:label="@string/app_name" />
-        <activity android:name="no.appfortress.gps.MyGoogleMaps" 
-            android:parentActivityName="no.appfortress.MainActivity">
-            
+        <activity
+            android:name="no.appfortress.gps.MyGoogleMaps"
+            android:parentActivityName="no.appfortress.MainActivity" >
         </activity>
 
         <service
@@ -115,6 +115,10 @@
         </appwidget-provider>
 
         <!-- WIDGET STUFF END -->
+        <!-- Graph STUFF -->
+        <activity android:name="org.achartengine.GraphicalActivity" />
+        <activity android:name="no.appfortress.graph.GraphActivity" />
+        <activity android:name="no.appfortress.graph.LineGraph" />
     </application>
 
 </manifest>
