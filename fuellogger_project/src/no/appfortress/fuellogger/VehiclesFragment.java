@@ -31,8 +31,6 @@ public class VehiclesFragment extends Fragment implements OnTabChangeListener, O
 	private PagerAdapter pagerAdapter;
 	private TabWidget tabWidget;
 	
-	private RegisterVehicleFragment registerVehicleFragment;
-	private MyVehiclesFragment myVehicleFragment;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,40 +39,38 @@ public class VehiclesFragment extends Fragment implements OnTabChangeListener, O
 		tabHost =(FragmentTabHost) view.findViewById(R.id.tabhost);
 		tabHost.setup(getActivity(), getChildFragmentManager(), R.id.flVehicleContent);
 		
+		
 		tabHost.addTab(tabHost.newTabSpec(YOUR_VEHICLES).setIndicator(YOUR_VEHICLES), MyVehiclesFragment.class, null);
 		tabHost.addTab(tabHost.newTabSpec(NEW_VEHICLE).setIndicator(NEW_VEHICLE), RegisterVehicleFragment.class, null);
 		tabHost.setOnTabChangedListener(this);
-		tabWidget = (TabWidget) view.findViewById(R.id.twVehicleTabs);
 		
 		
 		viewPager = (ViewPager) view.findViewById(R.id.flVehicleContent);
 		pagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager());
 		viewPager.setAdapter(pagerAdapter);
 		viewPager.setOnPageChangeListener(this);
-		
 		return view;
 	}
 
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-		registerVehicleFragment = new RegisterVehicleFragment();
-		myVehicleFragment = new MyVehiclesFragment();
-	}
 	
 	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter{
-
+		MyVehiclesFragment myVehicles;
+		RegisterVehicleFragment registerVehicle ;
+		
 		public ScreenSlidePagerAdapter(FragmentManager fm) {
 			super(fm);
+			myVehicles = new MyVehiclesFragment();
+			registerVehicle = new RegisterVehicleFragment();
 		}
 
 		@Override
 		public Fragment getItem(int position) {
+			Log.d("position", position + "");	
 			switch(position){
 			case 0:
-				return myVehicleFragment;
+				return myVehicles;
 			case 1:
-				return registerVehicleFragment;
+				return registerVehicle;
 			}
 			return null;
 		}
@@ -88,14 +84,18 @@ public class VehiclesFragment extends Fragment implements OnTabChangeListener, O
 
 	@Override
 	public void onTabChanged(String tabId) {
+		Log.d("Vehicles", "OnTabChanged");
 		switch(tabId){
 		case NEW_VEHICLE:
-			viewPager.setCurrentItem(1);
+			if(viewPager.getCurrentItem() != 1){
+				viewPager.setCurrentItem(1);
+			}
 			break;
 		case YOUR_VEHICLES:
-			viewPager.setCurrentItem(0);
-			break;
-			
+			if(viewPager.getCurrentItem() != 0){
+				viewPager.setCurrentItem(0);
+			}
+			break;	
 		}
 		
 	}

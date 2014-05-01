@@ -125,5 +125,6 @@ public class RegisterVehicleFragment extends Fragment implements
 				Float.parseFloat(tankSize.getText().toString()));
 		VehiclesFragment vehicles = (VehiclesFragment)getParentFragment();
 		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);
+		
 	}
 }
