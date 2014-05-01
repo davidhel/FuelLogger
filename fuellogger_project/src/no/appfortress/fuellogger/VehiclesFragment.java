@@ -36,7 +36,7 @@ public class VehiclesFragment extends Fragment implements OnTabChangeListener, O
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.vehicles_fragment, container, false);
-		tabHost =(FragmentTabHost) view.findViewById(R.id.tabhost);
+		tabHost = (FragmentTabHost) view.findViewById(R.id.mtabhost);
 		tabHost.setup(getActivity(), getChildFragmentManager(), R.id.flVehicleContent);
 		
 		

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:padding="20dp">
 
     <ImageView
         android:id="@+id/imgCar"
@@ -12,22 +13,24 @@
         android:layout_marginTop="49dp"
         android:src="@drawable/ic_car" />
 
-    <TextView
-        android:id="@+id/txtVehicleBrand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/spVehicleBrand"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="31dp"
-        android:text="@string/brand" />
-
     <Spinner
         android:id="@+id/spVehicleBrand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etVehicleBrand"
         android:layout_below="@+id/imgCar"
-        android:layout_toRightOf="@+id/txtVehicleBrand"
         android:ems="10" />
+    
+    <EditText
+        android:id="@+id/etVehicleBrand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_alignLeft="@+id/spVehicleModel"
+        android:layout_alignTop="@+id/txtVehicleBrand"
+        android:ems="10"
+        android:hint="@string/hint_brand"
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/txtVehicleModel"
@@ -45,67 +48,56 @@
          android:layout_alignLeft="@+id/editTankSize"
          android:layout_below="@+id/spVehicleBrand"
          android:ems="10" />
-    
-    <TextView
-        android:id="@+id/txtTankSize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtVehicleModel"
-        android:layout_below="@+id/txtVehicleModel"
-        android:layout_marginTop="31dp"
-        android:text="@string/tankSize" />
+     
+     <EditText
+         android:id="@+id/etVehicleModel"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/editTankSize"
+         android:layout_below="@+id/spVehicleBrand"
+         android:singleLine="true"
+         android:visibility="invisible"
+         android:layout_marginTop="20dp"
+         android:hint="@string/hint_model"
+         android:ems="10" />
 
     <EditText
         android:id="@+id/editTankSize"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/txtTankSize"
-        android:layout_alignLeft="@+id/spVehicleBrand"
+        android:layout_toRightOf="@+id/txtTankSize"
+        android:inputType="numberDecimal"
+        android:singleLine="true"
         android:ems="10"
-        android:text="@string/exampleTankSize" />
+        android:hint="@string/hint_tank_volume" />
 
-    <TextView
-        android:id="@+id/txtVoulumeMeasure"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/editOdometer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/txtTankSize"
-        android:layout_alignRight="@+id/editTankSize"
-        android:text="@string/volumeMeasure" />
+        android:layout_alignBottom="@+id/txtOdometer"
+        android:layout_alignLeft="@+id/editTankSize"
+        android:inputType="numberDecimal"
+        android:singleLine="true"
+        android:ems="10"
+        android:hint="@string/hint_odometer" />
 
     <TextView
         android:id="@+id/txtOdometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtTankSize"
         android:layout_below="@+id/txtTankSize"
         android:layout_marginTop="31dp"
         android:text="@string/odometer" />
 
-    <EditText
-        android:id="@+id/editOdometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/txtOdometer"
-        android:layout_alignLeft="@+id/editTankSize"
-        android:ems="10"
-        android:text="@string/exampleOdometer" />
-
     <TextView
-        android:id="@+id/txtDistanceMeasure"
+        android:id="@+id/txtVehicleBrand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/txtOdometer"
-        android:layout_alignRight="@+id/editOdometer"
-        android:text="@string/distanceMeasure" />
-
-    <CheckBox
-        android:id="@+id/chcPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/btnSubmit"
-        android:layout_alignLeft="@+id/txtVehicleName"
-        android:layout_marginRight="30dp"
-        android:text="@string/primary" />
+        android:layout_above="@+id/spVehicleModel"
+        android:layout_alignParentLeft="true"
+        android:text="@string/brand" />
 
     <Button
         android:id="@+id/btnSubmit"
@@ -113,10 +105,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="36dp"
-        android:layout_marginRight="30dp"
         android:text="@string/submit" />
 
-   
+    <CheckBox
+        android:id="@+id/chcPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtOdometer"
+        android:layout_below="@+id/editOdometer"
+        android:layout_marginTop="17dp"
+        android:text="@string/primary" />
+
+    <TextView
+        android:id="@+id/txtTankSize"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtVehicleModel"
+        android:layout_below="@+id/spVehicleModel"
+        android:layout_marginTop="15dp"
+        android:singleLine="true"
+        android:text="@string/tankSize" />
 
 </RelativeLayout>

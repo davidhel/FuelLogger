@@ -26,8 +26,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/txtOdo"
-        android:layout_toRightOf="@+id/txtOdo"
-        android:text="@string/exampleOdometer" />
+        android:layout_toRightOf="@+id/txtOdo" 
+        android:hint="Odometer"
+        android:inputType="numberDecimal"
+        android:singleLine="true"/>
 
     <TextView
         android:id="@+id/txtWhatIsOdo"
@@ -54,9 +56,9 @@
         android:layout_alignBaseline="@+id/txtLitre"
         android:layout_alignLeft="@+id/etOdo"
         android:layout_toRightOf="@+id/txtLitre"
-        android:inputType="number"
-        android:maxLength="3"
-        android:text="@string/examplelitre" />
+        android:inputType="numberDecimal"
+        android:singleLine="true"
+        android:hint="Litre filled" />
 
     <CheckBox
         android:id="@+id/chkPartial"
@@ -72,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/txtLitre"
+        android:singleLine="true"
         android:layout_below="@+id/chkPartial"
         android:layout_marginTop="22dp"
         android:text="@string/cost" />
@@ -82,8 +85,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/chkPartial"
         android:layout_below="@+id/chkPartial"
-        android:inputType="number"
-        android:text="@string/examplecost" />
+        android:inputType="numberDecimal"
+        android:singleLine="true"
+        android:hint="Refill cost" />
 
     <TextView
         android:id="@+id/tvPickDate"

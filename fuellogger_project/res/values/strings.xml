@@ -6,18 +6,19 @@
     <string name="hello_world">Hello git!</string>
     <string name="submit">Submit</string>
     <string name="name">Name:</string>
-    <string name="primary">This is my primary vehicle</string>
-    <string name="brand">Bilmerke:</string>
-    <string name="model">Bilmodell:</string>
+    <string name="primary">Set as primary vehicle</string>
+    <string name="brand">Brand</string>
+    <string name="model">Model</string>
     <string name="exampleBrand">Toyota</string>
     <string name="exampleModel">Corolla</string>
-    <string name="tankSize">Tank volum:</string>
+    <string name="tankSize">Tank volume</string>
     <string name="exampleTankSize">50</string>
     <string name="ifNotRegistered">Vennligst reigistrer deg</string>
     <string name="register">Registrer</string>
     <string name="volumeMeasure">L</string>
-    <string name="odometer">Odometer:</string>
-    <string name="exampleOdometer">135234</string>
+    <string name="odometer">Odometer</string>
+    <string name="hint_tank_volume">Tank volume in litre</string>
+    <string name="hint_odometer">Odometer</string>
     <string name="distanceMeasure">km</string>
     <string name="databaseName">FuelLoggerDatabase.db</string>
     <string name="Odometer">Odometer</string>
@@ -37,7 +38,9 @@
     <string name="action_calculator">Trip Calculator</string>
     <string name="distance_title">Distance:</string>
     <string name="fuel_used_title">Fuel used:</string>
-
+	<string name="hint_brand">Brand</string>
+	<string name="hint_model">Model</string>
+    
     <string-array name="week_days">
         <item>Sunday</item>
         <item>Monday</item>
