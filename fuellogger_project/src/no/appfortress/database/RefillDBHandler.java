@@ -179,7 +179,7 @@ public class RefillDBHandler {
 				.getColumnIndex(CarFeedEntry.COLUMN_CAR_MODEL));
 		int year = cursor.getInt(cursor
 				.getColumnIndex(CarFeedEntry.COLUMN_YEAR));
-		long odometer = cursor.getLong(cursor
+		int odometer = cursor.getInt(cursor
 				.getColumnIndex(CarFeedEntry.COLUMN_ODOMETER));
 		float fuelTank = cursor.getFloat(cursor
 				.getColumnIndex(CarFeedEntry.COLUMN_FUELTANK));

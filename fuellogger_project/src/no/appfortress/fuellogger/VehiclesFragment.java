@@ -104,7 +104,7 @@ public class VehiclesFragment extends Fragment implements OnTabChangeListener, O
 	public void onPageScrollStateChanged(int arg0) {
 	}
 
-	@Override
+	@Override 
 	public void onPageScrolled(int arg0, float arg1, int arg2) {
 		int pos = viewPager.getCurrentItem();
 		tabHost.setCurrentTab(pos);

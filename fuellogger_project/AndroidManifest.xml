@@ -74,7 +74,9 @@
             android:name="no.appfortress.gps.MyGoogleMaps"
             android:parentActivityName="no.appfortress.MainActivity" >
         </activity>
-
+		<activity
+		    android:name="no.appfortress.fuellogger.VehicleActivity"
+		    android:parentActivityName="no.appfortress.MainActivity" />
         <service
             android:name="no.appfortress.gps.GPSTrackService"
             android:exported="false" />
