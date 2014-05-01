@@ -20,7 +20,8 @@ public class CarDBHelper extends SQLiteOpenHelper {
 			+ CarFeedEntry.COLUMN_YEAR + " INTEGER, " 
 			+ CarFeedEntry.COLUMN_ODOMETER + " INTEGER NOT NULL, "
 			+ CarFeedEntry.COLUMN_FUELTANK + " FLOAT, " 
-			+ CarFeedEntry.COLUMN_FUEL + " FLOAT )";
+			+ CarFeedEntry.COLUMN_FUEL + " FLOAT, "
+			+ CarFeedEntry.COLUMN_CONSUMPTION + " FLOAT )";
 	
 	private static String SQL_DELETE_ENTRIES = 
 			"DROP TABLE IF EXISTS " + CarFeedEntry.TABLE_NAME;

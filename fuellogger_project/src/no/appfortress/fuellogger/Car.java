@@ -9,6 +9,7 @@ public class Car {
 	private int odometer;
 	private float fuelTank;
 	private float fuel;
+	private float consumption;
 
 	public Car(long _id,String _brand, String _model, int _year, int _odometer,
 			float _fuelTank) {
@@ -19,6 +20,7 @@ public class Car {
 		odometer = _odometer;
 		fuelTank = _fuelTank;
 	}
+	
 	
 	
 	
