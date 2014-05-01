@@ -12,6 +12,7 @@ import org.achartengine.GraphicalView;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 public class GraphActivity extends Activity {
 
@@ -27,16 +28,18 @@ public class GraphActivity extends Activity {
 		setContentView(R.layout.activity_graph);
 
 		refills = getDataFromDB();
-		Log.d("GRAPH", "start");
-		for (int i = 0; i <= refills.size(); i++) {
+		
+		for (int i = 0; i < refills.size(); i++) {
+			Log.d("GRAPH", refills.get(i).toString());
 			Refill r = refills.get(i);
 			Calendar c = r.getDate();
+			Log.d("hei", c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.DAY_OF_MONTH));
 			int month = c.get(Calendar.MONTH);
-			int day = c.get(Calendar.DAY_OF_MONTH);
-			String date = day + "." + month;
+			int day = c.get(Calendar.DAY_OF_YEAR);
 			double cons = r.getFuelPrice();
-			Point p = MockData.getDataFromReceiver(Double.parseDouble(date), cons); // We got new data!
-			line.addNewPoints(p); // Add it to our graph
+			Toast.makeText(this,String.valueOf(cons), Toast.LENGTH_SHORT).show();
+			Point p = MockData.getDataFromReceiver(i, cons); // We got new data!
+			line.addNewPoints(p, c); // Add it to our graph
 			// view.repaint();
 		}
 
