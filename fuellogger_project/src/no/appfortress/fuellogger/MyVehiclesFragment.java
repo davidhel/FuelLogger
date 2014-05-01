@@ -8,8 +8,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.support.v4.app.DialogFragment;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.annotation.SuppressLint;
 import android.os.Build;
+=======
+>>>>>>> cc88520ebfd5b2d69665d00e16ada938c7c1455a
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,7 +25,10 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cc88520ebfd5b2d69665d00e16ada938c7c1455a
 public class MyVehiclesFragment extends Fragment {
 
 	public static final String REGISTER_NEW_CAR = "REGISTER_NEW_CAR";
@@ -35,12 +41,16 @@ public class MyVehiclesFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
-		View view = inflater.inflate(R.layout.activity_myvehicles, container, false);
+
+		View view = inflater.inflate(R.layout.activity_myvehicles, container,
+				false);
 		return view;
 	}
 
+	private void setListView() {
+		if (listview == null) {
 
+<<<<<<< HEAD
 
 	
 
@@ -53,44 +63,56 @@ public class MyVehiclesFragment extends Fragment {
 		
 		}else{
 			listview  = (ListView) getActivity().findViewById(R.id.listview);
+=======
+			listview = (ListView) getView().findViewById(R.id.listview);
+
+		} else {
+			listview = (ListView) getActivity().findViewById(R.id.listview);
+>>>>>>> cc88520ebfd5b2d69665d00e16ada938c7c1455a
 		}
 		cars = new ArrayList<Car>();
-		
+
 		adapter = new ArrayAdapter<Car>(getActivity(),
 				android.R.layout.simple_list_item_1, cars);
 
 		listview.setAdapter(adapter);
-		
+
 		database = new CarDBHandler(getActivity());
-		List<Car> carList= database.getAllCars();
+		List<Car> carList = database.getAllCars();
 		database.close();
-		
+
 		cars.clear();
-		for(Car c : carList){
+		for (Car c : carList) {
 			cars.add(c);
 		}
 
 		adapter.notifyDataSetChanged();
-		
-		//setListView();
-		
+
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+
+		setListView();
+
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,
 					final int position, long id) {
-					Car c = cars.get(position);
-					openCarInfo(c);
+				Car c = cars.get(position);
+				openCarInfo(c);
 			}
 		});
-		
+
 		listview.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				boolean rtn = listLongClick(position);
-				
+
 				return rtn;
 			}
 		});
@@ -114,23 +136,26 @@ public class MyVehiclesFragment extends Fragment {
 		startActivity(vehicleIntent);
 	}
 
+<<<<<<< HEAD
 	public  class LongClickCarDialog extends DialogFragment{
+=======
+	private class LongClickCarDialog extends DialogFragment {
+>>>>>>> cc88520ebfd5b2d69665d00e16ada938c7c1455a
 
 		private Car car;
-		
-		public LongClickCarDialog(Car c){
+
+		public LongClickCarDialog(Car c) {
 			car = c;
 		}
-		
+
 		@Override
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());	
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			builder.setTitle(car.getBrand() + " " + car.getModel());
 			return super.onCreateDialog(savedInstanceState);
 		}
-		
-	}
-	
-}
 
+	}
+
+}
