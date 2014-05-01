@@ -121,7 +121,7 @@ public class RefillDBHandler {
 		return dateFormat.getCalendar();
 	}
 	
-	public List<Refill> getRefillsFromCar(id carID){
+	public List<Refill> getRefillsFromCar(long carID){
 		List<Refill> refills = new ArrayList<Refill>();
 		try{
 			
@@ -166,6 +166,7 @@ public class RefillDBHandler {
 		db.close();
 		return refills;
 	}
+	
 	
 	public void deleteRefill(long refillID){
 		try{
