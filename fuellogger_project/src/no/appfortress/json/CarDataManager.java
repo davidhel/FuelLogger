@@ -34,13 +34,13 @@ public class CarDataManager {
 	private final static String APIKEY = "xyvjjvsayxn6wc4456524z83";
 	private String make;
 	private String model;
+	
 	public static String tag_makes = "makes";
 	public static String tag_models = "name";
 
 	private OnVehicleRequestListener caller;
 
-	private JSONObject jsonObject;
-	private JSONObject test;
+	private JSONArray jsonArray;
 	private static final String JSONMAKESURL = "http://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key="
 			+ APIKEY + "&state=new&view=full";
 	private  String jSONModelsURL = "https://api.edmunds.com/api/vehicle/v2/"
@@ -62,43 +62,50 @@ public class CarDataManager {
 
 	
 	public String[] getMakes(){
-		String[] makes = null;
-		/*try {
+		if(jsonArray == null){
+			return new String[0];
+		}
+		String[] makes = new String[jsonArray.length()];
+		try {
 			
-			JSONObject genresString = jsonObject.getJSONObject(1);
-			//Log.d("JSONOBJECT", genresString.toString());
-			//test = jsonObject.getJSONObject(tag_models);
-			//Log.d("MAKES", jsonObject.toString());
-			//String genresString = jsonObject.getJSONObject(tag_makes).getString(tag_models);
-			/*JSONObject json = new JSONObject(genresString);
-			Log.d("MAKES", genresString);
-			Log.d("MAKES", json.getString("name"));
-			//makes = genresString.split(",");
+			for(int i = 0; i < jsonArray.length(); i++){
+				
+				makes[i] = jsonArray.getJSONObject(i).getString("name");
+			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
-		}*/
+		}
 		return makes;
 	}
-	/*
-	public String[] getModels(){
-		String[] models;
+	
+	public String[] getModels(String make){
+		
+		String[] models = null;
+		JSONArray jsonArr = null;
 		try {
-			String genresString = jsonObject.getString(tag_models);
-			models = genresString.split(",");
+			
+			for(int i = 0; i < jsonArray.length(); i++){
+				
+				if(jsonArray.getJSONObject(i).getString("name").equals(make)){
+					jsonArr = jsonArray.getJSONObject(i).getJSONArray("models");
+				}
+			}
+			if(jsonArr == null){
+				return null;
+			}
+			models = new String[jsonArr.length()];
+			for(int i = 0; i < jsonArr.length(); i++){
+				models[i] = jsonArr.getJSONObject(i).getString("name");
+				Log.d("String", models[i]);
+			}
 		} catch (JSONException e) {
 			return null;
 		}
 		return models;
 	}
-	public boolean isSearchSuccess() {
-		try {
-			jsonObject.getString(tag_makes);
-		} catch (JSONException e) {
-			return false;
-		}
-		return true;
-	}*/
+	
+	
 
 	protected StringBuilder getJSONString(String search) throws IOException {
 		StringBuilder builder = new StringBuilder();
@@ -157,8 +164,8 @@ public class CarDataManager {
 		protected void onPostExecute(StringBuilder result) {
 			try {
 				
-				JSONObject json = new JSONObject(result.toString()).getJSONObject("makes");
-				Log.d("String", result.toString());
+				jsonArray =  new JSONObject(result.toString()).getJSONArray("makes");
+				
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}

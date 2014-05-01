@@ -13,13 +13,14 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 public class RegisterVehicleFragment extends Fragment implements
-		OnVehicleRequestListener, OnItemSelectedListener, OnClickListener {
-	
+		OnVehicleRequestListener, OnClickListener {
+
 	private static final String DOWNLOAD_MAKES = "DOWNLOAD_MAKES";
 	private static final String DOWNLOAD_MODELS = "DOWNLOAD_MODELS";
 	private static final String NOT_DOWNLOADING = "NOT_DOWNLOADING";
@@ -33,18 +34,16 @@ public class RegisterVehicleFragment extends Fragment implements
 
 	private String[] carmodels;
 	private String selectedBrand;
+	private String selectedModel;
 
-	Spinner carBrand;
-	EditText carModel;
-	EditText tankSize;
-	EditText odometer;
-	Button saveCar;
+	private Spinner carBrand, carModel;
+	private EditText tankSize, odometer;
+	private Button saveCar;
 
-	public RegisterVehicleFragment(){	
-		
+	public RegisterVehicleFragment() {
+
 	}
-	
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -60,13 +59,12 @@ public class RegisterVehicleFragment extends Fragment implements
 
 		FragmentActivity a = getActivity();
 		carBrand = (Spinner) a.findViewById(R.id.spVehicleBrand);
-		carModel = (EditText) a.findViewById(R.id.editVehicleModel);
+		carModel = (Spinner) a.findViewById(R.id.spVehicleModel);
 		tankSize = (EditText) a.findViewById(R.id.editTankSize);
 		odometer = (EditText) a.findViewById(R.id.editOdometer);
 		saveCar = (Button) a.findViewById(R.id.btnSubmit);
-		
-		
-		carBrand.setOnItemSelectedListener(this);
+
+		carBrand.setOnItemSelectedListener(new SelectBrandListener());
 		saveCar.setOnClickListener(this);
 	}
 
@@ -88,6 +86,12 @@ public class RegisterVehicleFragment extends Fragment implements
 		switch (downloadStatus) {
 		case DOWNLOAD_MAKES:
 			makes = carDataManager.getMakes();
+
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+					getActivity(), R.layout.car_spinner_layout);
+			adapter.addAll(makes);
+			carBrand.setAdapter(adapter);
+
 			break;
 		case DOWNLOAD_MODELS:
 			// models = carDataManager.getModels();
@@ -97,30 +101,34 @@ public class RegisterVehicleFragment extends Fragment implements
 		downloadStatus = NOT_DOWNLOADING;
 	}
 
-
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position,
-			long id) {
-		// TODO Auto-generated method stub
-		carmodels = getResources().getStringArray(R.array.carmodels);
-		selectedBrand = carmodels[position];
-		Log.d("DATABASE", selectedBrand);
-
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> parent) {
-
-	}
-
 	@Override
 	public void onClick(View v) {
 		CarDBHandler database = new CarDBHandler(getActivity());
-		database.insertCar(selectedBrand, carModel.getText().toString(), 0,
+		database.insertCar(selectedBrand, selectedModel, 0,
 				Integer.parseInt(odometer.getText().toString()),
 				Float.parseFloat(tankSize.getText().toString()));
-		VehiclesFragment vehicles = (VehiclesFragment)getParentFragment();
+		VehiclesFragment vehicles = (VehiclesFragment) getParentFragment();
 		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);
-		
+
+	}
+
+	private class SelectBrandListener implements OnItemSelectedListener {
+
+		@Override
+		public void onItemSelected(AdapterView<?> parent, View view,
+				int position, long id) {
+			if (makes != null) {
+				selectedBrand = makes[position];
+				models = carDataManager.getModels(selectedBrand);
+				ArrayAdapter<String> modelAdapter = new ArrayAdapter<String>(getActivity(), R.layout.car_spinner_layout);
+				modelAdapter.addAll(models);
+				carModel.setAdapter(modelAdapter);
+			}
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> parent) {
+		}
+
 	}
 }

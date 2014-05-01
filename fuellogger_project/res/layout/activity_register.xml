@@ -23,13 +23,11 @@
 
     <Spinner
         android:id="@+id/spVehicleBrand"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgCar"
-        android:layout_marginTop="31dp"
         android:layout_toRightOf="@+id/txtVehicleBrand"
-        android:ems="10"
-        android:entries="@array/carmodels" />
+        android:ems="10" />
 
     <TextView
         android:id="@+id/txtVehicleModel"
@@ -40,15 +38,14 @@
         android:layout_marginTop="31dp"
         android:text="@string/model" />
 
-    <EditText
-        android:id="@+id/editVehicleModel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/txtVehicleModel"
-        android:layout_alignLeft="@+id/spVehicleBrand"
-        android:ems="10"
-        android:text="@string/exampleModel" />
-
+     <Spinner
+         android:id="@+id/spVehicleModel"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/editTankSize"
+         android:layout_below="@+id/spVehicleBrand"
+         android:ems="10" />
+    
     <TextView
         android:id="@+id/txtTankSize"
         android:layout_width="wrap_content"
@@ -63,7 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/txtTankSize"
-        android:layout_alignLeft="@+id/editVehicleModel"
+        android:layout_alignLeft="@+id/spVehicleBrand"
         android:ems="10"
         android:text="@string/exampleTankSize" />
 
@@ -119,5 +116,7 @@
         android:layout_marginBottom="36dp"
         android:layout_marginRight="30dp"
         android:text="@string/submit" />
+
+   
 
 </RelativeLayout>
