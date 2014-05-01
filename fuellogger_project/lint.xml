@@ -3,4 +3,7 @@
     <issue id="NewApi">
         <ignore path="src/no/appfortress/fuellogger/MyVehiclesActivity.java" />
     </issue>
+    <issue id="ValidFragment">
+        <ignore path="src/no/appfortress/fuellogger/MyVehiclesFragment.java" />
+    </issue>
 </lint>

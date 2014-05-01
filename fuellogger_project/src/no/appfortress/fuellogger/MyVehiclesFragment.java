@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.appfortress.database.CarDBHandler;
-<<<<<<< HEAD
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.support.v4.app.DialogFragment;
 import android.content.Intent;
-=======
 import android.annotation.SuppressLint;
 import android.os.Build;
->>>>>>> c5096e3cb62b28fafd744038d83758d34a078d4d
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,7 +22,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-@SuppressLint("NewApi")
+
 public class MyVehiclesFragment extends Fragment {
 
 	public static final String REGISTER_NEW_CAR = "REGISTER_NEW_CAR";
@@ -44,27 +41,14 @@ public class MyVehiclesFragment extends Fragment {
 	}
 
 
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onActivityCreated(savedInstanceState);
-		database = new CarDBHandler(getActivity());
-		listview = (ListView) getActivity().findViewById(R.id.listviewFueling);
 
-		cars = database.getAllCars();
-<<<<<<< HEAD
 	
 
-=======
-=======
-	private void setListView() {
-<<<<<<< HEAD
-		if(listview == null){
-=======
->>>>>>> cff71dbde521230b7cd7f8fdb51390d5d4705480
->>>>>>> bd1d6d1fa3e686a25a29a23d2534a856c2fe1e60
 
->>>>>>> c5096e3cb62b28fafd744038d83758d34a078d4d
+	private void setListView() {
+
+		if(listview == null){
+
 		listview = (ListView) getView().findViewById(R.id.listview);
 		
 		}else{
@@ -130,7 +114,7 @@ public class MyVehiclesFragment extends Fragment {
 		startActivity(vehicleIntent);
 	}
 
-	private class LongClickCarDialog extends DialogFragment{
+	public  class LongClickCarDialog extends DialogFragment{
 
 		private Car car;
 		

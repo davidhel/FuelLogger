@@ -1225,21 +1225,12 @@ containing a value of this type.
         public static final int activity_chooser_view_content=0x7f060028;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
-<<<<<<< HEAD
         public static final int btnCalculate=0x7f060068;
         public static final int btnPickDate=0x7f060049;
         public static final int btnSubmit=0x7f06005d;
         public static final int btnSubmitFueling=0x7f06004a;
-        public static final int btnWidget=0x7f060075;
-        public static final int chcPrimary=0x7f06005c;
-=======
-        public static final int btnCalculate=0x7f060048;
-        public static final int btnPickDate=0x7f060054;
-        public static final int btnSubmit=0x7f060068;
-        public static final int btnSubmitFueling=0x7f060055;
         public static final int btnWidget=0x7f06007a;
-        public static final int chcPrimary=0x7f060067;
->>>>>>> bd1d6d1fa3e686a25a29a23d2534a856c2fe1e60
+        public static final int chcPrimary=0x7f06005c;
         public static final int checkbox=0x7f060030;
         public static final int chkPartial=0x7f060045;
         public static final int collapseActionView=0x7f06000d;
@@ -1269,14 +1260,9 @@ containing a value of this type.
         public static final int icon=0x7f06002d;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f06002a;
-<<<<<<< HEAD
+        public static final int imageView1=0x7f060072;
         public static final int imgCar=0x7f060051;
         public static final int imgFuel=0x7f06003f;
-=======
-        public static final int imageView1=0x7f060072;
-        public static final int imgCar=0x7f06005c;
-        public static final int imgFuel=0x7f06004a;
->>>>>>> bd1d6d1fa3e686a25a29a23d2534a856c2fe1e60
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f06002c;
         public static final int listview=0x7f060050;
@@ -1309,13 +1295,8 @@ containing a value of this type.
         public static final int split_action_bar=0x7f060021;
         public static final int submit_area=0x7f06003c;
         public static final int tabMode=0x7f060002;
-<<<<<<< HEAD
-        public static final int tabhost=0x7f060072;
-        public static final int tbStartService=0x7f06004b;
-=======
         public static final int tabhost=0x7f060077;
-        public static final int tbStartService=0x7f060056;
->>>>>>> bd1d6d1fa3e686a25a29a23d2534a856c2fe1e60
+        public static final int tbStartService=0x7f06004b;
         public static final int terrain=0x7f06001b;
         public static final int textView2=0x7f060074;
         public static final int textView3=0x7f060075;
@@ -1329,9 +1310,9 @@ containing a value of this type.
         public static final int tvDistanceTitle=0x7f06006c;
         public static final int tvFuelUsed=0x7f060070;
         public static final int tvFuelUsedTitle=0x7f06006f;
-<<<<<<< HEAD
         public static final int tvPickDate=0x7f060048;
-        public static final int twVehicleTabs=0x7f060073;
+        public static final int tvVehicleTitle=0x7f060073;
+        public static final int twVehicleTabs=0x7f060078;
         public static final int txtDistance=0x7f06005f;
         public static final int txtDistanceMeasure=0x7f06005b;
         public static final int txtFuelConsumption=0x7f060065;
@@ -1349,28 +1330,6 @@ containing a value of this type.
         public static final int txtVolumeUnit=0x7f060067;
         public static final int txtVoulumeMeasure=0x7f060058;
         public static final int txtWhatIsOdo=0x7f060042;
-=======
-        public static final int tvPickDate=0x7f060053;
-        public static final int tvVehicleTitle=0x7f060073;
-        public static final int twVehicleTabs=0x7f060078;
-        public static final int txtDistance=0x7f06003f;
-        public static final int txtDistanceMeasure=0x7f060066;
-        public static final int txtFuelConsumption=0x7f060045;
-        public static final int txtFuelPrice=0x7f060042;
-        public static final int txtFuelUnit=0x7f060044;
-        public static final int txtLengthUnit=0x7f060041;
-        public static final int txtLitre=0x7f06004e;
-        public static final int txtOdo=0x7f06004b;
-        public static final int txtOdometer=0x7f060064;
-        public static final int txtResult=0x7f060049;
-        public static final int txtTankSize=0x7f060061;
-        public static final int txtVehicleBrand=0x7f06005d;
-        public static final int txtVehicleModel=0x7f06005f;
-        public static final int txtVehicleName=0x7f060069;
-        public static final int txtVolumeUnit=0x7f060047;
-        public static final int txtVoulumeMeasure=0x7f060063;
-        public static final int txtWhatIsOdo=0x7f06004d;
->>>>>>> bd1d6d1fa3e686a25a29a23d2534a856c2fe1e60
         public static final int up=0x7f060024;
         public static final int useLogo=0x7f060003;
         public static final int withText=0x7f06000c;
@@ -1447,6 +1406,7 @@ containing a value of this type.
         public static final int main=0x7f0e0000;
     }
     public static final class string {
+        public static final int =0x7f0b005b;
         public static final int Odometer=0x7f0b003b;
         public static final int Tracking=0x7f0b004d;
         public static final int Unit_convertion=0x7f0b004e;
@@ -1609,7 +1569,7 @@ containing a value of this type.
         public static final int ifNotRegistered=0x7f0b0034;
         public static final int km=0x7f0b0058;
         public static final int litre=0x7f0b003d;
-        public static final int litre_per_mile=0x7f0b005b;
+        public static final int litre_per_mile=0x7f0b005c;
         /**  Location client code resources (prefix with location_client) 
          */
         public static final int location_client_powered_by_google=0x7f0b0027;
