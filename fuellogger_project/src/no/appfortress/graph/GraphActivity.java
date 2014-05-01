@@ -17,19 +17,20 @@ import android.widget.Toast;
 public class GraphActivity extends Activity {
 
 	private static GraphicalView view;
-	private LineGraph line = new LineGraph();
+	private LineGraph line;
 	private static Thread thread;
 	private List<Refill> refills;
-
+	private float highestFuelPrice;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graph);
-
+		line = new LineGraph(this);
 		refills = getDataFromDB();
-		
+		highestFuelPrice = 0;
 		for (int i = 0; i < refills.size(); i++) {
+
 			Log.d("GRAPH", refills.get(i).toString());
 			Refill r = refills.get(i);
 			Calendar c = r.getDate();
@@ -38,11 +39,17 @@ public class GraphActivity extends Activity {
 			int day = c.get(Calendar.DAY_OF_YEAR);
 			double cons = r.getFuelPrice();
 			Toast.makeText(this,String.valueOf(cons), Toast.LENGTH_SHORT).show();
+			//Find the highest price
+			if(highestFuelPrice < r.getFuelPrice()){
+				highestFuelPrice = r.getFuelPrice();
+			}
+			
 			Point p = MockData.getDataFromReceiver(i, cons); // We got new data!
 			line.addNewPoints(p, c); // Add it to our graph
 			// view.repaint();
 		}
-
+		line.mRenderer.setYAxisMax(highestFuelPrice);
+		
 	}
 
 	@Override
