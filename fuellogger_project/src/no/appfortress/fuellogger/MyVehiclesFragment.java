@@ -32,9 +32,12 @@ public class MyVehiclesFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.activity_myvehicles, container, false);
+		
+		View view = inflater.inflate(R.layout.activity_myvehicles, container, false);
+		return view;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -43,34 +46,70 @@ public class MyVehiclesFragment extends Fragment {
 		listview = (ListView) getActivity().findViewById(R.id.listviewFueling);
 
 		cars = database.getAllCars();
+=======
+	private void setListView() {
+>>>>>>> cff71dbde521230b7cd7f8fdb51390d5d4705480
 
+		listview = (ListView) getView().findViewById(R.id.listview);
+		
+		cars = new ArrayList<Car>();
+		
 		adapter = new ArrayAdapter<Car>(getActivity(),
 				android.R.layout.simple_list_item_1, cars);
-		listview.setAdapter(adapter);
-		adapter.notifyDataSetChanged();
-		database.close();
 
+		listview.setAdapter(adapter);
+		
+		database = new CarDBHandler(getActivity());
+		List<Car> carList= database.getAllCars();
+		database.close();
+		
+		cars.clear();
+		for(Car c : carList){
+			cars.add(c);
+		}
+
+		adapter.notifyDataSetChanged();
+		
+
+	}
+
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onViewCreated(view, savedInstanceState);
+	
+	}
+	
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		
+		setListView();
+		
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,
 					final int position, long id) {
+				Car thisCar = cars.get(position);
+				database.deleteRow(thisCar.getID());
+				cars.remove(position);
 				if (Build.VERSION.SDK_INT >= 12) {
-					Car thisCar = cars.get(position);
-					database.deleteRow(thisCar.getID());
-					cars.remove(position);
 					view.animate().setDuration(300).alpha(0).translationX(1000)
 							.withEndAction(new Runnable() {
 								@Override
 								public void run() {
-
 									adapter.notifyDataSetChanged();
 									view.setAlpha(1);
+									view.setTranslationX(0);
 								}
 							});
 				} else {
-
+					adapter.notifyDataSetChanged();
 				}
+
 			}
 		});
 	}
