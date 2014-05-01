@@ -1,5 +1,6 @@
 package no.appfortress.graph;
 
+import java.util.Calendar;
 import java.util.List;
 
 import no.appfortress.database.RefillDBHandler;
@@ -29,8 +30,11 @@ public class GraphActivity extends Activity {
 		for (int i = 0; i <= refills.size(); i++) {
 			Refill r = refills.get(i);
 			Calendar c = r.getDate();
-			float cons = 
-			Point p = MockData.getDataFromReceiver(Integer.parseInt(refills.get(i).getDate().), Integer.parseInt(refills.get(i).toString())); // We got new data!
+			int month = c.get(Calendar.MONTH);
+			int day = c.get(Calendar.DAY_OF_MONTH);
+			String date = day + "." + month;
+			double cons = r.getFuelPrice();
+			Point p = MockData.getDataFromReceiver(Double.parseDouble(date), cons); // We got new data!
 			line.addNewPoints(p); // Add it to our graph
 			// view.repaint();
 		}
