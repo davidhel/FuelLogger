@@ -3,10 +3,12 @@ package no.appfortress.fuellogger;
 import no.appfortress.database.CarDBHandler;
 import no.appfortress.json.CarDataManager;
 import no.appfortress.json.CarDataManager.OnVehicleRequestListener;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class RegisterVehicleFragment extends Fragment implements
 		OnVehicleRequestListener, OnClickListener {
@@ -39,6 +42,9 @@ public class RegisterVehicleFragment extends Fragment implements
 	private Spinner carBrand, carModel;
 	private EditText tankSize, odometer;
 	private Button saveCar;
+	private EditText carBrandEditText;
+	private EditText carModelEditText;
+	private boolean connected;
 
 	public RegisterVehicleFragment() {
 
@@ -55,17 +61,35 @@ public class RegisterVehicleFragment extends Fragment implements
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
-		getMakes();
-
 		FragmentActivity a = getActivity();
 		carBrand = (Spinner) a.findViewById(R.id.spVehicleBrand);
 		carModel = (Spinner) a.findViewById(R.id.spVehicleModel);
+		carBrandEditText = (EditText) a.findViewById(R.id.etVehicleBrand);
+		carModelEditText = (EditText) a.findViewById(R.id.etVehicleModel);
 		tankSize = (EditText) a.findViewById(R.id.editTankSize);
 		odometer = (EditText) a.findViewById(R.id.editOdometer);
 		saveCar = (Button) a.findViewById(R.id.btnSubmit);
+		
+		if(isConnectedToInternet()){
+			connected = true;
+			getMakes();
+			carBrand.setOnItemSelectedListener(new SelectBrandListener());
 
-		carBrand.setOnItemSelectedListener(new SelectBrandListener());
+		}else{
+			connected = false;
+			carBrand.setVisibility(View.INVISIBLE);
+			carModel.setVisibility(View.INVISIBLE);
+			carBrandEditText.setVisibility(View.VISIBLE);
+			carModelEditText.setVisibility(View.VISIBLE);
+			
+		}
 		saveCar.setOnClickListener(this);
+	}
+
+	private boolean isConnectedToInternet() {
+		ConnectivityManager conMan = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo activeNetworkInfo = conMan.getActiveNetworkInfo();
+		return (activeNetworkInfo != null && activeNetworkInfo.isConnected());
 	}
 
 	private void getMakes() {
@@ -86,7 +110,6 @@ public class RegisterVehicleFragment extends Fragment implements
 		switch (downloadStatus) {
 		case DOWNLOAD_MAKES:
 			makes = carDataManager.getMakes();
-
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 					getActivity(), R.layout.car_spinner_layout);
 			adapter.addAll(makes);
@@ -94,7 +117,6 @@ public class RegisterVehicleFragment extends Fragment implements
 
 			break;
 		case DOWNLOAD_MODELS:
-			// models = carDataManager.getModels();
 			break;
 
 		}
@@ -103,6 +125,18 @@ public class RegisterVehicleFragment extends Fragment implements
 
 	@Override
 	public void onClick(View v) {
+		String errorMessage = "";
+		
+		if(!connected){
+			selectedBrand = carBrandEditText.getText().toString();
+			selectedModel = carModelEditText.getText().toString();
+		}
+		
+		if(selectedBrand.trim() == "" || selectedModel.trim() == "" ||  odometer.getText().toString().trim() == ""){
+			Toast.makeText(getActivity(), "Please type the brand, model and the odometer of your car." , Toast.LENGTH_SHORT).show();
+			return;
+		}
+		
 		CarDBHandler database = new CarDBHandler(getActivity());
 		database.insertCar(selectedBrand, selectedModel, 0,
 				Integer.parseInt(odometer.getText().toString()),
@@ -123,6 +157,7 @@ public class RegisterVehicleFragment extends Fragment implements
 				ArrayAdapter<String> modelAdapter = new ArrayAdapter<String>(getActivity(), R.layout.car_spinner_layout);
 				modelAdapter.addAll(models);
 				carModel.setAdapter(modelAdapter);
+				carModel.setOnItemSelectedListener(new SelectModelListener());
 			}
 		}
 
@@ -130,5 +165,22 @@ public class RegisterVehicleFragment extends Fragment implements
 		public void onNothingSelected(AdapterView<?> parent) {
 		}
 
+	}
+	
+	private class SelectModelListener implements OnItemSelectedListener{
+
+		@Override
+		public void onItemSelected(AdapterView<?> parent, View view,
+				int position, long id) {
+			selectedModel = models[position];
+			
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> parent) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }
