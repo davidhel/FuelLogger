@@ -57,30 +57,35 @@ public class MyFuelingsFragment extends Fragment {
 
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
-			@SuppressLint("NewApi")
+			
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,
 					final int position, long id) {
+				
+				Refill thisList = refills.get(position);
+				database.deleteRefill(thisList.getID());
+				refills.remove(position);
+				
 				if (Build.VERSION.SDK_INT >= 12) {
-					Refill thisList = refills.get(position);
-					database.deleteRefill(thisList.getID());
-					refills.remove(position);
-					view.animate().setDuration(300).alpha(0).translationX(1000)
-							.withEndAction(new Runnable() {
-								@Override
-								public void run() {
-
-									adapter.notifyDataSetChanged();
-									view.setAlpha(1);
-								}
-							});
+					animate(view);
 				} else {
-
+					adapter.notifyDataSetChanged();
 				}
 			}
 		});
 
-		// //////////////////////
-		// initGUIElements();
+	}
+
+	protected void animate(final View view) {
+		view.animate().setDuration(300).alpha(0).translationX(1000)
+		.withEndAction(new Runnable() {
+			@Override
+			public void run() {
+				adapter.notifyDataSetChanged();
+				view.setAlpha(1);
+				view.setTranslationX(0);
+			}
+		});
+		
 	}
 }

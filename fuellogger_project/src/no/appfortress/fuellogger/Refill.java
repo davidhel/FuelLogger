@@ -9,7 +9,6 @@ public class Refill {
 	private float fuelLitre, fuelPrice, latitude, longitude;
 	private long odometer;
 	private Calendar date;
-
 	public Refill(long _id, Car _car, float _fuelLitre, float _fuelPrice,
 			long _odometer, Calendar _date, float _latitude, float _longitude) {
 		id = _id;
@@ -22,7 +21,9 @@ public class Refill {
 		longitude = _longitude;
 	}
 
-	
+	public float getFuelPrice(){
+		return (fuelPrice / fuelLitre);
+	}
 	
 	@Override
 	public String toString() {

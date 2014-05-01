@@ -135,15 +135,23 @@ public class MyVehiclesFragment extends Fragment {
 					case 0:
 						break;
 					case 1:
-						
+						deleteCar(car);
 						break;
 					}
 					
 				}
 			});
-			return super.onCreateDialog(savedInstanceState);
+			return builder.create();
 		}
 
+	}
+	
+	protected void deleteCar(Car c) {
+		CarDBHandler dbHandler = new CarDBHandler(getActivity());
+		dbHandler.deleteRow(c.getID());
+		dbHandler.close();
+		cars.remove(c);
+		adapter.notifyDataSetChanged();
 	}
 
 }

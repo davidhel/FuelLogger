@@ -72,14 +72,14 @@ public class MainActivity extends ActionBarActivity implements
 
 			public void onDrawerClosed(View view) {
 				super.onDrawerClosed(view);
-				getActionBar().setTitle(mDrawerTitle);
-				invalidateOptionsMenu();
+				getSupportActionBar().setTitle(mDrawerTitle);
+				//invalidateOptionsMenu();
 			}
 
 			public void onDrawerOpened(View view) {
 				super.onDrawerOpened(view);
-				getActionBar().setTitle(mDrawerTitle);
-				invalidateOptionsMenu();
+				getSupportActionBar().setTitle(mDrawerTitle);
+				//invalidateOptionsMenu();
 			}
 
 		};

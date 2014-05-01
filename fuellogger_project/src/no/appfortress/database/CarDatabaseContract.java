@@ -45,6 +45,8 @@ public final class CarDatabaseContract {
 		public static final String COLUMN_FUELTANK = "fueltank";
 		// How much fuel are in the tank
 		public static final String COLUMN_FUEL = "fuel";
+		
+		public static final String COLUMN_CONSUMPTION = "consumption";
 	}
 	
 }

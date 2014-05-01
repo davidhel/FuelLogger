@@ -120,6 +120,16 @@ public class RefillDBHandler {
 		}
 		return dateFormat.getCalendar();
 	}
+	
+	public List<Refill> getRefillsFromCar(id carID){
+		List<Refill> refills = new ArrayList<Refill>();
+		try{
+			
+		}catch(SQLiteException ex){
+			
+		}
+		return refills;
+	}
 
 	public List<Refill> getAllRefills() {
 		List<Refill> refills = new ArrayList<Refill>();
