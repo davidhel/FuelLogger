@@ -61,6 +61,10 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+    <string-array name="car_long_dialog">
+        <item>Edit vehicle</item>
+        <item>Delete vehicle</item>
+    </string-array>
     <string-array name="carmodels">
         <item>Toyota</item>
         <item>Peugeot</item>
@@ -90,7 +94,6 @@
     <string name="km">KM</string>
     <string name="fuel_consumption">Fuel comsumption</string>
     <string name="volume_unit">l</string>
-    <string name=""></string>
     <string name="litre_per_mile">l/10km</string>
 
 </resources>

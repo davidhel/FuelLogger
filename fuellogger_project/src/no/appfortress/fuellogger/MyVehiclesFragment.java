@@ -6,14 +6,11 @@ import java.util.List;
 import no.appfortress.database.CarDBHandler;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.support.v4.app.DialogFragment;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-<<<<<<< HEAD
-import android.annotation.SuppressLint;
-import android.os.Build;
-=======
->>>>>>> cc88520ebfd5b2d69665d00e16ada938c7c1455a
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -25,10 +22,6 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> cc88520ebfd5b2d69665d00e16ada938c7c1455a
 public class MyVehiclesFragment extends Fragment {
 
 	public static final String REGISTER_NEW_CAR = "REGISTER_NEW_CAR";
@@ -50,25 +43,10 @@ public class MyVehiclesFragment extends Fragment {
 	private void setListView() {
 		if (listview == null) {
 
-<<<<<<< HEAD
-
-	
-
-
-	private void setListView() {
-
-		if(listview == null){
-
-		listview = (ListView) getView().findViewById(R.id.listview);
-		
-		}else{
-			listview  = (ListView) getActivity().findViewById(R.id.listview);
-=======
 			listview = (ListView) getView().findViewById(R.id.listview);
 
 		} else {
 			listview = (ListView) getActivity().findViewById(R.id.listview);
->>>>>>> cc88520ebfd5b2d69665d00e16ada938c7c1455a
 		}
 		cars = new ArrayList<Car>();
 
@@ -136,11 +114,7 @@ public class MyVehiclesFragment extends Fragment {
 		startActivity(vehicleIntent);
 	}
 
-<<<<<<< HEAD
-	public  class LongClickCarDialog extends DialogFragment{
-=======
 	private class LongClickCarDialog extends DialogFragment {
->>>>>>> cc88520ebfd5b2d69665d00e16ada938c7c1455a
 
 		private Car car;
 
@@ -153,6 +127,20 @@ public class MyVehiclesFragment extends Fragment {
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			builder.setTitle(car.getBrand() + " " + car.getModel());
+			builder.setItems(R.array.car_long_dialog, new OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					switch(which){
+					case 0:
+						break;
+					case 1:
+						
+						break;
+					}
+					
+				}
+			});
 			return super.onCreateDialog(savedInstanceState);
 		}
 
