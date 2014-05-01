@@ -9,5 +9,4 @@ public class MockData {
 	{
 		return new Point(x, y);
 	}
-	
 }
