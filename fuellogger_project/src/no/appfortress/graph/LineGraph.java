@@ -1,5 +1,6 @@
 package no.appfortress.graph;
 
+import java.util.Calendar;
 import java.util.List;
 
 import no.appfortress.database.RefillDBHandler;
@@ -37,6 +38,7 @@ public class LineGraph{
 		 XYSeriesRenderer renderer = new XYSeriesRenderer(); // This will be used to customize line 1
 		 XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer(); // Holds a collection of XYSeriesRenderer
 		
+		 
 		public LineGraph()
 		{
 			// Add single dataset to multiple dataset
@@ -49,8 +51,10 @@ public class LineGraph{
 			
 			// Enable Zoom
 			mRenderer.setZoomButtonsVisible(true);
-			mRenderer.setXTitle("Day #");
-			mRenderer.setYTitle("CM in Rainfall");
+			mRenderer.setXTitle("Day");
+			mRenderer.setYTitle("Litre price");
+			
+			
 			
 			// Add single renderer to multiple renderer
 			mRenderer.addSeriesRenderer(renderer);	
@@ -62,9 +66,16 @@ public class LineGraph{
 			return view;
 		}
 		
-		public void addNewPoints(Point p)
+		public void addNewPoints(Point p, Calendar c)
 		{
 			dataset.add(p.getX(), p.getY());
+
+			mRenderer.addXTextLabel(p.getX(), c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.DAY_OF_MONTH));
+			mRenderer.setXLabels(1);
+		}
+		
+		public void addLabel(){
+			//for()
 		}
 		
 }
