@@ -128,7 +128,8 @@ public class RegisterFuelFragment extends Fragment {
 		RefillDBHandler database = new RefillDBHandler(getActivity());
 		
 		database.newRefill(c, fuelLitre, fuelPrice, odometer, date);
-		Log.d("DATABASE", "fillup");
+		Log.d("DATABASE", "savedFillup");
+		database.close();
 		/*VehiclesFragment vehicles = (VehiclesFragment)getParentFragment();
 		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);*/
 	}

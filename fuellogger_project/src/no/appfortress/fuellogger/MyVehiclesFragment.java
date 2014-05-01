@@ -6,6 +6,7 @@ import java.util.List;
 import com.google.android.gms.games.multiplayer.turnbased.TurnBasedMultiplayer.InitiateMatchResult;
 
 import no.appfortress.database.CarDBHandler;
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+@SuppressLint("NewApi")
 public class MyVehiclesFragment extends Fragment {
 
 	public static final String REGISTER_NEW_CAR = "REGISTER_NEW_CAR";
@@ -38,7 +40,7 @@ public class MyVehiclesFragment extends Fragment {
 		// TODO Auto-generated method stub
 		super.onActivityCreated(savedInstanceState);
 		database = new CarDBHandler(getActivity());
-		listview = (ListView) getActivity().findViewById(R.id.listview);
+		listview = (ListView) getActivity().findViewById(R.id.listviewFueling);
 
 		cars = database.getAllCars();
 
