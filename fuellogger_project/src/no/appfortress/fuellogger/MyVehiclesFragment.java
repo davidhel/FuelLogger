@@ -37,7 +37,7 @@ public class MyVehiclesFragment extends Fragment {
 		return view;
 	}
 
-<<<<<<< HEAD
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -46,9 +46,8 @@ public class MyVehiclesFragment extends Fragment {
 		listview = (ListView) getActivity().findViewById(R.id.listviewFueling);
 
 		cars = database.getAllCars();
-=======
-	private void setListView() {
->>>>>>> cff71dbde521230b7cd7f8fdb51390d5d4705480
+	
+
 
 		listview = (ListView) getView().findViewById(R.id.listview);
 		
@@ -70,23 +69,7 @@ public class MyVehiclesFragment extends Fragment {
 
 		adapter.notifyDataSetChanged();
 		
-
-	}
-
-
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onViewCreated(view, savedInstanceState);
-	
-	}
-	
-	
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-		
-		setListView();
+		//setListView();
 		
 		listview.setOnItemClickListener(new OnItemClickListener() {
 
@@ -115,3 +98,4 @@ public class MyVehiclesFragment extends Fragment {
 	}
 
 }
+

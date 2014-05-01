@@ -28,7 +28,7 @@ public class TripCalculatorFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		return inflater.inflate(R.layout.activity_calculator, container, false);
+		return inflater.inflate(R.layout.fragment_calculator, container, false);
 		
 		
 	}
