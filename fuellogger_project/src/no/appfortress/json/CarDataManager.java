@@ -100,14 +100,14 @@ public class CarDataManager {
 		return true;
 	}*/
 
-	protected String getJSONString(String search) throws IOException {
+	protected StringBuilder getJSONString(String search) throws IOException {
 		StringBuilder builder = new StringBuilder();
 		HttpClient client = new DefaultHttpClient();
 		try {
 			URLEncoder.encode(search.trim(), "UTF-8");
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
-			return "Invalid URL";
+			return new StringBuilder("Invalid URL");
 		}
 		HttpGet httpGet;
 
@@ -115,7 +115,7 @@ public class CarDataManager {
 			httpGet = new HttpGet(search.replaceAll("\\s+", "%20"));
 		} catch (IllegalArgumentException ex) {
 			ex.printStackTrace();
-			return "Invalid parameter";
+			return new StringBuilder("Invalid parameter");
 		}
 		try {
 			HttpResponse response = client.execute(httpGet);
@@ -136,16 +136,16 @@ public class CarDataManager {
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		}
-		return builder.toString();
+		return builder;
 	}
 
-	private class SearchForVehicleTask extends AsyncTask<String, Void, String> {
+	private class SearchForVehicleTask extends AsyncTask<String, Void, StringBuilder> {
 
 		@Override
-		protected String doInBackground(String... params) {
+		protected StringBuilder doInBackground(String... params) {
 
 			try {
-				String jsonString = getJSONString(params[0]);
+				StringBuilder jsonString = getJSONString(params[0]);
 				return jsonString;
 			} catch (IOException ex) {
 				ex.printStackTrace();
@@ -154,15 +154,15 @@ public class CarDataManager {
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
+		protected void onPostExecute(StringBuilder result) {
 			try {
-				Log.d("String", result);
-				JSONArray json = new JSONObject(result).getJSONArray("makes");
 				
+				JSONObject json = new JSONObject(result.toString()).getJSONObject("makes");
+				Log.d("String", result.toString());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			caller.dataLoaded(result);
+			caller.dataLoaded(result.toString());
 		}
 
 	}
