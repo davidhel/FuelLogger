@@ -6,11 +6,11 @@ public class Car {
 	private String brand;
 	private String model;
 	private int year;
-	private long odometer;
+	private int odometer;
 	private float fuelTank;
 	private float fuel;
 
-	public Car(long _id,String _brand, String _model, int _year, long _odometer,
+	public Car(long _id,String _brand, String _model, int _year, int _odometer,
 			float _fuelTank) {
 		id = _id;
 		brand = _brand;
@@ -50,7 +50,7 @@ public class Car {
 		fuel += _fuel;
 	}
 	
-	public void addOdometer(long newOdometer){
+	public void addOdometer(int newOdometer){
 		odometer = newOdometer;
 	}
 	
@@ -70,7 +70,7 @@ public class Car {
 		return year;
 	}
 	
-	public long getOdometer(){
+	public int getOdometer(){
 		return odometer;
 	}
 	

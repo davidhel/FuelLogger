@@ -3,25 +3,27 @@ package no.appfortress.fuellogger;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.android.gms.games.multiplayer.turnbased.TurnBasedMultiplayer.InitiateMatchResult;
-
 import no.appfortress.database.CarDBHandler;
-import android.os.Build;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.support.v4.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class MyVehiclesFragment extends Fragment {
 
 	public static final String REGISTER_NEW_CAR = "REGISTER_NEW_CAR";
-	private ListView listview;
+	private ListView listview = null;
 	private CarDBHandler database;
 	private List<Car> cars;
 	private ArrayAdapter<Car> adapter;
@@ -36,9 +38,12 @@ public class MyVehiclesFragment extends Fragment {
 	}
 
 	private void setListView() {
-
+		if(listview == null){
 		listview = (ListView) getView().findViewById(R.id.listview);
 		
+		}else{
+			listview  = (ListView) getActivity().findViewById(R.id.listview);
+		}
 		cars = new ArrayList<Car>();
 		
 		adapter = new ArrayAdapter<Car>(getActivity(),
@@ -80,25 +85,57 @@ public class MyVehiclesFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,
 					final int position, long id) {
-				Car thisCar = cars.get(position);
-				database.deleteRow(thisCar.getID());
-				cars.remove(position);
-				if (Build.VERSION.SDK_INT >= 12) {
-					view.animate().setDuration(300).alpha(0).translationX(1000)
-							.withEndAction(new Runnable() {
-								@Override
-								public void run() {
-									adapter.notifyDataSetChanged();
-									view.setAlpha(1);
-									view.setTranslationX(0);
-								}
-							});
-				} else {
-					adapter.notifyDataSetChanged();
-				}
+					Car c = cars.get(position);
+					openCarInfo(c);
+			}
+		});
+		
+		listview.setOnItemLongClickListener(new OnItemLongClickListener() {
 
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				boolean rtn = listLongClick(position);
+				
+				return rtn;
 			}
 		});
 	}
 
+	protected boolean listLongClick(int position) {
+		DialogFragment fragment = new LongClickCarDialog(cars.get(position));
+		FragmentManager fm = getFragmentManager();
+		fragment.show(fm, "String");
+		return true;
+	}
+
+	protected void openCarInfo(Car c) {
+		Intent vehicleIntent = new Intent(getActivity(), VehicleActivity.class);
+		vehicleIntent.putExtra(VehicleActivity.CAR_BRAND, c.getBrand());
+		vehicleIntent.putExtra(VehicleActivity.CAR_MODEL, c.getModel());
+		vehicleIntent.putExtra(VehicleActivity.CAR_YEAR, c.getYear());
+		vehicleIntent.putExtra(VehicleActivity.CAR_ODOMETER, c.getOdometer());
+		vehicleIntent.putExtra(VehicleActivity.CAR_FUELTANK, c.getFuelTank());
+		vehicleIntent.putExtra(VehicleActivity.CAR_FUEL, c.getFuel());
+		startActivity(vehicleIntent);
+	}
+
+	private class LongClickCarDialog extends DialogFragment{
+
+		private Car car;
+		
+		public LongClickCarDialog(Car c){
+			car = c;
+		}
+		
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());	
+			builder.setTitle(car.getBrand() + " " + car.getModel());
+			return super.onCreateDialog(savedInstanceState);
+		}
+		
+	}
+	
 }

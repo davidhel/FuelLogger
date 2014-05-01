@@ -1221,7 +1221,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060027;
-        public static final int action_settings=0x7f060076;
+        public static final int action_settings=0x7f06007b;
         public static final int activity_chooser_view_content=0x7f060028;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
@@ -1229,7 +1229,7 @@ containing a value of this type.
         public static final int btnPickDate=0x7f060054;
         public static final int btnSubmit=0x7f060068;
         public static final int btnSubmitFueling=0x7f060055;
-        public static final int btnWidget=0x7f060075;
+        public static final int btnWidget=0x7f06007a;
         public static final int chcPrimary=0x7f060067;
         public static final int checkbox=0x7f060030;
         public static final int chkPartial=0x7f060050;
@@ -1253,13 +1253,14 @@ containing a value of this type.
         public static final int etOdo=0x7f06004c;
         public static final int expand_activities_button=0x7f060029;
         public static final int expanded_menu=0x7f06002f;
-        public static final int flVehicleContent=0x7f060074;
+        public static final int flVehicleContent=0x7f060079;
         public static final int home=0x7f060014;
         public static final int homeAsUp=0x7f060005;
         public static final int hybrid=0x7f06001c;
         public static final int icon=0x7f06002d;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f06002a;
+        public static final int imageView1=0x7f060072;
         public static final int imgCar=0x7f06005c;
         public static final int imgFuel=0x7f06004a;
         public static final int listMode=0x7f060001;
@@ -1294,9 +1295,12 @@ containing a value of this type.
         public static final int split_action_bar=0x7f060021;
         public static final int submit_area=0x7f06003c;
         public static final int tabMode=0x7f060002;
-        public static final int tabhost=0x7f060072;
+        public static final int tabhost=0x7f060077;
         public static final int tbStartService=0x7f060056;
         public static final int terrain=0x7f06001b;
+        public static final int textView2=0x7f060074;
+        public static final int textView3=0x7f060075;
+        public static final int textView4=0x7f060076;
         public static final int title=0x7f06002e;
         public static final int top_action_bar=0x7f060023;
         public static final int track_trip_container=0x7f060071;
@@ -1307,7 +1311,8 @@ containing a value of this type.
         public static final int tvFuelUsed=0x7f060070;
         public static final int tvFuelUsedTitle=0x7f06006f;
         public static final int tvPickDate=0x7f060053;
-        public static final int twVehicleTabs=0x7f060073;
+        public static final int tvVehicleTitle=0x7f060073;
+        public static final int twVehicleTabs=0x7f060078;
         public static final int txtDistance=0x7f06003f;
         public static final int txtDistanceMeasure=0x7f060066;
         public static final int txtFuelConsumption=0x7f060045;
@@ -1393,8 +1398,9 @@ containing a value of this type.
         public static final int google_maps=0x7f030021;
         public static final int support_simple_spinner_dropdown_item=0x7f030022;
         public static final int track_trip=0x7f030023;
-        public static final int vehicles_fragment=0x7f030024;
-        public static final int widget_layout=0x7f030025;
+        public static final int vehicle_fragment=0x7f030024;
+        public static final int vehicles_fragment=0x7f030025;
+        public static final int widget_layout=0x7f030026;
     }
     public static final class menu {
         public static final int main=0x7f0e0000;
