@@ -103,6 +103,7 @@ public class RegisterFuelFragment extends Fragment {
 				Car c;
 				c = getCarById(1);
 				Calendar d = Calendar.getInstance();
+				d.set(year, month, day);
 				fuelLitre = Float.valueOf(etFuelLitre.getText().toString());
 				fuelPrice = Float.valueOf(etFuelPrice.getText().toString());
 				odometer = Integer.valueOf(etOdometer.getText().toString());
@@ -120,6 +121,7 @@ public class RegisterFuelFragment extends Fragment {
 	protected void setDate(int year, int month, int day) {
 		btnDate = (Button) activity.findViewById(R.id.btnPickDate);
 		btnDate.setText(year + "/" + month + "/" + day);
+	
 	}
 
 	protected void btnSubmitFueling(Car c, float fuelLitre, float fuelPrice, int odometer, Calendar date) {

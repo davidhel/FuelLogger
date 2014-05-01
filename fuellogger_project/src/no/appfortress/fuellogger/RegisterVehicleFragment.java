@@ -20,10 +20,6 @@ import android.widget.Spinner;
 public class RegisterVehicleFragment extends Fragment implements
 		OnVehicleRequestListener, OnItemSelectedListener, OnClickListener {
 	
-	public static String EXTRA_MESSAGE = "no.appfortress.fuellogger.RegisterActivity";
-	public static String EXTRA_MESSAGE2;
-	public static String EXTRA_MESSAGE3;
-	public static String EXTRA_MESSAGE4;
 	private static final String DOWNLOAD_MAKES = "DOWNLOAD_MAKES";
 	private static final String DOWNLOAD_MODELS = "DOWNLOAD_MODELS";
 	private static final String NOT_DOWNLOADING = "NOT_DOWNLOADING";
