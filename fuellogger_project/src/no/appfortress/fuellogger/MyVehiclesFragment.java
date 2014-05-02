@@ -68,7 +68,7 @@ public class MyVehiclesFragment extends Fragment {
 		}
 
 		adapter.notifyDataSetChanged();
-
+		
 	}
 
 	@Override
@@ -108,6 +108,7 @@ public class MyVehiclesFragment extends Fragment {
 
 	protected void openCarInfo(Car c) {
 		Intent vehicleIntent = new Intent(getActivity(), VehicleActivity.class);
+		vehicleIntent.putExtra(VehicleActivity.CAR_ID, c.getID());
 		vehicleIntent.putExtra(VehicleActivity.CAR_BRAND, c.getBrand());
 		vehicleIntent.putExtra(VehicleActivity.CAR_MODEL, c.getModel());
 		vehicleIntent.putExtra(VehicleActivity.CAR_YEAR, c.getYear());

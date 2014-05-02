@@ -1,5 +1,6 @@
 package no.appfortress.fuellogger;
 
+import no.appfortress.database.CarDBHandler;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -50,6 +51,20 @@ public class VehiclesFragment extends Fragment implements OnTabChangeListener, O
 		viewPager.setAdapter(pagerAdapter);
 		viewPager.setOnPageChangeListener(this);
 		return view;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onActivityCreated(savedInstanceState);
+		
+		CarDBHandler dbHandler = new CarDBHandler(getActivity());
+		if(dbHandler.getAllCars().size() == 0){
+			dbHandler.close();
+			onTabChanged(NEW_VEHICLE);
+		}else{
+			dbHandler.close();
+		}
 	}
 
 	

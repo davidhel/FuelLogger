@@ -44,6 +44,7 @@
 	<string name="dialog_leave_while_tracking">If you leave, the tracking will be canceled.</string>
 	<string name="leave_tracking">Abort tracking</string>
 	<string name="stay_and_track">Keep tracking</string>
+	<string name="required_fields">Please enter all required fields.</string>
 	
     <string-array name="week_days">
         <item>Sunday</item>

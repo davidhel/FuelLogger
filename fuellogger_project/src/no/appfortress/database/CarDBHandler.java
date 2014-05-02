@@ -155,4 +155,15 @@ public class CarDBHandler {
 			Log.e("Error in: deleteRow in CarDBHandler class", "Could not open database for reading");
 		}
 	}
+
+	public void updateOdometer(Car c, int odometer) {
+		try {
+			db = dbHelper.getWritableDatabase();
+			String query = "UPDATE " + CarFeedEntry.TABLE_NAME + " SET " + CarFeedEntry.COLUMN_ODOMETER + "=" + odometer + " WHERE "
+					+ CarFeedEntry._ID + "=" + Long.toString(c.getID());
+			db.execSQL(query);
+		} catch (SQLiteException ex) {
+			Log.e("Error in: deleteRow in CarDBHandler class", "Could not open database for reading");
+		}
+	}
 }

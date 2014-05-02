@@ -127,9 +127,7 @@ public class RegisterFuelFragment extends Fragment {
 					odometer = Integer.valueOf(etOdometer.getText().toString());
 				}
 				catch(NumberFormatException ex) {
-					etFuelLitre.setHintTextColor(Color.RED);
-					etOdometer.setHintTextColor(Color.RED);
-					etFuelPrice.setHintTextColor(Color.RED);
+					Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.required_fields), Toast.LENGTH_SHORT).show();
 					return;
 				}
 				
@@ -149,6 +147,10 @@ public class RegisterFuelFragment extends Fragment {
 		CarDBHandler db = new CarDBHandler(getActivity());
 		final List<Car> cars = db.getAllCars();
 		db.close();
+		if(cars.size() == 0){
+			MainActivity mActivity = (MainActivity)getActivity();
+			mActivity.setContent(new VehiclesFragment(), false, null);
+		}
 		ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(getActivity(), R.layout.car_spinner_layout);
 		for(int i = 0; i <cars.size(); i++){
 			adapter.add(cars.get(i));
@@ -161,6 +163,7 @@ public class RegisterFuelFragment extends Fragment {
 			public void onItemSelected(AdapterView<?> parent, View view,
 					int position, long id) {
 				selectedCar = cars.get(position);
+				etOdometer.setText(Integer.toString(selectedCar.getOdometer()));
 			}
 
 			@Override
@@ -189,10 +192,16 @@ public class RegisterFuelFragment extends Fragment {
 	protected void btnSubmitFueling(Car c, float fuelLitre, float fuelPrice, int odometer, Calendar date) {
 		// TODO Submit fueling
 		
-		RefillDBHandler database = new RefillDBHandler(getActivity());
 		
+		RefillDBHandler database = new RefillDBHandler(getActivity());
 		database.newRefill(c, fuelLitre, fuelPrice, odometer, date);
 		database.close();
+		CarDBHandler carDB = new CarDBHandler(getActivity());
+		carDB.updateOdometer(c, odometer);
+		carDB.close();
+		
+		MainActivity mActivity = (MainActivity)getActivity();
+		mActivity.setContent(new MyFuelingsFragment(), false, null);
 		/*VehiclesFragment vehicles = (VehiclesFragment)getParentFragment();
 		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);*/
 	}

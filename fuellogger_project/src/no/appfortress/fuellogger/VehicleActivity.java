@@ -1,9 +1,14 @@
 package no.appfortress.fuellogger;
 
+import java.util.List;
+
+import no.appfortress.database.RefillDBHandler;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class VehicleActivity extends Activity {
@@ -14,12 +19,15 @@ public class VehicleActivity extends Activity {
 	public final static String CAR_ODOMETER = "CAR_ODOMETER";
 	public final static String CAR_FUELTANK = "FUEL_TANK";
 	public final static String CAR_FUEL = "FUEL";
+	public static final String CAR_ID = "CAR_ID";
 	
 	private String brand, model;
 	private int year, odometer;
 	private float fueltank, fuel;
 	
-	TextView title;
+	private TextView title, tvOdometer;
+	private ListView lvRefills;
+	private long id;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +42,26 @@ public class VehicleActivity extends Activity {
 	
 	private void initGUI() {
 		title = (TextView)findViewById(R.id.tvVehicleTitle);
-		title.setText(brand + " " + model + " " + year);
+		title.setText(brand + " " + model);
+		tvOdometer = (TextView) findViewById(R.id.tvOdometer);
+		tvOdometer.setText(Integer.toString(odometer));
+		lvRefills = (ListView) findViewById(R.id.lvCarRefills);
+		
+		populateListView();
+	}
+
+	private void populateListView() {
+		RefillDBHandler dbHandler = new RefillDBHandler(this);
+		List<Refill> refills = dbHandler.getRefillsFromCar(id);
+		dbHandler.close();
+		ArrayAdapter<Refill> adapter = new ArrayAdapter<Refill>(this, android.R.layout.simple_list_item_1, refills);
+		lvRefills.setAdapter(adapter);
 	}
 
 	private void collectData() {
 
 		Intent i = getIntent();
+		id = i.getLongExtra(CAR_ID, -1);
 		brand = i.getStringExtra(CAR_BRAND);
 		model = i.getStringExtra(CAR_MODEL);
 		year = i.getIntExtra(CAR_YEAR, 0);

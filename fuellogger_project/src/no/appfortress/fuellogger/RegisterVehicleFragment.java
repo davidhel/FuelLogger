@@ -155,7 +155,7 @@ public class RegisterVehicleFragment extends Fragment implements
 	@Override
 	public void onClick(View v) {
 
-		String errorMessage = "Please enter all required fields";
+		String errorMessage = getActivity().getResources().getString(R.string.required_fields);
 
 		try {
 			odometer = Integer.parseInt(etOdometer.getText().toString());

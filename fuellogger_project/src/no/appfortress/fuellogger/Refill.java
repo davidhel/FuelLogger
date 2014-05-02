@@ -9,6 +9,7 @@ public class Refill {
 	private float fuelLitre, fuelPrice, latitude, longitude;
 	private long odometer;
 	private Calendar date;
+
 	public Refill(long _id, Car _car, float _fuelLitre, float _fuelPrice,
 			long _odometer, Calendar _date, float _latitude, float _longitude) {
 		id = _id;
@@ -21,31 +22,33 @@ public class Refill {
 		longitude = _longitude;
 	}
 
-	public float getFuelPrice(){
+	public float getFuelPrice() {
 		return (fuelPrice / fuelLitre);
 	}
-	
+
 	@Override
 	public String toString() {
+		String dayOfMonth = (date.get(Calendar.DAY_OF_MONTH) < 10) ? "0" + date.get(Calendar.DAY_OF_MONTH) : Integer.toString(date.get(Calendar.DAY_OF_MONTH));
+		String month = (date.get(Calendar.MONTH) < 10 ) ? "0" + date.get(Calendar.MONTH) : Integer.toString(date.get(Calendar.MONTH));
+		String year = Integer.toString(date.get(Calendar.YEAR));
+		
 		String rtnString = "";
-		rtnString += Long.toString(id) + ". ";
-		rtnString += car.getBrand() + " " + car.getModel() + ": ";
-		rtnString += "Liter " + Float.toString(fuelLitre) + ", ";
-		rtnString += "Price " + Float.toString(fuelPrice) + ".";
+		rtnString += dayOfMonth + "." + month + "." + year + " - ";
+		rtnString += Float.toString(fuelLitre) + " liter, ";
+		rtnString += "cost " + Float.toString(fuelPrice) + ".";
 		return rtnString;
 	}
 
-
-
-	public Refill(long _id, Car _car, float _fuelLitre, float _fuelPrice, long _odometer) {
-		this(_id,_car, _fuelLitre, _fuelPrice, _odometer, null, Float.MIN_VALUE,
-				Float.MIN_VALUE);
+	public Refill(long _id, Car _car, float _fuelLitre, float _fuelPrice,
+			long _odometer) {
+		this(_id, _car, _fuelLitre, _fuelPrice, _odometer, null,
+				Float.MIN_VALUE, Float.MIN_VALUE);
 	}
 
-	public long getID(){
+	public long getID() {
 		return id;
 	}
-	
+
 	public Car getCar() {
 		return car;
 	}
@@ -61,16 +64,16 @@ public class Refill {
 	public long getOdometer() {
 		return odometer;
 	}
-	
-	public Calendar getDate(){
+
+	public Calendar getDate() {
 		return date;
 	}
-	
-	public float getLatitude(){
+
+	public float getLatitude() {
 		return latitude;
 	}
-	
-	public float getLongitude(){
+
+	public float getLongitude() {
 		return longitude;
 	}
 
