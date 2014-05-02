@@ -1,7 +1,9 @@
 package no.appfortress.fuellogger;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import no.appfortress.database.CarDBHandler;
 import no.appfortress.database.RefillDBHandler;
@@ -13,6 +15,7 @@ import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -25,7 +28,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegisterFuelFragment extends Fragment {
 
@@ -40,6 +45,8 @@ public class RegisterFuelFragment extends Fragment {
 	private float fuelLitre;
 	private float fuelPrice;
 	private int odometer;
+	private Spinner spMyVehicle;
+	private List<Car> myCars;
 
 	
 	@Override
@@ -59,10 +66,12 @@ public class RegisterFuelFragment extends Fragment {
 	public void initGUIElements() {
 		activity = getActivity();
 
+		myCars = new ArrayList<Car>();
 		Calendar c = Calendar.getInstance();
 		year = c.get(Calendar.YEAR);
 		month = c.get(Calendar.MONTH);
 		day = c.get(Calendar.DAY_OF_MONTH);
+		spMyVehicle = (Spinner) activity.findViewById(R.id.spYourVehicles);
 		etFuelLitre = (EditText) activity.findViewById(R.id.etLitre);
 		etFuelPrice = (EditText) activity.findViewById(R.id.etCost);
 		etOdometer = (EditText) activity.findViewById(R.id.etOdo);
@@ -104,9 +113,20 @@ public class RegisterFuelFragment extends Fragment {
 				c = getCarById(1);
 				Calendar d = Calendar.getInstance();
 				d.set(year, month, day);
-				fuelLitre = Float.valueOf(etFuelLitre.getText().toString());
-				fuelPrice = Float.valueOf(etFuelPrice.getText().toString());
-				odometer = Integer.valueOf(etOdometer.getText().toString());
+				
+				//Try to get text from edittext fields, if fail mark input field with red color
+				try {
+					fuelLitre = Float.parseFloat(etFuelLitre.getText().toString());
+					fuelPrice = Float.valueOf(etFuelPrice.getText().toString());
+					odometer = Integer.valueOf(etOdometer.getText().toString());
+				}
+				catch(NumberFormatException ex) {
+					etFuelLitre.setHintTextColor(Color.RED);
+					etOdometer.setHintTextColor(Color.RED);
+					etFuelPrice.setHintTextColor(Color.RED);
+				}
+				
+				Log.d("SAVE",Float.toString(fuelLitre));
 				btnSubmitFueling(c, fuelLitre, fuelPrice, odometer, d);
 			}
 
@@ -134,6 +154,14 @@ public class RegisterFuelFragment extends Fragment {
 		database.close();
 		/*VehiclesFragment vehicles = (VehiclesFragment)getParentFragment();
 		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);*/
+	}
+	
+	private List<Car> getMyCarsFromDB(){
+		
+		CarDBHandler database;database = new CarDBHandler(getActivity());
+		myCars = database.getAllCars();
+		database.close();
+		return myCars;
 	}
 
 	@SuppressLint("ValidFragment")

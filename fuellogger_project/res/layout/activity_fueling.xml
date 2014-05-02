@@ -3,24 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <ImageView
-        android:id="@+id/imgFuel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="49dp"
-        android:src="@drawable/ic_car" />
-
-    <TextView
-        android:id="@+id/txtOdo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imgFuel"
-        android:layout_below="@+id/imgFuel"
-        android:layout_marginTop="20dp"
-        android:text="@string/Odometer" />
-
     <EditText
         android:id="@+id/etOdo"
         android:layout_width="wrap_content"
@@ -47,7 +29,7 @@
         android:layout_alignLeft="@+id/txtOdo"
         android:layout_below="@+id/txtWhatIsOdo"
         android:layout_marginTop="30dp"
-        android:text="@string/litre" />
+        android:text="@string/litre_req" />
 
     <EditText
         android:id="@+id/etLitre"
@@ -77,7 +59,7 @@
         android:singleLine="true"
         android:layout_below="@+id/chkPartial"
         android:layout_marginTop="22dp"
-        android:text="@string/cost" />
+        android:text="@string/cost_req" />
 
     <EditText
         android:id="@+id/etCost"
@@ -96,7 +78,7 @@
         android:layout_alignLeft="@+id/tvCost"
         android:layout_below="@+id/tvCost"
         android:layout_marginTop="40dp"
-        android:text="@string/set_date" />
+        android:text="@string/set_date_req" />
 
     <Button
         android:id="@+id/btnPickDate"
@@ -115,5 +97,40 @@
         android:layout_marginBottom="15dp"
         android:layout_marginRight="15dp"
         android:text="@string/submit" />
+
+    <TextView
+        android:id="@+id/txtOdo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imgFuel"
+        android:layout_below="@+id/imgFuel"
+        android:layout_marginTop="80dp"
+        android:text="@string/odometer_req" />
+
+    <ImageView
+        android:id="@+id/imgFuel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="27dp"
+        android:src="@drawable/ic_car" />
+
+    <TextView
+        android:id="@+id/txtYourVehicle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/etOdo"
+        android:layout_alignRight="@+id/imgFuel"
+        android:layout_marginBottom="17dp"
+        android:text="@string/your_car_req" />
+
+    <Spinner
+        android:id="@+id/spYourVehicles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtYourVehicle"
+        android:layout_alignLeft="@+id/etOdo" />
 
 </RelativeLayout>
