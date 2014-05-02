@@ -41,22 +41,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterVehicleActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name=".MyVehiclesActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
             android:name=".RegisterFuelingActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".Preferences"
-            android:label="@string/app_name" />
-        <activity
-            android:name=".PreferencesFragment"
             android:label="@string/app_name" />
         <activity
             android:name=".DatabaseActivity"
@@ -88,8 +77,7 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAUyFm_zaQvR0JqtCuWVhUTDkMqTIpYfkc" />
 
-        <receiver android:name="no.appfortress.fuellogger.GPSReceiver" >
-        </receiver>
+
 
         <!-- WIDGET STUFF, muligens noe som kan fjernes -->
         <receiver
