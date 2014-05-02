@@ -21,13 +21,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegisterFuelFragment extends Fragment {
 
@@ -44,6 +46,8 @@ public class RegisterFuelFragment extends Fragment {
 	private int odometer;
 	private Spinner spMyVehicle;
 	private List<Car> myCars;
+	
+	private Car selectedCar = null;
 
 	
 	@Override
@@ -112,8 +116,7 @@ public class RegisterFuelFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				Car c;
-				c = getCarById(1);
+				Car c = selectedCar;
 				Calendar d = Calendar.getInstance();
 				d.set(year, month, day);
 				
@@ -127,6 +130,12 @@ public class RegisterFuelFragment extends Fragment {
 					etFuelLitre.setHintTextColor(Color.RED);
 					etOdometer.setHintTextColor(Color.RED);
 					etFuelPrice.setHintTextColor(Color.RED);
+					return;
+				}
+				
+				if(selectedCar == null){
+					Toast.makeText(getActivity(), "Please select which car you refilled.", Toast.LENGTH_SHORT).show();
+					return;
 				}
 				
 				Log.d("SAVE",Float.toString(fuelLitre));
@@ -138,11 +147,26 @@ public class RegisterFuelFragment extends Fragment {
 	}
 	private void populateVehicleSpinner() {
 		CarDBHandler db = new CarDBHandler(getActivity());
-		List<Car> cars = db.getAllCars();
+		final List<Car> cars = db.getAllCars();
 		db.close();
 		ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(getActivity(), R.layout.car_spinner_layout);
-		//adapter.addAll(cars);
-		//spMyVehicle.setAdapter(adapter);
+		for(int i = 0; i <cars.size(); i++){
+			adapter.add(cars.get(i));
+		}
+		spMyVehicle.setAdapter(adapter);
+		
+		spMyVehicle.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				selectedCar = cars.get(position);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+			}
+		});
 		
 	}
 
@@ -168,7 +192,6 @@ public class RegisterFuelFragment extends Fragment {
 		RefillDBHandler database = new RefillDBHandler(getActivity());
 		
 		database.newRefill(c, fuelLitre, fuelPrice, odometer, date);
-		Log.d("DATABASE", "savedFillup");
 		database.close();
 		/*VehiclesFragment vehicles = (VehiclesFragment)getParentFragment();
 		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);*/

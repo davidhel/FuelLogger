@@ -139,8 +139,10 @@ public class RegisterVehicleFragment extends Fragment implements
 			makes = carDataManager.getMakes();
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
 					getActivity(), R.layout.car_spinner_layout);
-			//adapter.addAll(makes);
-			//carBrand.setAdapter(adapter);
+			for(int i = 0; i <makes.length; i++){
+				adapter.add(makes[i]);
+			}
+			carBrand.setAdapter(adapter);
 
 			break;
 		case DOWNLOAD_MODELS:
@@ -195,9 +197,11 @@ public class RegisterVehicleFragment extends Fragment implements
 				models = carDataManager.getModels(selectedBrand);
 				ArrayAdapter<String> modelAdapter = new ArrayAdapter<String>(
 						getActivity(), R.layout.car_spinner_layout);
-				//modelAdapter.addAll(models);
-				//carModel.setAdapter(modelAdapter);
-				//carModel.setOnItemSelectedListener(new SelectModelListener());
+				for(int i = 0; i < models.length; i++){
+					modelAdapter.add(models[i]);
+				}
+				carModel.setAdapter(modelAdapter);
+				carModel.setOnItemSelectedListener(new SelectModelListener());
 			}
 		}
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.appfortress.database.CarDBHandler;
+import no.appfortress.database.RefillDBHandler;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -21,6 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MyVehiclesFragment extends Fragment {
 
@@ -150,8 +152,11 @@ public class MyVehiclesFragment extends Fragment {
 		CarDBHandler dbHandler = new CarDBHandler(getActivity());
 		dbHandler.deleteRow(c.getID());
 		dbHandler.close();
+		RefillDBHandler refillDB = new RefillDBHandler(getActivity());
+		refillDB.deleteRefillsToCar(c.getID());
 		cars.remove(c);
 		adapter.notifyDataSetChanged();
+		Toast.makeText(getActivity(), "Your car and all its refills has been successfully deleted.", Toast.LENGTH_SHORT).show();
 	}
 
 }

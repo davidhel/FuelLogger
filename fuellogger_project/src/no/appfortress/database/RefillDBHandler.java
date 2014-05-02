@@ -232,5 +232,17 @@ public class RefillDBHandler {
 			return null;
 		}
 	}
+
+	public void deleteRefillsToCar(long id) {
+		try{
+			db = dbHelper.getWritableDatabase();
+			String sqlQuery = "DELETE FROM " + RefillFeedEntry.TABLE_NAME
+					+ " WHERE " + RefillFeedEntry.COLUMN_CAR_ID_FK_CAR + "=" + id;
+			db.execSQL(sqlQuery);
+		}catch(SQLiteException ex){
+			
+		}
+		
+	}
 	
 }
