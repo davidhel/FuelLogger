@@ -86,10 +86,10 @@ public class FuelPriceLineGraph {
 		mRenderer.setLegendTextSize(40);
 		mRenderer.setXLabelsPadding(80);
 		mRenderer.setYLabelsPadding(50);
+		
+		//Set margin on left and bottom
 		mRenderer.setMargins(new int[]{ 80, 80, 0, 0 });
 		mRenderer.setYTitle("Litre price");
-
-		// mRenderer.setXLabels(0);
 
 		mRenderer.setLabelsTextSize(val);
 

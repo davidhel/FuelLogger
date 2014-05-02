@@ -20,7 +20,8 @@ public class GraphActivity extends Activity {
 	private FuelPriceLineGraph line;
 	private List<Refill> refills;
 	private float highestFuelPrice;
-	/** Called when the activity is first created. */
+
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

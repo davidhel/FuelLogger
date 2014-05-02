@@ -62,15 +62,6 @@ public class MyFuelingsFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, final View view,
 					final int position, long id) {
 				
-				Refill thisList = refills.get(position);
-				database.deleteRefill(thisList.getID());
-				refills.remove(position);
-				
-				if (Build.VERSION.SDK_INT >= 12) {
-					animate(view);
-				} else {
-					adapter.notifyDataSetChanged();
-				}
 			}
 		});
 
