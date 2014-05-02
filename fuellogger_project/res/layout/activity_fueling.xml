@@ -40,7 +40,7 @@
         android:layout_toRightOf="@+id/txtLitre"
         android:inputType="numberDecimal"
         android:singleLine="true"
-        android:hint="Litre filled" />
+        android:hint="@string/litre_filled" />
 
     <CheckBox
         android:id="@+id/chkPartial"
@@ -69,7 +69,7 @@
         android:layout_below="@+id/chkPartial"
         android:inputType="numberDecimal"
         android:singleLine="true"
-        android:hint="Refill cost" />
+        android:hint="@string/cost" />
 
     <TextView
         android:id="@+id/tvPickDate"

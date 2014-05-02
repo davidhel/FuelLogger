@@ -13,8 +13,8 @@
     <string name="exampleModel">Corolla</string>
     <string name="tankSize">Tank volume</string>
     <string name="exampleTankSize">50</string>
-    <string name="ifNotRegistered">Vennligst reigistrer deg</string>
-    <string name="register">Registrer</string>
+    <string name="ifNotRegistered">Please register</string>
+    <string name="register">Register</string>
     <string name="volumeMeasure">L</string>
     <string name="odometer">Odometer</string>
     <string name="hint_tank_volume">Tank volume in litre</string>
@@ -110,5 +110,6 @@
     <string name="set_date_req">Set date*</string>
     <string name="your_car_req">Your car*</string>
     <string name="calculate">Calculate</string>
+    <string name="litre_filled">litre filled</string>
 
 </resources>
