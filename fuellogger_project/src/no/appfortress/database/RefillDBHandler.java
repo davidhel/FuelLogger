@@ -56,7 +56,6 @@ public class RefillDBHandler {
 					+ Float.toString(fuelPrice) + ",'" + dateString + "',"
 					+ Long.toString(odometer) + "," + Float.toString(latitude)
 					+ "," + Float.toString(longitude) + ")";
-			Log.d("SQL", sqlQuery);
 			db.execSQL(sqlQuery);
 			sqlQuery = "SELECT " + RefillFeedEntry._ID + " FROM " +RefillFeedEntry.TABLE_NAME;
 			Cursor cursor = db.rawQuery(sqlQuery, null);
@@ -88,23 +87,27 @@ public class RefillDBHandler {
 			String sqlQuery = "SELECT * FROM " + RefillFeedEntry.TABLE_NAME
 					+ " WHERE " + RefillFeedEntry._ID + "=" + _id;
 			Cursor cursor = db.rawQuery(sqlQuery, null);
-			long id = cursor.getLong(cursor.getColumnIndex(RefillFeedEntry._ID));
-			Car car = getCarFromRefill(cursor.getLong(cursor
-					.getColumnIndex(RefillFeedEntry.COLUMN_CAR_ID_FK_CAR)));
-			float fuelLitre = cursor.getFloat(cursor
-					.getColumnIndex(RefillFeedEntry.COLUMN_FUEL_LITERS));
-			float fuelPrice = cursor.getFloat(cursor
-					.getColumnIndex(RefillFeedEntry.COLUMN_FUEL_PRICE));
-			int odometer = cursor.getInt(cursor
-					.getColumnIndex(RefillFeedEntry.COLUMN_ODOMETER));
-			Calendar date = getDateFromString(cursor.getString(cursor.getColumnIndex(RefillFeedEntry.COLUMN_DATE)));
-			float latitude = cursor.getFloat(cursor
-					.getColumnIndex(RefillFeedEntry.COLUMN_LATITUDE));
-			float longitude = cursor.getFloat(cursor
-					.getColumnIndex(RefillFeedEntry.COLUMN_LONGITUDE));
-			refill = new Refill(id, car, fuelLitre, fuelPrice, odometer, date,
-					latitude, longitude);
-			cursor.close();
+			if(cursor != null && cursor.moveToFirst()){
+				long id = cursor.getLong(cursor.getColumnIndex(RefillFeedEntry._ID));
+				Car car = getCarFromRefill(cursor.getLong(cursor
+						.getColumnIndex(RefillFeedEntry.COLUMN_CAR_ID_FK_CAR)));
+				float fuelLitre = cursor.getFloat(cursor
+						.getColumnIndex(RefillFeedEntry.COLUMN_FUEL_LITERS));
+				float fuelPrice = cursor.getFloat(cursor
+						.getColumnIndex(RefillFeedEntry.COLUMN_FUEL_PRICE));
+				int odometer = cursor.getInt(cursor
+						.getColumnIndex(RefillFeedEntry.COLUMN_ODOMETER));
+				Calendar date = getDateFromString(cursor.getString(cursor.getColumnIndex(RefillFeedEntry.COLUMN_DATE)));
+				float latitude = cursor.getFloat(cursor
+						.getColumnIndex(RefillFeedEntry.COLUMN_LATITUDE));
+				float longitude = cursor.getFloat(cursor
+						.getColumnIndex(RefillFeedEntry.COLUMN_LONGITUDE));
+				refill = new Refill(id, car, fuelLitre, fuelPrice, odometer, date,
+						latitude, longitude);
+				cursor.close();
+			}else{
+				return null;
+			}
 		} catch (SQLiteException ex) {
 			ex.printStackTrace();
 		}
@@ -181,8 +184,8 @@ public class RefillDBHandler {
 							odometer, date, latitude, longitude));
 					cursor.moveToNext();
 				}
+				cursor.close();
 			}
-			cursor.close();
 		} catch (SQLiteException ex) {
 			ex.printStackTrace();
 		}
@@ -206,23 +209,26 @@ public class RefillDBHandler {
 		String sqlQuery = "SELECT * FROM " + CarFeedEntry.TABLE_NAME
 				+ " WHERE " + CarFeedEntry._ID + "=" + Long.toString(fkID);
 		Cursor cursor = db.rawQuery(sqlQuery, null);
-		cursor.moveToFirst();
-		String brand = cursor.getString(cursor
-				.getColumnIndex(CarFeedEntry.COLUMN_CAR_BRAND));
-		String model = cursor.getString(cursor
-				.getColumnIndex(CarFeedEntry.COLUMN_CAR_MODEL));
-		int year = cursor.getInt(cursor
-				.getColumnIndex(CarFeedEntry.COLUMN_YEAR));
-		int odometer = cursor.getInt(cursor
-				.getColumnIndex(CarFeedEntry.COLUMN_ODOMETER));
-		float fuelTank = cursor.getFloat(cursor
-				.getColumnIndex(CarFeedEntry.COLUMN_FUELTANK));
-		float fuel = cursor.getFloat(cursor
-				.getColumnIndex(CarFeedEntry.COLUMN_FUEL));
-		Car car = new Car(fkID, brand, model, year, odometer, fuelTank);
-		car.setFuel(fuel);
-		cursor.close();
-		return car;
+		if(cursor != null && cursor.moveToFirst()){
+			String brand = cursor.getString(cursor
+					.getColumnIndex(CarFeedEntry.COLUMN_CAR_BRAND));
+			String model = cursor.getString(cursor
+					.getColumnIndex(CarFeedEntry.COLUMN_CAR_MODEL));
+			int year = cursor.getInt(cursor
+					.getColumnIndex(CarFeedEntry.COLUMN_YEAR));
+			int odometer = cursor.getInt(cursor
+					.getColumnIndex(CarFeedEntry.COLUMN_ODOMETER));
+			float fuelTank = cursor.getFloat(cursor
+					.getColumnIndex(CarFeedEntry.COLUMN_FUELTANK));
+			float fuel = cursor.getFloat(cursor
+					.getColumnIndex(CarFeedEntry.COLUMN_FUEL));
+			Car car = new Car(fkID, brand, model, year, odometer, fuelTank);
+			car.setFuel(fuel);
+			cursor.close();
+			return car;
+		}else{
+			return null;
+		}
 	}
 	
 }
