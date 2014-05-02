@@ -18,7 +18,6 @@ public class GraphActivity extends Activity {
 
 	private static GraphicalView view;
 	private FuelPriceLineGraph line;
-	private static Thread thread;
 	private List<Refill> refills;
 	private float highestFuelPrice;
 	/** Called when the activity is first created. */

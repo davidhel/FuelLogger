@@ -99,13 +99,35 @@
         android:text="@string/submit" />
 
     <TextView
+        android:id="@+id/txtRes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtResult"
+        android:layout_alignBottom="@+id/txtResult"
+        android:layout_alignParentLeft="true"
+        android:text="@string/result" />
+
+    <TextView
         android:id="@+id/txtResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etDistance"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="39dp" />
+
+    <Spinner
+        android:id="@+id/spCalculate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/txtResult"/>
+
+    <TextView
+        android:id="@+id/txtChooseCalculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/etDistance"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="40dp"
-        android:text="@string/result" />
+        android:text="@string/calculate" />
 
 </RelativeLayout>

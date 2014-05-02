@@ -108,5 +108,6 @@
     <string name="litre_req">Litre*</string>
     <string name="set_date_req">Set date*</string>
     <string name="your_car_req">Your car*</string>
+    <string name="calculate">Calculate</string>
 
 </resources>

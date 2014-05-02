@@ -15,6 +15,7 @@ import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -144,7 +145,12 @@ public class RegisterFuelFragment extends Fragment {
 	}
 	protected Car getCarById(int id){
 		CarDBHandler carDatabase = new CarDBHandler(getActivity());
+		/*String count = "SELECT count(*) FROM table";
+		Cursor mcursor = carDatabase.rawQuery(count, null);
+	    mcursor.moveToFirst();*/
 		Car c = carDatabase.getCarById(id);
+		carDatabase.close();
+
 		return c;
 	}
 	protected void setDate(int year, int month, int day) {
