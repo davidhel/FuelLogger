@@ -101,5 +101,12 @@
     <string name="gps_is_disabled">Location settings is disabled, you must enable to use this feature</string>
     <string name="enable">Enable</string>
     <string name="not_now">Not now</string>
+    <string name="model_req">Model*</string>
+    <string name="odometer_req">Odometer*</string>
+    <string name="brand_req">Brand*</string>
+    <string name="cost_req">Cost*</string>
+    <string name="litre_req">Litre*</string>
+    <string name="set_date_req">Set date*</string>
+    <string name="your_car_req">Your car*</string>
 
 </resources>

@@ -3,9 +3,12 @@ package no.appfortress.fuellogger;
 import no.appfortress.database.CarDBHandler;
 import no.appfortress.json.CarDataManager;
 import no.appfortress.json.CarDataManager.OnVehicleRequestListener;
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -40,11 +43,14 @@ public class RegisterVehicleFragment extends Fragment implements
 	private String selectedModel;
 
 	private Spinner carBrand, carModel;
-	private EditText tankSize, odometer;
+	private EditText etTankSize, etOdometer;
 	private Button saveCar;
 	private EditText carBrandEditText;
 	private EditText carModelEditText;
 	private boolean connected;
+	
+	private float tankSize;
+	private int odometer;
 
 	public RegisterVehicleFragment() {
 
@@ -54,7 +60,7 @@ public class RegisterVehicleFragment extends Fragment implements
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return inflater.inflate(R.layout.activity_register, container, false);
+		return inflater.inflate(R.layout.fragment_register_vehicle, container, false);
 	}
 
 	@Override
@@ -66,8 +72,8 @@ public class RegisterVehicleFragment extends Fragment implements
 		carModel = (Spinner) a.findViewById(R.id.spVehicleModel);
 		carBrandEditText = (EditText) a.findViewById(R.id.etVehicleBrand);
 		carModelEditText = (EditText) a.findViewById(R.id.etVehicleModel);
-		tankSize = (EditText) a.findViewById(R.id.editTankSize);
-		odometer = (EditText) a.findViewById(R.id.editOdometer);
+		etTankSize = (EditText) a.findViewById(R.id.editTankSize);
+		etOdometer = (EditText) a.findViewById(R.id.editOdometer);
 		saveCar = (Button) a.findViewById(R.id.btnSubmit);
 		
 		if(isConnectedToInternet()){
@@ -105,6 +111,7 @@ public class RegisterVehicleFragment extends Fragment implements
 		carDataManager.downloadModelsByMake(make);
 	}
 
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	@Override
 	public void dataLoaded(String result) {
 		switch (downloadStatus) {
@@ -125,6 +132,18 @@ public class RegisterVehicleFragment extends Fragment implements
 
 	@Override
 	public void onClick(View v) {
+		
+		try{
+			odometer = Integer.parseInt(etOdometer.getText().toString()); 
+			selectedBrand = carBrandEditText.getText().toString();
+			selectedModel = carModelEditText.getText().toString();
+			
+		}
+		catch(NumberFormatException ex) {
+			etOdometer.setHintTextColor(Color.RED);
+			return;
+		}
+
 		String errorMessage = "";
 		
 		if(!connected){
@@ -132,15 +151,15 @@ public class RegisterVehicleFragment extends Fragment implements
 			selectedModel = carModelEditText.getText().toString();
 		}
 		
-		if(selectedBrand.trim() == "" || selectedModel.trim() == "" ||  odometer.getText().toString().trim() == ""){
+		if(selectedBrand.trim() == "" || selectedModel.trim() == "" ||  etOdometer.getText().toString().trim() == ""){
 			Toast.makeText(getActivity(), "Please type the brand, model and the odometer of your car." , Toast.LENGTH_SHORT).show();
 			return;
 		}
 		
+		etOdometer.setHintTextColor(Color.GRAY);
 		CarDBHandler database = new CarDBHandler(getActivity());
-		database.insertCar(selectedBrand, selectedModel, 0,
-				Integer.parseInt(odometer.getText().toString()),
-				Float.parseFloat(tankSize.getText().toString()));
+		database.insertCar(selectedBrand, selectedModel, 0,odometer, tankSize);
+
 		VehiclesFragment vehicles = (VehiclesFragment) getParentFragment();
 		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);
 
@@ -148,6 +167,7 @@ public class RegisterVehicleFragment extends Fragment implements
 
 	private class SelectBrandListener implements OnItemSelectedListener {
 
+		@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view,
 				int position, long id) {
