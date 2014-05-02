@@ -46,10 +46,10 @@ public class RegisterFuelFragment extends Fragment {
 	private int odometer;
 	private Spinner spMyVehicle;
 	private List<Car> myCars;
-	
+	private Button btnSubmit;
+
 	private Car selectedCar = null;
 
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -77,6 +77,10 @@ public class RegisterFuelFragment extends Fragment {
 		etFuelPrice = (EditText) activity.findViewById(R.id.etCost);
 		etOdometer = (EditText) activity.findViewById(R.id.etOdo);
 		btnDate = (Button) activity.findViewById(R.id.btnPickDate);
+
+		btnSubmit = (Button) activity
+				.findViewById(R.id.btnSubmitFueling);
+
 		btnDate.setEnabled(true);
 		setDate(year, month + 1, day);
 		
@@ -110,8 +114,6 @@ public class RegisterFuelFragment extends Fragment {
 			}
 		});
 
-		Button btnSubmit = (Button) activity
-				.findViewById(R.id.btnSubmitFueling);
 		btnSubmit.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -143,20 +145,24 @@ public class RegisterFuelFragment extends Fragment {
 		});
 
 	}
+
 	private void populateVehicleSpinner() {
 		CarDBHandler db = new CarDBHandler(getActivity());
 		final List<Car> cars = db.getAllCars();
 		db.close();
-		if(cars.size() == 0){
-			MainActivity mActivity = (MainActivity)getActivity();
-			mActivity.setContent(new VehiclesFragment(), false, null);
+
+		if (cars.size() == 0) {
+			btnSubmit.setEnabled(false);
+			Toast.makeText(getActivity(), "Register a new car to log a refill.", Toast.LENGTH_SHORT).show();
+			return;
 		}
-		ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(getActivity(), R.layout.car_spinner_layout);
-		for(int i = 0; i <cars.size(); i++){
+		ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(getActivity(),
+				R.layout.car_spinner_layout);
+		for (int i = 0; i < cars.size(); i++) {
 			adapter.add(cars.get(i));
 		}
 		spMyVehicle.setAdapter(adapter);
-		
+
 		spMyVehicle.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			@Override
@@ -170,45 +176,50 @@ public class RegisterFuelFragment extends Fragment {
 			public void onNothingSelected(AdapterView<?> parent) {
 			}
 		});
-		
+
 	}
 
-	protected Car getCarById(int id){
+	protected Car getCarById(int id) {
 		CarDBHandler carDatabase = new CarDBHandler(getActivity());
-		/*String count = "SELECT count(*) FROM table";
-		Cursor mcursor = carDatabase.rawQuery(count, null);
-	    mcursor.moveToFirst();*/
+		/*
+		 * String count = "SELECT count(*) FROM table"; Cursor mcursor =
+		 * carDatabase.rawQuery(count, null); mcursor.moveToFirst();
+		 */
 		Car c = carDatabase.getCarById(id);
 		carDatabase.close();
 
 		return c;
 	}
+
 	protected void setDate(int year, int month, int day) {
 		btnDate = (Button) activity.findViewById(R.id.btnPickDate);
 		btnDate.setText(year + "/" + month + "/" + day);
-	
+
 	}
 
-	protected void btnSubmitFueling(Car c, float fuelLitre, float fuelPrice, int odometer, Calendar date) {
+	protected void btnSubmitFueling(Car c, float fuelLitre, float fuelPrice,
+			int odometer, Calendar date) {
 		// TODO Submit fueling
-		
-		
+
 		RefillDBHandler database = new RefillDBHandler(getActivity());
 		database.newRefill(c, fuelLitre, fuelPrice, odometer, date);
 		database.close();
 		CarDBHandler carDB = new CarDBHandler(getActivity());
 		carDB.updateOdometer(c, odometer);
 		carDB.close();
-		
-		MainActivity mActivity = (MainActivity)getActivity();
+
+		MainActivity mActivity = (MainActivity) getActivity();
 		mActivity.setContent(new MyFuelingsFragment(), false, null);
-		/*VehiclesFragment vehicles = (VehiclesFragment)getParentFragment();
-		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);*/
+		/*
+		 * VehiclesFragment vehicles = (VehiclesFragment)getParentFragment();
+		 * vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);
+		 */
 	}
-	
-	private List<Car> getMyCarsFromDB(){
-		
-		CarDBHandler database;database = new CarDBHandler(getActivity());
+
+	private List<Car> getMyCarsFromDB() {
+
+		CarDBHandler database;
+		database = new CarDBHandler(getActivity());
 		myCars = database.getAllCars();
 		database.close();
 		return myCars;
