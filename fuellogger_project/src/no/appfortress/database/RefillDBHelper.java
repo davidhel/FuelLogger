@@ -5,6 +5,7 @@ import no.appfortress.database.RefillDatabaseContract.RefillFeedEntry;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class RefillDBHelper extends SQLiteOpenHelper{
 	
@@ -30,6 +31,7 @@ public class RefillDBHelper extends SQLiteOpenHelper{
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		Log.d("SQLCREATE", SQL_CREATE_ENTRIES);
 		db.execSQL(SQL_CREATE_ENTRIES);
 	}
 
