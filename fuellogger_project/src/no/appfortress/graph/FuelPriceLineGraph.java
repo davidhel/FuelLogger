@@ -15,7 +15,6 @@ import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -45,8 +44,7 @@ public class FuelPriceLineGraph {
 
 	
 	
-	@SuppressLint("Instantiatable")
-	public FuelPriceLineGraph() {
+	public FuelPriceLineGraph(Context c) {
 		// Set text size dependent on screen dimensions
 		DisplayMetrics metrics = c.getResources().getDisplayMetrics();
 		float val = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14,
@@ -85,10 +83,6 @@ public class FuelPriceLineGraph {
 		// Add single renderer to multiple renderer
 		mRenderer.addSeriesRenderer(renderer);
 
-	}
-	
-	public void setContext(Context c){
-		this.c = c;
 	}
 
 	public GraphicalView getView(Context context) {
