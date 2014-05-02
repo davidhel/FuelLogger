@@ -98,5 +98,8 @@
     <string name="fuel_consumption">Fuel comsumption</string>
     <string name="volume_unit">l</string>
     <string name="litre_per_mile">l/10km</string>
+    <string name="gps_is_disabled">Location settings is disabled, you must enable to use this feature</string>
+    <string name="enable">Enable</string>
+    <string name="not_now">Not now</string>
 
 </resources>

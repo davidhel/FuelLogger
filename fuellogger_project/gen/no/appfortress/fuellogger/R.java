@@ -1557,6 +1557,7 @@ containing a value of this type.
         public static final int distance_title=0x7f0b004b;
         public static final int drawer_close=0x7f0b0049;
         public static final int drawer_open=0x7f0b0048;
+        public static final int enable=0x7f0b0060;
         public static final int exampleBrand=0x7f0b0030;
         public static final int exampleModel=0x7f0b0031;
         public static final int exampleTankSize=0x7f0b0033;
@@ -1565,6 +1566,7 @@ containing a value of this type.
         public static final int fuelPrice=0x7f0b0052;
         public static final int fuel_consumption=0x7f0b005c;
         public static final int fuel_used_title=0x7f0b004c;
+        public static final int gps_is_disabled=0x7f0b005f;
         public static final int hello_world=0x7f0b002a;
         public static final int hint_brand=0x7f0b004d;
         public static final int hint_model=0x7f0b004e;
@@ -1579,6 +1581,7 @@ containing a value of this type.
         public static final int location_client_powered_by_google=0x7f0b0027;
         public static final int model=0x7f0b002f;
         public static final int name=0x7f0b002c;
+        public static final int not_now=0x7f0b0061;
         public static final int odometer=0x7f0b0037;
         public static final int partial=0x7f0b0040;
         public static final int pick_date=0x7f0b0043;
