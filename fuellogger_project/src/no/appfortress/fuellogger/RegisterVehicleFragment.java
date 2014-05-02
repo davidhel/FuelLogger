@@ -5,13 +5,13 @@ import no.appfortress.json.CarDataManager;
 import no.appfortress.json.CarDataManager.OnVehicleRequestListener;
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -38,7 +38,6 @@ public class RegisterVehicleFragment extends Fragment implements
 	private String[] makes;
 	private String[] models;
 
-	private String[] carmodels;
 	private String selectedBrand;
 	private String selectedModel;
 
@@ -48,7 +47,7 @@ public class RegisterVehicleFragment extends Fragment implements
 	private EditText carBrandEditText;
 	private EditText carModelEditText;
 	private boolean connected;
-	
+
 	private float tankSize;
 	private int odometer;
 
@@ -60,7 +59,8 @@ public class RegisterVehicleFragment extends Fragment implements
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return inflater.inflate(R.layout.fragment_register_vehicle, container, false);
+		return inflater.inflate(R.layout.fragment_register_vehicle, container,
+				false);
 	}
 
 	@Override
@@ -75,25 +75,24 @@ public class RegisterVehicleFragment extends Fragment implements
 		etTankSize = (EditText) a.findViewById(R.id.editTankSize);
 		etOdometer = (EditText) a.findViewById(R.id.editOdometer);
 		saveCar = (Button) a.findViewById(R.id.btnSubmit);
-		
-		if(isConnectedToInternet()){
-			connected = true;
+
+		if (isConnectedToInternet()) {
 			getMakes();
 			carBrand.setOnItemSelectedListener(new SelectBrandListener());
 
-		}else{
-			connected = false;
+		} else {
 			carBrand.setVisibility(View.INVISIBLE);
 			carModel.setVisibility(View.INVISIBLE);
 			carBrandEditText.setVisibility(View.VISIBLE);
 			carModelEditText.setVisibility(View.VISIBLE);
-			
+
 		}
 		saveCar.setOnClickListener(this);
 	}
 
 	private boolean isConnectedToInternet() {
-		ConnectivityManager conMan = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager conMan = (ConnectivityManager) getActivity()
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo activeNetworkInfo = conMan.getActiveNetworkInfo();
 		return (activeNetworkInfo != null && activeNetworkInfo.isConnected());
 	}
@@ -132,33 +131,32 @@ public class RegisterVehicleFragment extends Fragment implements
 
 	@Override
 	public void onClick(View v) {
-		
-		try{
-			odometer = Integer.parseInt(etOdometer.getText().toString()); 
-			selectedBrand = carBrandEditText.getText().toString();
-			selectedModel = carModelEditText.getText().toString();
-			
-		}
-		catch(NumberFormatException ex) {
-			etOdometer.setHintTextColor(Color.RED);
+
+		String errorMessage = "Please enter all required fields";
+
+		try {
+			odometer = Integer.parseInt(etOdometer.getText().toString());
+
+		} catch (NumberFormatException ex) {
+			Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT)
+					.show();
 			return;
 		}
 
-		String errorMessage = "";
-		
-		if(!connected){
+		if (carBrandEditText.getVisibility() == View.VISIBLE) {
+
+			if (carBrandEditText.getText().length() == 0
+					|| carModelEditText.getText().length() == 0) {
+				Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT)
+						.show();
+				return;
+			}
 			selectedBrand = carBrandEditText.getText().toString();
 			selectedModel = carModelEditText.getText().toString();
 		}
-		
-		if(selectedBrand.trim() == "" || selectedModel.trim() == "" ||  etOdometer.getText().toString().trim() == ""){
-			Toast.makeText(getActivity(), "Please type the brand, model and the odometer of your car." , Toast.LENGTH_SHORT).show();
-			return;
-		}
-		
-		etOdometer.setHintTextColor(Color.GRAY);
+
 		CarDBHandler database = new CarDBHandler(getActivity());
-		database.insertCar(selectedBrand, selectedModel, 0,odometer, tankSize);
+		database.insertCar(selectedBrand, selectedModel, 0, odometer, tankSize);
 
 		VehiclesFragment vehicles = (VehiclesFragment) getParentFragment();
 		vehicles.onTabChanged(VehiclesFragment.YOUR_VEHICLES);
@@ -174,7 +172,8 @@ public class RegisterVehicleFragment extends Fragment implements
 			if (makes != null) {
 				selectedBrand = makes[position];
 				models = carDataManager.getModels(selectedBrand);
-				ArrayAdapter<String> modelAdapter = new ArrayAdapter<String>(getActivity(), R.layout.car_spinner_layout);
+				ArrayAdapter<String> modelAdapter = new ArrayAdapter<String>(
+						getActivity(), R.layout.car_spinner_layout);
 				modelAdapter.addAll(models);
 				carModel.setAdapter(modelAdapter);
 				carModel.setOnItemSelectedListener(new SelectModelListener());
@@ -186,19 +185,18 @@ public class RegisterVehicleFragment extends Fragment implements
 		}
 
 	}
-	
-	private class SelectModelListener implements OnItemSelectedListener{
+
+	private class SelectModelListener implements OnItemSelectedListener {
 
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View view,
 				int position, long id) {
 			selectedModel = models[position];
-			
 		}
 
 		@Override
-		public void onNothingSelected(AdapterView<?> parent) {			
+		public void onNothingSelected(AdapterView<?> parent) {
 		}
-		
+
 	}
 }
