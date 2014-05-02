@@ -6,7 +6,6 @@
     
     <Button android:id="@+id/LineGraph"
         android:layout_height="wrap_content"
-        android:onClick="lineGraphHandler"
         android:layout_width="fill_parent"
         android:text="Line Graph"/>
 

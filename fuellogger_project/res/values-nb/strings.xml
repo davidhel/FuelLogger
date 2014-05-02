@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">FuelLogger</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Instillinger</string>
     <string name="hello_world">Hello git!</string>
     <string name="submit">Submit</string>
     <string name="name">Name:</string>
