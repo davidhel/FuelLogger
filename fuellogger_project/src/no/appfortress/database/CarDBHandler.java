@@ -85,22 +85,24 @@ public class CarDBHandler {
 		String brand, model;
 		float fuelTank, fuel;
 		int year;
-		Car car;
+		Car car = null;
 		try{
 			db = dbHelper.getReadableDatabase();
 			String query = "SELECT * FROM " + CarFeedEntry.TABLE_NAME + " WHERE " + CarFeedEntry._ID + "="+id;
 			Cursor cursor = db.rawQuery(query, null);
-			cursor.moveToFirst();
+			if(cursor != null && cursor.moveToFirst()){
 			
-			odometer = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_ODOMETER));
-			brand = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_BRAND));
-			model = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_MODEL));
-			fuelTank = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUELTANK));
-			fuel = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUEL));
-			year = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_YEAR));
-			
-			car = new Car(id, brand,model,year,odometer,fuelTank);
-			car.setFuel(fuel);
+				odometer = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_ODOMETER));
+				brand = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_BRAND));
+				model = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_MODEL));
+				fuelTank = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUELTANK));
+				fuel = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUEL));
+				year = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_YEAR));
+				
+				car = new Car(id, brand,model,year,odometer,fuelTank);
+				car.setFuel(fuel);
+				cursor.close();
+			}
 		}
 		catch(SQLiteException ex){
 			Log.e("Error in: getAllCars method in CarDBHandler class",
@@ -116,24 +118,25 @@ public class CarDBHandler {
 			db = dbHelper.getReadableDatabase();
 			String query = "SELECT * FROM " + CarFeedEntry.TABLE_NAME;
 			Cursor cursor = db.rawQuery(query, null);
-			cursor.moveToFirst();
 			long id; 
 			int odometer;
 			String brand, model;
 			float fuelTank, fuel;
 			int year;
-			while(!cursor.isAfterLast()){
-				id = cursor.getLong(cursor.getColumnIndex(CarFeedEntry._ID));
-				brand = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_BRAND));
-				model = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_MODEL));
-				year = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_YEAR));
-				odometer = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_ODOMETER));
-				fuelTank = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUELTANK));
-				fuel = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUEL));
-				Car car = new Car(id, brand, model, year, odometer, fuelTank);
-				car.setFuel(fuel);
-				carList.add(car);
-				cursor.moveToNext();
+			if(cursor != null && cursor.moveToFirst()){
+				while(!cursor.isAfterLast()){
+					id = cursor.getLong(cursor.getColumnIndex(CarFeedEntry._ID));
+					brand = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_BRAND));
+					model = cursor.getString(cursor.getColumnIndex(CarFeedEntry.COLUMN_CAR_MODEL));
+					year = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_YEAR));
+					odometer = cursor.getInt(cursor.getColumnIndex(CarFeedEntry.COLUMN_ODOMETER));
+					fuelTank = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUELTANK));
+					fuel = cursor.getFloat(cursor.getColumnIndex(CarFeedEntry.COLUMN_FUEL));
+					Car car = new Car(id, brand, model, year, odometer, fuelTank);
+					car.setFuel(fuel);
+					carList.add(car);
+					cursor.moveToNext();
+				}
 			}
 		} catch (SQLiteException ex) {
 			Log.e("Error in: getAllCars method in CarDBHandler class",
