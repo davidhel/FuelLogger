@@ -25,8 +25,8 @@ public class GraphActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graph);
-		line = new FuelPriceLineGraph(this);
-		//line.setContext(this);
+		line = new FuelPriceLineGraph();
+		line.setContext(this);
 		refills = getDataFromDB();
 		highestFuelPrice = 0;
 		for (int i = 0; i < refills.size(); i++) {

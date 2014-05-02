@@ -117,7 +117,7 @@ public class MyVehiclesFragment extends Fragment {
 		startActivity(vehicleIntent);
 	}
 
-	private class LongClickCarDialog extends DialogFragment {
+	public class LongClickCarDialog extends DialogFragment {
 
 		private Car car;
 

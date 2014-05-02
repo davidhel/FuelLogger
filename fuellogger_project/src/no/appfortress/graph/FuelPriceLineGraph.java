@@ -44,8 +44,13 @@ public class FuelPriceLineGraph {
 
 	
 	
-	public FuelPriceLineGraph(Context c) {
+	public FuelPriceLineGraph() {
 		// Set text size dependent on screen dimensions
+
+	}
+	public void setContext(Context context){
+		c = context;
+		
 		DisplayMetrics metrics = c.getResources().getDisplayMetrics();
 		float val = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14,
 				metrics);
