@@ -76,6 +76,7 @@ public class MyFuelingsFragment extends Fragment {
 
 	}
 
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	protected void animate(final View view) {
 		view.animate().setDuration(300).alpha(0).translationX(1000)
 		.withEndAction(new Runnable() {

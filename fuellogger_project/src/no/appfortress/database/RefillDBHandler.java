@@ -56,6 +56,7 @@ public class RefillDBHandler {
 					+ Float.toString(fuelPrice) + ",'" + dateString + "',"
 					+ Long.toString(odometer) + "," + Float.toString(latitude)
 					+ "," + Float.toString(longitude) + ")";
+				Log.d("SQL", sqlQuery);
 			db.execSQL(sqlQuery);
 			sqlQuery = "SELECT " + RefillFeedEntry._ID + " FROM " +RefillFeedEntry.TABLE_NAME;
 			Cursor cursor = db.rawQuery(sqlQuery, null);
@@ -65,6 +66,7 @@ public class RefillDBHandler {
 					latitude, longitude);
 		} catch (SQLiteException ex) {
 			ex.printStackTrace();
+			Log.d("ERROR","error");
 			return null;
 		}
 		return refill;
