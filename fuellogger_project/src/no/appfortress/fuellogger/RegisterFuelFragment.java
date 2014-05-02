@@ -25,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -78,6 +79,7 @@ public class RegisterFuelFragment extends Fragment {
 		btnDate = (Button) activity.findViewById(R.id.btnPickDate);
 		btnDate.setEnabled(true);
 		setDate(year, month + 1, day);
+
 		btnDate.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -91,7 +93,14 @@ public class RegisterFuelFragment extends Fragment {
 			}
 
 		});
-
+		
+		////////////////////////////////////////
+		 ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_item);
+		 spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
+		 spMyVehicle.setAdapter(spinnerArrayAdapter);
+		
+		
+		
 		TextView whatIsOdo = (TextView) activity
 				.findViewById(R.id.txtWhatIsOdo);
 		whatIsOdo.setOnClickListener(new OnClickListener() {
