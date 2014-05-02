@@ -173,7 +173,6 @@ public class RegisterVehicleFragment extends Fragment implements
 		public void onItemSelected(AdapterView<?> parent, View view,
 				int position, long id) {
 			selectedModel = models[position];
-			
 		}
 
 		@Override
