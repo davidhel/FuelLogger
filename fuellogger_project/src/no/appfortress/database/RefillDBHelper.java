@@ -3,8 +3,10 @@ package no.appfortress.database;
 import no.appfortress.database.CarDatabaseContract.CarFeedEntry;
 import no.appfortress.database.RefillDatabaseContract.RefillFeedEntry;
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class RefillDBHelper extends SQLiteOpenHelper{
 	
@@ -30,13 +32,23 @@ public class RefillDBHelper extends SQLiteOpenHelper{
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL(SQL_CREATE_ENTRIES);
+		try{
+			db.execSQL(SQL_CREATE_ENTRIES);
+		}catch(SQLException ex){
+			Log.e(RefillDBHelper.class.toString(), "Failed to create SQLiteDatabase: " + SQL_CREATE_ENTRIES);
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		try{
 		db.execSQL(SQL_DELETE_ENTRIES);
 		onCreate(db);
+		}catch(SQLException ex){
+			Log.e(RefillDBHelper.class.toString(), "Failed to delete SQLiteDatabase: " + SQL_DELETE_ENTRIES);
+			ex.printStackTrace();
+		}
 	}
 	
 }

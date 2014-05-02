@@ -4,15 +4,6 @@
     android:layout_height="match_parent"
     android:padding="20dp" >
 
-    <ImageView
-        android:id="@+id/imgCar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txtVehicleBrand"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ic_car" />
-
     <EditText
         android:id="@+id/etVehicleBrand"
         android:layout_width="match_parent"
@@ -117,5 +108,21 @@
         android:layout_alignLeft="@+id/etVehicleBrand"
         android:layout_below="@+id/imgCar"
         android:ems="10" />
+
+    <ImageView
+        android:id="@+id/imgCar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtVehicleBrand"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_car" />
+
+    <CheckBox
+        android:id="@+id/cbToggleEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imgCar"
+        android:layout_toRightOf="@+id/txtVehicleBrand"
+        android:text="Type manually" />
 
 </RelativeLayout>

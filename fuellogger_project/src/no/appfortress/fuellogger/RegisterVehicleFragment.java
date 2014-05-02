@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,12 +19,15 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 public class RegisterVehicleFragment extends Fragment implements
-		OnVehicleRequestListener, OnClickListener {
+		OnVehicleRequestListener, OnClickListener, OnCheckedChangeListener {
 
 	private static final String DOWNLOAD_MAKES = "DOWNLOAD_MAKES";
 	private static final String DOWNLOAD_MODELS = "DOWNLOAD_MODELS";
@@ -35,17 +37,16 @@ public class RegisterVehicleFragment extends Fragment implements
 
 	private String downloadStatus = NOT_DOWNLOADING;
 
-	private String[] makes;
+	private String[] makes = null;
 	private String[] models;
 
 	private String selectedBrand;
 	private String selectedModel;
 
 	private Spinner carBrand, carModel;
-	private EditText etTankSize, etOdometer;
+	private EditText etTankSize, etOdometer,carBrandEditText,carModelEditText;
 	private Button saveCar;
-	private EditText carBrandEditText;
-	private EditText carModelEditText;
+	private CheckBox cbToggleManually;
 	private boolean connected;
 
 	private float tankSize;
@@ -75,19 +76,35 @@ public class RegisterVehicleFragment extends Fragment implements
 		etTankSize = (EditText) a.findViewById(R.id.editTankSize);
 		etOdometer = (EditText) a.findViewById(R.id.editOdometer);
 		saveCar = (Button) a.findViewById(R.id.btnSubmit);
+		cbToggleManually = (CheckBox) a.findViewById(R.id.cbToggleEditText);
 
+		cbToggleManually.setOnCheckedChangeListener(this);
+		
 		if (isConnectedToInternet()) {
 			getMakes();
-			carBrand.setOnItemSelectedListener(new SelectBrandListener());
 
 		} else {
+			cbToggleManually.setChecked(true);
+		}
+		saveCar.setOnClickListener(this);
+	}
+
+	private void fillManually(boolean manually) {
+
+		
+		if(manually){
 			carBrand.setVisibility(View.INVISIBLE);
 			carModel.setVisibility(View.INVISIBLE);
 			carBrandEditText.setVisibility(View.VISIBLE);
 			carModelEditText.setVisibility(View.VISIBLE);
-
+		}else{
+			carBrand.setVisibility(View.VISIBLE);
+			carModel.setVisibility(View.VISIBLE);
+			carBrandEditText.setVisibility(View.INVISIBLE);
+			carModelEditText.setVisibility(View.INVISIBLE);
+			getMakes();
 		}
-		saveCar.setOnClickListener(this);
+		
 	}
 
 	private boolean isConnectedToInternet() {
@@ -98,9 +115,13 @@ public class RegisterVehicleFragment extends Fragment implements
 	}
 
 	private void getMakes() {
-		downloadStatus = DOWNLOAD_MAKES;
-		carDataManager = new CarDataManager(this);
-		carDataManager.downloadMakes();
+		if(makes == null){
+			downloadStatus = DOWNLOAD_MAKES;
+			carDataManager = new CarDataManager(this);
+			carDataManager.downloadMakes();
+
+			carBrand.setOnItemSelectedListener(new SelectBrandListener());
+		}
 	}
 
 	private void getModelsFromMake(String make) {
@@ -198,5 +219,16 @@ public class RegisterVehicleFragment extends Fragment implements
 		public void onNothingSelected(AdapterView<?> parent) {
 		}
 
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		if(!isConnectedToInternet() && !isChecked){
+			cbToggleManually.setChecked(true);
+			Toast.makeText(getActivity(), "Could not get data. No internet connection", Toast.LENGTH_SHORT).show();
+			return;
+		}
+		fillManually(isChecked);
+		
 	}
 }
