@@ -7,17 +7,20 @@ import no.appfortress.gps.GPSTrackService;
 import no.appfortress.gps.MyGoogleMaps;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.BitmapFactory;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,11 +30,11 @@ import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class GPSFragment extends Fragment {
 
+	public static final int TRACK_NOTIFICATION = 432910;
 	public static final String SEND_LOCATION = "SEND_LOCATION";
 	public static final String LOCATION_FILTER = "LOCATION_FILTER";
 	public static final String RECEIVE_LATITUDE = "RECEIVE_LATITUDE";
@@ -42,6 +45,7 @@ public class GPSFragment extends Fragment {
 	public static final String TRACKED_LONGITUDES = "TRACKED_LONGITUDES";
 	public static final String TRACKED_LATITUDES = "TRACKED_LATITUDES";
 	private static final String IS_TRACKING = "IS_TRACKING";
+
 	private boolean gpsOn;
 
 	LocationManager locManager;
@@ -146,8 +150,8 @@ public class GPSFragment extends Fragment {
 				.setCancelable(false)
 				.setPositiveButton(R.string.enable,
 						new DialogInterface.OnClickListener() {
-							public void onClick(final DialogInterface dialog
-									,final int id) {
+							public void onClick(final DialogInterface dialog,
+									final int id) {
 								startActivity(new Intent(
 										android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 							}
@@ -189,6 +193,7 @@ public class GPSFragment extends Fragment {
 
 	private void stopService() {
 		GPSTrackService.setTracking(false);
+		removeNotification();
 		if (alarmManager == null) {
 			alarmManager = (AlarmManager) getActivity().getSystemService(
 					Context.ALARM_SERVICE);
@@ -212,6 +217,8 @@ public class GPSFragment extends Fragment {
 	private void startService() {
 		GPSTrackService.setTracking(true);
 
+		addNotication();
+
 		alarmManager = (AlarmManager) getActivity().getSystemService(
 				Context.ALARM_SERVICE);
 
@@ -224,5 +231,35 @@ public class GPSFragment extends Fragment {
 				System.currentTimeMillis() - intervalTime, intervalTime,
 				startServicePendingIntent);
 
+	}
+
+	private void addNotication() {
+
+		NotificationCompat.Builder builder = new NotificationCompat.Builder(
+				getActivity())
+				.setSmallIcon(R.drawable.notification_icon)
+				.setContentTitle("Tracking")
+				.setContentText("Aplication is currently tracking your trip.")
+				.setLargeIcon(
+						BitmapFactory.decodeResource(getResources(),
+								R.drawable.ic_launcher)).setOngoing(true);
+		Intent notiIntent = new Intent(getActivity(), MainActivity.class);
+		notiIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+				| Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+		PendingIntent intent = PendingIntent.getActivity(getActivity(), 0,
+				notiIntent, 0);
+
+		builder.setContentIntent(intent);
+
+		NotificationManager nManager = (NotificationManager) getActivity()
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+		nManager.notify(TRACK_NOTIFICATION, builder.build());
+	}
+
+	private void removeNotification() {
+		NotificationManager nManager = (NotificationManager) getActivity()
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+		nManager.cancel(TRACK_NOTIFICATION);
 	}
 }

@@ -54,14 +54,12 @@ public class GraphActivity extends Activity {
 
 	@Override
 	protected void onStart() {
-		
 		super.onStart();
 		view = line.getView(this);
 		setContentView(view);
 	}
 
 	private List<Refill> getDataFromDB() {
-
 		List<Refill> refills = null;
 		RefillDBHandler database = new RefillDBHandler(this);
 		

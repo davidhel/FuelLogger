@@ -1,8 +1,12 @@
 package no.appfortress.fuellogger;
 
+import no.appfortress.gps.GPSTrackService;
 import no.appfortress.graph.*;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -26,7 +30,8 @@ import android.widget.ListView;
 
 public class MainActivity extends ActionBarActivity implements
 		OnItemClickListener {
-
+	
+	boolean keeptracking;
 	private DrawerLayout navDrawer;
 	private ListView listDrawer;
 	private FrameLayout contentFrame;
@@ -149,6 +154,8 @@ public class MainActivity extends ActionBarActivity implements
 		 * 0 : Cars 1 : Drive 2 : History 3 : Settings
 		 */
 		FragmentManager fm = (FragmentManager) getSupportFragmentManager();
+
+		
 		switch (position) {
 		case 0:
 			setContent(new RegisterFuelFragment(), false, null);

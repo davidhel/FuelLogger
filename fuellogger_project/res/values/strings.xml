@@ -40,7 +40,11 @@
     <string name="fuel_used_title">Fuel used:</string>
 	<string name="hint_brand">Brand</string>
 	<string name="hint_model">Model</string>
-    
+	<string name="dialog_leave_while_tracking_title">Cancel tracking</string>
+	<string name="dialog_leave_while_tracking">If you leave, the tracking will be canceled.</string>
+	<string name="leave_tracking">Abort tracking</string>
+	<string name="stay_and_track">Keep tracking</string>
+	
     <string-array name="week_days">
         <item>Sunday</item>
         <item>Monday</item>
