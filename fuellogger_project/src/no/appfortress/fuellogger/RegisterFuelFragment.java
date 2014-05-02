@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 public class RegisterFuelFragment extends Fragment {
@@ -74,6 +75,8 @@ public class RegisterFuelFragment extends Fragment {
 		btnDate = (Button) activity.findViewById(R.id.btnPickDate);
 		btnDate.setEnabled(true);
 		setDate(year, month + 1, day);
+		
+		populateVehicleSpinner();
 
 		btnDate.setOnClickListener(new OnClickListener() {
 
@@ -89,10 +92,6 @@ public class RegisterFuelFragment extends Fragment {
 
 		});
 		
-		////////////////////////////////////////
-		 ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_item);
-		 spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down vieww
-		 spMyVehicle.setAdapter(spinnerArrayAdapter);
 		
 		
 		
@@ -137,6 +136,16 @@ public class RegisterFuelFragment extends Fragment {
 		});
 
 	}
+	private void populateVehicleSpinner() {
+		CarDBHandler db = new CarDBHandler(getActivity());
+		List<Car> cars = db.getAllCars();
+		db.close();
+		ArrayAdapter<Car> adapter = new ArrayAdapter<Car>(getActivity(), R.layout.car_spinner_layout);
+		//adapter.addAll(cars);
+		//spMyVehicle.setAdapter(adapter);
+		
+	}
+
 	protected Car getCarById(int id){
 		CarDBHandler carDatabase = new CarDBHandler(getActivity());
 		/*String count = "SELECT count(*) FROM table";

@@ -28,6 +28,7 @@ public class RefillDBHelper extends SQLiteOpenHelper{
 	
 	public RefillDBHelper(Context c){
 		super(c, MySQLiteDatabase.databaseName, null, MySQLiteDatabase.databaseVersion);
+		getWritableDatabase().execSQL(SQL_CREATE_ENTRIES);
 	}
 
 	@Override
