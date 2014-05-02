@@ -536,6 +536,7 @@ int string distanceMeasure 0x7f0b003a
 int string distance_title 0x7f0b004b
 int string drawer_close 0x7f0b0049
 int string drawer_open 0x7f0b0048
+int string enable 0x7f0b0060
 int string exampleBrand 0x7f0b0030
 int string exampleModel 0x7f0b0031
 int string exampleTankSize 0x7f0b0033
@@ -544,6 +545,7 @@ int string examplelitre 0x7f0b003f
 int string fuelPrice 0x7f0b0052
 int string fuel_consumption 0x7f0b005c
 int string fuel_used_title 0x7f0b004c
+int string gps_is_disabled 0x7f0b005f
 int string hello_world 0x7f0b002a
 int string hint_brand 0x7f0b004d
 int string hint_model 0x7f0b004e
@@ -556,6 +558,7 @@ int string litre_per_mile 0x7f0b005e
 int string location_client_powered_by_google 0x7f0b0027
 int string model 0x7f0b002f
 int string name 0x7f0b002c
+int string not_now 0x7f0b0061
 int string odometer 0x7f0b0037
 int string partial 0x7f0b0040
 int string pick_date 0x7f0b0043

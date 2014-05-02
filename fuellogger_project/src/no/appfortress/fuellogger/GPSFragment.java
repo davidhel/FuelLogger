@@ -6,13 +6,17 @@ import java.util.List;
 import no.appfortress.gps.GPSTrackService;
 import no.appfortress.gps.MyGoogleMaps;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -38,6 +42,10 @@ public class GPSFragment extends Fragment {
 	public static final String TRACKED_LONGITUDES = "TRACKED_LONGITUDES";
 	public static final String TRACKED_LATITUDES = "TRACKED_LATITUDES";
 	private static final String IS_TRACKING = "IS_TRACKING";
+	private boolean gpsOn;
+
+	LocationManager locManager;
+	private FragmentActivity activity;
 
 	private BroadcastReceiver locationReceiver = new BroadcastReceiver() {
 
@@ -48,6 +56,7 @@ public class GPSFragment extends Fragment {
 			double longitude = intent.getDoubleExtra(RECEIVE_LONGITUDE, -1000);
 			double[] position = { latitude, longitude };
 			locationsTracked.add(position);
+
 		}
 
 	};
@@ -94,8 +103,11 @@ public class GPSFragment extends Fragment {
 
 	private void initGUI() {
 		// Gets the ToggleButton from the xml layout file
-
-		tglSer = (ToggleButton) getActivity().findViewById(R.id.tbStartService);
+		activity = getActivity();
+		// get gps manager
+		locManager = (LocationManager) activity
+				.getSystemService(Context.LOCATION_SERVICE);
+		tglSer = (ToggleButton) activity.findViewById(R.id.tbStartService);
 
 		// Set toogle buttons checked true/false, depending if the app is
 		// tracking location or not
@@ -111,6 +123,10 @@ public class GPSFragment extends Fragment {
 					boolean isChecked) {
 				tracking = isChecked;
 				if (isChecked) {
+					if (!locManager
+							.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+						arlertIfGPSDisabled();
+					}
 					registerReceiver();
 					locationsTracked.clear();
 				} else {
@@ -121,6 +137,30 @@ public class GPSFragment extends Fragment {
 			}
 		});
 
+	}
+
+	private void arlertIfGPSDisabled() {
+		final AlertDialog.Builder builder = new AlertDialog.Builder(
+				getActivity());
+		builder.setMessage(R.string.gps_is_disabled)
+				.setCancelable(false)
+				.setPositiveButton(R.string.enable,
+						new DialogInterface.OnClickListener() {
+							public void onClick(final DialogInterface dialog
+									,final int id) {
+								startActivity(new Intent(
+										android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+							}
+						})
+				.setNegativeButton(R.string.not_now,
+						new DialogInterface.OnClickListener() {
+							public void onClick(final DialogInterface dialog,
+									@SuppressWarnings("unused") final int id) {
+								dialog.cancel();
+							}
+						});
+		final AlertDialog alert = builder.create();
+		alert.show();
 	}
 
 	protected void showRoute() {
@@ -149,7 +189,7 @@ public class GPSFragment extends Fragment {
 
 	private void stopService() {
 		GPSTrackService.setTracking(false);
-		if(alarmManager == null){
+		if (alarmManager == null) {
 			alarmManager = (AlarmManager) getActivity().getSystemService(
 					Context.ALARM_SERVICE);
 		}
@@ -168,10 +208,10 @@ public class GPSFragment extends Fragment {
 		unregisterReceiver();
 		super.onDetach();
 	}
-	
+
 	private void startService() {
 		GPSTrackService.setTracking(true);
-		
+
 		alarmManager = (AlarmManager) getActivity().getSystemService(
 				Context.ALARM_SERVICE);
 
@@ -183,8 +223,6 @@ public class GPSFragment extends Fragment {
 		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
 				System.currentTimeMillis() - intervalTime, intervalTime,
 				startServicePendingIntent);
-		
+
 	}
-
-
 }
