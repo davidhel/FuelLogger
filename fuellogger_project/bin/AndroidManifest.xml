@@ -63,9 +63,10 @@
             android:name="no.appfortress.gps.MyGoogleMaps"
             android:parentActivityName="no.appfortress.MainActivity" >
         </activity>
-		<activity
-		    android:name="no.appfortress.fuellogger.VehicleActivity"
-		    android:parentActivityName="no.appfortress.MainActivity" />
+        <activity
+            android:name="no.appfortress.fuellogger.VehicleActivity"
+            android:parentActivityName="no.appfortress.MainActivity" />
+
         <service
             android:name="no.appfortress.gps.GPSTrackService"
             android:exported="false" />
@@ -77,12 +78,11 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAVQWNeJHEhrZ0v8hzWYxl9UO3270zQocs" />
 
-
-        <!-- WIDGET STUFF, muligens noe som kan fjernes -->
+        <!-- WIDGET -->
         <receiver
             android:name=".MyWidgetProvider"
             android:icon="@drawable/ic_launcher"
-            android:label="AFuellogger widget" >
+            android:label="Fuellogger" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -92,19 +92,7 @@
                 android:resource="@xml/widget_info" />
         </receiver>
 
-        <activity android:name=".MyWidgetProvider" >
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
-            </intent-filter>
-        </activity>
-
-        <appwidget-provider
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:configure=".MyWidgetProvider" >
-        </appwidget-provider>
-
-        <!-- WIDGET STUFF END -->
-        <!-- Graph STUFF -->
+        <!-- Graph -->
         <activity android:name="org.achartengine.GraphicalActivity" />
         <activity android:name="no.appfortress.graph.GraphActivity" />
         <activity android:name="no.appfortress.graph.FuelPriceLineGraph" />

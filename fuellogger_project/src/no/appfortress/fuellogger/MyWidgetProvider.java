@@ -20,10 +20,9 @@ public class MyWidgetProvider extends AppWidgetProvider {
 
 		final int N = appWidgetIds.length;
 
-		// Perform this loop procedure for each App Widget that belongs to this
-		// provider
+		//Loop through the app widget(s)
 		for (int i = 0; i < N; i++) {
-			int appWidgetId = appWidgetIds[i];
+			int widgetId = appWidgetIds[i];
 
 			// Create an Intent to launch an activity
 			Intent intent = new Intent(context, MainActivity.class);
@@ -35,35 +34,8 @@ public class MyWidgetProvider extends AppWidgetProvider {
 			RemoteViews views = new RemoteViews(context.getPackageName(),
 					R.layout.widget_layout);
 			views.setOnClickPendingIntent(R.id.btnWidget, pendingIntent);
-
-			// Tell the AppWidgetManager to perform an update on the current app
-			// widget
-			appWidgetManager.updateAppWidget(appWidgetId, views);
-
-			/*
-			 * // Get all ids ComponentName thisWidget = new
-			 * ComponentName(context, MyWidgetProvider.class); int[]
-			 * allWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget); for
-			 * (int widgetId : allWidgetIds) { // Create some random data int
-			 * number = (new Random().nextInt(100));
-			 * 
-			 * RemoteViews remoteViews = new
-			 * RemoteViews(context.getPackageName(), R.layout.widget_layout);
-			 * Log.w("WidgetExample", String.valueOf(number)); // Set the text
-			 * remoteViews.setTextViewText(R.id.update, String.valueOf(number));
-			 * 
-			 * // Register an onClickListener Intent intent = new
-			 * Intent(context, MyWidgetProvider.class);
-			 * 
-			 * intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-			 * intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,
-			 * appWidgetIds);
-			 * 
-			 * PendingIntent pendingIntent = PendingIntent.getBroadcast(context,
-			 * 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-			 * remoteViews.setOnClickPendingIntent(R.id.update, pendingIntent);
-			 * appWidgetManager.updateAppWidget(widgetId, remoteViews);
-			 */
+			
+			appWidgetManager.updateAppWidget(widgetId, views);
 		}
 	}
 }
