@@ -120,7 +120,7 @@
         <!-- Graph STUFF -->
         <activity android:name="org.achartengine.GraphicalActivity" />
         <activity android:name="no.appfortress.graph.GraphActivity" />
-        <activity android:name="no.appfortress.graph.LineGraph" />
+        <activity android:name="no.appfortress.graph.FuelPriceLineGraph" />
     </application>
 
 </manifest>

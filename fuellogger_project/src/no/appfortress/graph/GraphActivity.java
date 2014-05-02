@@ -17,7 +17,7 @@ import android.widget.Toast;
 public class GraphActivity extends Activity {
 
 	private static GraphicalView view;
-	private LineGraph line;
+	private FuelPriceLineGraph line;
 	private static Thread thread;
 	private List<Refill> refills;
 	private float highestFuelPrice;
@@ -26,7 +26,7 @@ public class GraphActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graph);
-		line = new LineGraph(this);
+		line = new FuelPriceLineGraph(this);
 		refills = getDataFromDB();
 		highestFuelPrice = 0;
 		for (int i = 0; i < refills.size(); i++) {
