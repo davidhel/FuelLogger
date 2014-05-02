@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.appfortress.database.CarDBHandler;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -118,6 +119,7 @@ public class MyVehiclesFragment extends Fragment {
 
 		private Car car;
 
+		@SuppressLint("ValidFragment")
 		public LongClickCarDialog(Car c) {
 			car = c;
 		}
