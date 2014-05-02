@@ -45,12 +45,14 @@ public class FuelPriceLineGraph {
 	
 	
 	public FuelPriceLineGraph() {
-		// Set text size dependent on screen dimensions
+		
 
 	}
+	@SuppressWarnings("deprecation")
 	public void setContext(Context context){
 		c = context;
 		
+		// Set text size dependent on screen dimensions
 		DisplayMetrics metrics = c.getResources().getDisplayMetrics();
 		float val = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 14,
 				metrics);
@@ -79,6 +81,12 @@ public class FuelPriceLineGraph {
 		
 		mRenderer.setChartTitleTextSize(val);
 		mRenderer.setXTitle("Day");
+		
+		mRenderer.setLabelsTextSize(15);
+		mRenderer.setLegendTextSize(40);
+		mRenderer.setXLabelsPadding(80);
+		mRenderer.setYLabelsPadding(50);
+		mRenderer.setMargins(new int[]{ 80, 80, 0, 0 });
 		mRenderer.setYTitle("Litre price");
 
 		// mRenderer.setXLabels(0);
@@ -99,53 +107,8 @@ public class FuelPriceLineGraph {
 		dataset.add(p.getX(), p.getY());
 
 		mRenderer.addXTextLabel(p.getX(), c.get(Calendar.DAY_OF_MONTH) + "/"
-				+ c.get(Calendar.DAY_OF_MONTH));
+				+ c.get(Calendar.MONTH));
 		mRenderer.setXLabels(0);
 	}
 
-	public void addLabel() {
-		// for()
-	}
-
 }
-
-/*
- * Log.d("DATABASE","hei"); // Our first data int[] x = { 1, 2, 3, 4, 5, 6, 7,
- * 8, 9, 10 }; // The x values represents date int[] y = { 200, 300, 245, 190,
- * 400, 280, 190, 467, 350, 332}; // The y values represents distance driven on
- * between two refills TimeSeries series = new TimeSeries("Line1"); for( int i =
- * 0; i < x.length; i++) { series.add(x[i], y[i]); }
- * 
- * //getDataFromDB(); Log.d("DATABASE","hett");
- * 
- * 
- * XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
- * dataset.addSeries(series);
- * 
- * XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer(); // Holds
- * a collection of XYSeriesRenderer and customizes the graph XYSeriesRenderer
- * renderer = new XYSeriesRenderer(); // This will be used to customize line 1
- * renderer.setPointStyle(PointStyle.SQUARE); renderer.setPointStrokeWidth(5);
- * mRenderer.addSeriesRenderer(renderer);
- * 
- * 
- * 
- * mRenderer.setLabelsTextSize(30); mRenderer.setZoomButtonsVisible(true);
- * mRenderer.setZoomEnabled(true);
- * 
- * 
- * Intent intent = ChartFactory.getLineChartIntent(context, dataset, mRenderer,
- * "Line Graph Title"); return intent;
- */
-// }
-
-/*
- * private List<Refill> getDataFromDB() {
- * 
- * refills = null; RefillDBHandler database = new RefillDBHandler(activity);
- * return refills = database.getAllRefills();
- * 
- * }
- * 
- * }
- */

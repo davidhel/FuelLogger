@@ -34,21 +34,20 @@ public class GraphActivity extends Activity {
 			Log.d("GRAPH", refills.get(i).toString());
 			Refill r = refills.get(i);
 			Calendar c = r.getDate();
-			Log.d("hei", c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.DAY_OF_MONTH));
 			int month = c.get(Calendar.MONTH);
 			int day = c.get(Calendar.DAY_OF_YEAR);
 			double cons = r.getFuelPrice();
-			Toast.makeText(this,String.valueOf(cons), Toast.LENGTH_SHORT).show();
+
 			//Find the highest price
 			if(highestFuelPrice < r.getFuelPrice()){
 				highestFuelPrice = r.getFuelPrice();
 			}
 			
-			Point p = MockData.getDataFromReceiver(i, cons); // We got new data!
+			Point p = MockData.getDataFromReceiver(i, cons);
 			line.addNewPoints(p, c); // Add it to our graph
-			// view.repaint();
 		}
-		line.mRenderer.setYAxisMax(highestFuelPrice);
+		//Focus y axis where the elements are placed
+		line.mRenderer.setYAxisMax(highestFuelPrice+1);
 		
 	}
 
@@ -71,9 +70,3 @@ public class GraphActivity extends Activity {
 
 	}
 }
-/*
- * public void lineGraphHandler (View view){ LineGraph line = new LineGraph();
- * Intent linteIntent = line.getIntent(this); startActivity(linteIntent); }
- */
-
-// }
